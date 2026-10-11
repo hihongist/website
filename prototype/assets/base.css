@@ -56,7 +56,6 @@
   --font-body: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --font-play: "ZCOOL KuaiLe", "PingFang SC", "Noto Sans SC", sans-serif;
-  --font-brush: "Ma Shan Zheng", "STKaiti", "KaiTi", serif;
   --t-hero: clamp(2.1rem, 4.4vw + 0.5rem, 3.9rem);
   --t-h2: clamp(1.9rem, 3.6vw, 2.9rem);
   --t-h3: 1.2rem;
@@ -328,7 +327,7 @@ button, input { font: inherit; color: inherit; }
 }
 .btn-ghost:hover { border-color: var(--fg-3); }
 
-/* store button — 上线时替换为 Apple 官方下载徽章 */
+/* store button：上线时替换为 Apple 官方下载徽章 */
 .store {
   display: inline-flex;
   align-items: center;
@@ -409,23 +408,17 @@ button, input { font: inherit; color: inherit; }
 }
 .ico svg { width: 56%; height: 56%; }
 .ico .glyph-text { font: 800 34cqw / 1 var(--font-display); letter-spacing: -0.03em; }
-.ico .glyph-brush { font: 400 58cqw / 1 var(--font-brush); color: #FDE68A; transform: translateY(-2%); }
 .ico-xs { width: 28px; border-radius: 26%; }
 .ico-sm { width: 40px; }
 .ico-md { width: 64px; }
 .ico-lg { width: 96px; }
 .ico-xl { width: 132px; }
 
-.ico-floaty   { --c1: #FFC15C; --c2: #FF6A2B; }
-.ico-tomo     { --c1: #FF7A7A; --c2: #D92E4A; }
-.ico-keyscape { --c1: #6D7BFF; --c2: #2A2D86; }
-.ico-snapmark { --c1: #3BE0C6; --c2: #0B6F8C; }
-.ico-penny    { --c1: #4BE0A6; --c2: #04866A; }
-.ico-dots     { --c1: #C68CFF; --c2: #D6286F; }
-.ico-tally    { --c1: #6FB1FF; --c2: #2152E0; }
-.ico-blockpop { --c1: #FFE24D; --c2: #FF7A1A; }
-.ico-hopcat   { --c1: #FFC08A; --c2: #F2557B; }
-.ico-chengyu  { --c1: #E84A3C; --c2: #8A1717; }
+.ico-dropedge  { --c1: #5EE7DF; --c2: #2F6BFF; }
+.ico-thendo    { --c1: #FFC36B; --c2: #FF5E62; }
+.ico-scalendar { --c1: #C3A6FF; --c2: #6A4CFF; }
+.ico-saolei    { --c1: #FFF8EA; --c2: #FFEBC4; }
+.ico-zaza      { --c1: #EAF4F0; --c2: #BFD9CF; }
 
 /* ---------- cards ---------- */
 .card {
