@@ -1,22 +1,24 @@
 /* 首页各区块：首屏与 Dock、小工具、小游戏、关于 */
 
 /* ================= hero ================= */
-.hero { position: relative; padding-block: clamp(48px, 7vw, 96px) 24px; }
-/* 首屏：左边大标题，右边介绍和按钮，底边对齐；窄屏时上下排列 */
+/* 首屏占满一屏：左边大标题，右边作品画面；Dock 贴在屏幕底部，像 macOS 一样 */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100svh - 48px);
+  padding-block: clamp(32px, 5vw, 64px) 22px;
+}
 .hero-inner {
   position: relative;
   z-index: 1;
+  flex: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-  column-gap: clamp(32px, 5vw, 80px);
-  align-items: end;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  column-gap: clamp(24px, 4vw, 64px);
+  align-items: center;
 }
-.hero-inner .status-pill { grid-column: 1 / -1; justify-self: start; }
-.hero-side { padding-bottom: 8px; }
-@media (max-width: 900px) {
-  .hero-inner { grid-template-columns: minmax(0, 1fr); }
-  .hero-side { padding-bottom: 0; }
-}
+.hero-copy { display: flex; flex-direction: column; align-items: flex-start; }
 .status-pill {
   display: inline-flex;
   align-items: center;
@@ -41,7 +43,7 @@
 }
 .hero-title {
   font-family: var(--font-display);
-  font-size: var(--t-hero);
+  font-size: clamp(2.1rem, 4.2vw, 3.8rem);
   font-weight: 800;
   line-height: 1.12;
   letter-spacing: -0.02em;
@@ -56,16 +58,57 @@
   white-space: nowrap;
 }
 .hl-wx { background-image: linear-gradient(105deg, var(--hl-wx-1), var(--hl-wx-2)); }
-.hero-sub { font-size: 1.08rem; color: var(--fg-2); max-width: 30em; margin-top: 22px; text-wrap: pretty; }
-.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
-.hero-inner > *, .hero-side > * { animation: rise .9s cubic-bezier(.2, .75, .2, 1) both; }
-.hero-inner > :nth-child(2) { animation-delay: .06s; }
-.hero-side > :nth-child(1) { animation-delay: .12s; }
-.hero-side > :nth-child(2) { animation-delay: .18s; }
+.hero-copy > * { animation: rise .9s cubic-bezier(.2, .75, .2, 1) both; }
+.hero-copy > :nth-child(2) { animation-delay: .08s; }
 @keyframes rise { from { transform: translateY(16px); } }
 
+/* 右侧画面：没有外框，四周用渐隐遮罩融进背景 */
+.hero-visual {
+  --px: 0;
+  --py: 0;
+  position: relative;
+  justify-self: end;
+  width: min(100%, 580px, calc(100svh - 300px));
+  aspect-ratio: 1;
+  max-width: 100%;
+  -webkit-mask-image: radial-gradient(closest-side, #000 70%, transparent 100%);
+  mask-image: radial-gradient(closest-side, #000 70%, transparent 100%);
+}
+.hv-glow {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 35%, var(--glow-1), transparent 60%),
+    radial-gradient(circle at 70% 60%, var(--glow-2), transparent 60%),
+    radial-gradient(circle at 35% 80%, var(--glow-3), transparent 55%);
+  filter: blur(36px);
+}
+.hv {
+  --d: 10;
+  position: absolute;
+  height: auto;
+  translate: calc(var(--px) * var(--d) * -1px) calc(var(--py) * var(--d) * -1px);
+  transition: translate .8s cubic-bezier(.2, .7, .2, 1);
+  filter: drop-shadow(0 26px 34px rgba(10, 14, 30, 0.32));
+  animation: hvFloat 9s ease-in-out infinite;
+}
+.hv-thendo { --d: 8; left: 36%; top: 7%; width: 40%; rotate: 6deg; z-index: 1; animation-delay: -2s; }
+.hv-cal { --d: 14; left: 9%; top: 17%; width: 41%; rotate: -7deg; z-index: 2; animation-delay: -5s; }
+.hv-phone { --d: 20; left: 57%; top: 29%; width: 30%; rotate: 7deg; z-index: 3; animation-delay: -1s; }
+.hv-ico { border-radius: 22.5%; }
+.hv-ico-1 { --d: 26; left: 17%; top: 63%; width: 14%; rotate: -12deg; z-index: 4; animation-duration: 7s; }
+.hv-ico-2 { --d: 32; left: 42%; top: 67%; width: 18%; rotate: 6deg; z-index: 5; animation-duration: 8s; animation-delay: -3s; }
+.hv-ico-3 { --d: 24; left: 61%; top: 13%; width: 14%; rotate: 12deg; z-index: 4; animation-duration: 7.5s; animation-delay: -4s; }
+@keyframes hvFloat { 50% { transform: translateY(-10px); } }
+
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: minmax(0, 1fr); align-content: center; row-gap: 8px; }
+  .hero-visual { justify-self: center; width: min(100%, 420px, calc(100svh - 360px)); }
+}
+
 /* dock */
-.dock-stage { position: relative; z-index: 2; margin-top: clamp(56px, 6vw, 80px); }
+.dock-stage { position: relative; z-index: 2; margin-top: 28px; }
 .dock-rail {
   --base: 64px;
   display: flex;
@@ -135,8 +178,6 @@
   70% { transform: translateY(-16%); }
 }
 .dock-sep { width: 1px; align-self: stretch; margin: 6px 5px 2px; background: var(--line-2); flex: none; }
-.dock-hint { text-align: center; margin-top: 16px; font-size: var(--t-micro); color: var(--fg-3); }
-@media (hover: none) { .dock-hint-fine { display: none; } }
 @media (max-width: 640px) {
   /* 图标大小随屏宽缩放；作品再多也只在 Dock 内横向滚动，不撑宽页面 */
   .dock-rail { --base: clamp(28px, calc((100vw - 124px) / 7), 46px); height: auto; padding-block: 4px 10px; overflow-x: auto; scrollbar-width: none; }

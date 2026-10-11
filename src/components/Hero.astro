@@ -1,6 +1,6 @@
 ---
 import { ui, type Lang } from '../i18n/ui';
-import { dockItems } from '../data/works';
+import { dockItems, tools, games } from '../data/works';
 
 interface Props {
   lang: Lang;
@@ -8,26 +8,33 @@ interface Props {
 const { lang } = Astro.props;
 const t = ui[lang];
 const groups = dockItems(lang, t.kinds);
+const icon = (slug: string) => tools.find((x) => x.slug === slug)?.icon;
 ---
 
 <section class="hero" id="top">
   <div class="aurora" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   <div class="wrap hero-inner">
-    <a class="status-pill" href="#app-zaza"><span class="pulse"></span>{t.hero.pill}</a>
-    <h1 class="hero-title">
-      {t.hero.title.map((line, i) => (
-        <>
-          {i > 0 && <br />}
-          <span class="ph">{line.pre}<span class:list={['hl', i === 1 && 'hl-wx']}>{line.hl}</span>{line.post}</span>
-        </>
-      ))}
-    </h1>
-    <div class="hero-side">
-      <p class="hero-sub">{t.hero.sub}</p>
-      <div class="hero-cta">
-        <a class="btn btn-primary" href="#tools">{t.hero.ctaTools}</a>
-        <a class="btn btn-ghost" href="#games">{t.hero.ctaGames}</a>
-      </div>
+    <div class="hero-copy">
+      <a class="status-pill" href="#app-zaza"><span class="pulse"></span>{t.hero.pill}</a>
+      <h1 class="hero-title">
+        {t.hero.title.map((line, i) => (
+          <>
+            {i > 0 && <br />}
+            <span class="ph">{line.pre}<span class:list={['hl', i === 1 && 'hl-wx']}>{line.hl}</span>{line.post}</span>
+          </>
+        ))}
+      </h1>
+    </div>
+
+    <!-- 右侧：真实作品的界面浮在光晕上，四周渐隐进背景 -->
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hv-glow"></div>
+      <img class="hv hv-thendo" src="/works/thendo-shot.webp" alt="" width="720" height="960" />
+      <img class="hv hv-cal" src="/works/scalendar-shot.webp" alt="" width="676" height="1096" />
+      <img class="hv hv-phone" src={`/works/safeshot-shot-${lang}.webp`} alt="" width="600" height="1263" />
+      <img class="hv hv-ico hv-ico-1" src={icon('dropedge')} alt="" width="128" height="128" />
+      <img class="hv hv-ico hv-ico-2" src={games.saolei.icon} alt="" width="128" height="128" />
+      <img class="hv hv-ico hv-ico-3" src={games.zaza.icon} alt="" width="128" height="128" />
     </div>
   </div>
 
@@ -51,10 +58,10 @@ const groups = dockItems(lang, t.kinds);
         ))}
       </nav>
     </div>
-    <p class="dock-hint"><span class="dock-hint-fine">{t.hero.dockHintFine}</span>{t.hero.dockHint}</p>
   </div>
 </section>
 
 <script>
   import '../scripts/dock';
+  import '../scripts/hero';
 </script>
