@@ -131,7 +131,9 @@
 .dock-hint { text-align: center; margin-top: 16px; font-size: var(--t-micro); color: var(--fg-3); }
 @media (hover: none) { .dock-hint-fine { display: none; } }
 @media (max-width: 640px) {
-  .dock-rail { --base: 46px; height: auto; padding-block: 4px 10px; }
+  /* 图标大小随屏宽缩放；作品再多也只在 Dock 内横向滚动，不撑宽页面 */
+  .dock-rail { --base: clamp(28px, calc((100vw - 124px) / 7), 46px); height: auto; padding-block: 4px 10px; overflow-x: auto; scrollbar-width: none; }
+  .dock-rail::-webkit-scrollbar { display: none; }
   .dock { gap: 6px; padding: 7px 9px 12px; border-radius: 20px; }
   .dock-item::before { display: none; }
 }
@@ -148,7 +150,7 @@
 
 /* ================= tools ================= */
 
-.tools-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.tools-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 .tool {
   display: flex;
   flex-direction: column;
@@ -204,6 +206,13 @@
   transition: translate .45s cubic-bezier(.2, .8, .2, 1);
 }
 .shot-right { left: auto; right: 9%; translate: 0 0; }
+.desk-phone {
+  background:
+    radial-gradient(70% 90% at 20% 0%, color-mix(in srgb, var(--ios) 45%, transparent), transparent 70%),
+    radial-gradient(70% 80% at 100% 100%, var(--desk-2), transparent 65%),
+    linear-gradient(160deg, var(--desk-1), var(--desk-2));
+}
+.shot-phone { top: 24px; width: 58%; max-width: 250px; }
 .tool:hover .shot { translate: -50% -10px; }
 .tool:hover .shot-right { translate: 0 -10px; }
 
@@ -356,7 +365,7 @@
 .tool:hover .addr { color: var(--fg); }
 .addr-go { transition: transform .2s; }
 .tool:hover .addr-go { transform: translate(2px, -2px); }
-@media (max-width: 1000px) { .tools-grid { grid-template-columns: minmax(0, 1fr); max-width: 520px; margin-inline: auto; } }
+@media (max-width: 860px) { .tools-grid { grid-template-columns: minmax(0, 1fr); max-width: 520px; margin-inline: auto; } }
 
 /* ================= games ================= */
 .games { overflow: hidden; }

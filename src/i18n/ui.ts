@@ -11,7 +11,7 @@ export const ui = {
   zh: {
     meta: {
       title: 'hongist · Hong 的小工具和小游戏',
-      description: '独立开发者 Hong 的作品：DropEdge、ThenDo、日历即日历等 Mac 小工具，和猫咪扫雷等微信小游戏。',
+      description: '独立开发者 Hong 的作品：DropEdge、ThenDo、日历即日历、SafeShot Go 等 Mac 和 iPhone 小工具，和猫咪扫雷等猫咪小游戏。',
     },
     nav: {
       label: '主导航',
@@ -29,7 +29,7 @@ export const ui = {
         { pre: '做顺手的', hl: '小工具', post: '，' },
         { pre: '和停不下来的', hl: '小游戏', post: '。' },
       ],
-      sub: '我是 Hong，一个人设计、开发和上线自己的作品。这里有 3 款已经上线的 Mac 小工具，和一款接一款做出来的微信小游戏。',
+      sub: '我是 Hong，一个人设计、开发和上线自己的作品。这里有 4 款已经上线的 Mac 和 iPhone 小工具，和一款接一款做出来的猫咪小游戏。',
       ctaTools: '看看小工具',
       ctaGames: '玩一局小游戏',
       dockLabel: '全部作品',
@@ -38,9 +38,9 @@ export const ui = {
     },
     kinds: { tool: '小工具', game: '微信小游戏', dev: '开发中', next: '下一款 · 构思中' },
     tools: {
-      eyebrow: '小工具 · 3 款已上线',
+      eyebrow: '小工具 · 4 款已上线',
       title: ['每个只做一件事，', '把它做顺手。'],
-      sub: '都是 Mac 上的小帮手：平时不占地方，需要时出现，用完就收起。ThenDo 还有 iPhone 版。',
+      sub: '平时不占地方，需要时随手就能用。三款在 Mac 上，SafeShot Go 在 iPhone 和 iPad 上，ThenDo 两边都有。',
       live: '已上线',
       desk: {
         finder: '访达',
@@ -108,7 +108,7 @@ export const ui = {
       eyebrow: '关于',
       title: ['你好，', '我是 Hong。'],
       p: [
-        '独立开发者。做自己每天要用的 Mac 小工具，也做休息时能玩上一局的微信小游戏。',
+        '独立开发者。做自己每天要用的 Mac 和 iPhone 小工具，也做休息时能玩上一局的猫咪小游戏。',
         '有想要的小工具、发现了 bug，或者只是想聊聊，都欢迎写信给我。',
       ],
       email: '邮件',
@@ -131,8 +131,8 @@ export const ui = {
 
   en: {
     meta: {
-      title: 'hongist · Mac tools and mini games by Hong',
-      description: 'Indie apps by Hong: Mac utilities DropEdge, ThenDo and Simply Calendar, plus cozy cat games like Cat Stars.',
+      title: 'hongist · Mac & iPhone tools and cat games by Hong',
+      description: 'Indie apps by Hong: DropEdge, ThenDo, Simply Calendar and SafeShot Go for Mac and iPhone, plus cozy cat games like Cat Stars.',
     },
     nav: {
       label: 'Main',
@@ -150,18 +150,18 @@ export const ui = {
         { pre: 'Handy little ', hl: 'tools', post: ',' },
         { pre: 'and ', hl: 'games', post: ' you can’t put down.' },
       ],
-      sub: 'I’m Hong. I design, build and ship my own apps: three Mac utilities so far, and a growing line of cozy cat games.',
+      sub: 'I’m Hong. I design, build and ship my own apps: four Mac and iPhone utilities so far, and a growing line of cozy cat games.',
       ctaTools: 'See the tools',
       ctaGames: 'Play a game',
       dockLabel: 'All works',
       dockHintFine: 'Hover over the Dock. ',
       dockHint: 'Click an icon to jump to it.',
     },
-    kinds: { tool: 'Mac tool', game: 'iOS game', dev: 'In development', next: 'Next game · coming up' },
+    kinds: { tool: 'Tool', game: 'iOS game', dev: 'In development', next: 'Next game · coming up' },
     tools: {
-      eyebrow: 'Tools · 3 live',
+      eyebrow: 'Tools · 4 live',
       title: ['Each does one thing,', 'and does it well.'],
-      sub: 'Little helpers for the Mac: out of the way until you need them, gone when you’re done. ThenDo also runs on iPhone.',
+      sub: 'Little helpers that stay out of the way until you need them: three for the Mac, SafeShot Go for iPhone and iPad, and ThenDo on both.',
       live: 'Live',
       desk: {
         finder: 'Finder',
@@ -229,7 +229,7 @@ export const ui = {
       eyebrow: 'About',
       title: ['Hi,', 'I’m Hong.'],
       p: [
-        'Indie developer. I make Mac utilities I use every day, and small cat games to play on a break.',
+        'Indie developer. I make Mac and iPhone utilities I use every day, and small cat games to play on a break.',
         'Want a tool that doesn’t exist yet, found a bug, or just want to say hello? Write to me.',
       ],
       email: 'Email',

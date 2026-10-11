@@ -22,7 +22,8 @@ const dropedgeIcon = tools.find((x) => x.slug === 'dropedge')?.icon;
     <div class="tools-grid">
       {tools.map((tool) => (
         <a class="tool card spot" id={`tool-${tool.slug}`} href={tool.url} target="_blank" rel="noopener">
-          <div class="desk" aria-hidden="true">
+          <div class:list={['desk', tool.desk.kind === 'phone' && 'desk-phone']} aria-hidden="true">
+            {tool.desk.kind !== 'phone' && (
             <div class="mini-bar">
               <span class="lead">
                 <b>{tool.desk.kind === 'shot' && tool.desk.app ? tool.desk.app : d.finder}</b>
@@ -37,8 +38,11 @@ const dropedgeIcon = tools.find((x) => x.slug === 'dropedge')?.icon;
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M2 9a15 15 0 0 1 20 0M5.5 12.5a10 10 0 0 1 13 0M9 16a5 5 0 0 1 6 0"></path><circle cx="12" cy="19" r="1" fill="currentColor"></circle></svg>
               <span>{d.clock}</span>
             </div>
+            )}
 
-            {tool.desk.kind === 'shot' ? (
+            {tool.desk.kind === 'phone' ? (
+              <img class="shot shot-phone" src={tool.desk.src[lang]} alt="" loading="lazy" width={tool.desk.w} height={tool.desk.h} />
+            ) : tool.desk.kind === 'shot' ? (
               <img class:list={['shot', tool.desk.align === 'right' && 'shot-right']} src={tool.desk.src} alt="" loading="lazy" width={tool.desk.w} height={tool.desk.h} />
             ) : (
               <>

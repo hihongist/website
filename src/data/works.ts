@@ -22,7 +22,8 @@ export interface Tool {
   // 卡片顶部的迷你 Mac 桌面：DropEdge 用 CSS 画；其余放真实截图
   desk:
     | { kind: 'dropedge' }
-    | { kind: 'shot'; src: string; w: number; h: number; align: 'center' | 'right'; app?: string; tray?: 'calendar' };
+    | { kind: 'shot'; src: string; w: number; h: number; align: 'center' | 'right'; app?: string; tray?: 'calendar' }
+    | { kind: 'phone'; src: L; w: number; h: number };
 }
 
 export const tools: Tool[] = [
@@ -80,6 +81,24 @@ export const tools: Tool[] = [
       en: ['DMG · App Store', 'PRO: alternating workweeks', 'Events stay on your Mac'],
     },
     desk: { kind: 'shot', src: '/works/scalendar-shot.webp', w: 676, h: 1096, align: 'right', tray: 'calendar' },
+  },
+  {
+    slug: 'safeshot',
+    name: { zh: 'SafeShot Go', en: 'SafeShot Go' },
+    icon: '/works/safeshot-icon.png',
+    url: 'https://apps.apple.com/app/safeshot-go/id6780211041',
+    host: 'apps.apple.com/app/safeshot-go',
+    meta: { zh: 'iPhone + iPad · iOS 16+', en: 'iPhone + iPad · iOS 16+' },
+    tagline: { zh: '分享前，先打码。', en: 'Redact first. Then share.' },
+    desc: {
+      zh: '用本机 OCR 找出截图里的邮箱、电话、密码、验证码和卡号，一次全部遮住；漏掉的，点一下文字就能补上。图片不上传，也不用注册。',
+      en: 'On-device OCR finds the emails, phone numbers, passwords, codes and card numbers in a screenshot and covers them in one go; tap any text to catch what it missed. Nothing is uploaded, and no account is needed.',
+    },
+    chips: {
+      zh: ['免费下载', 'Pro 一次买断', '图片不离开设备'],
+      en: ['Free download', 'Pro: one-time purchase', 'Images stay on your device'],
+    },
+    desk: { kind: 'phone', src: { zh: '/works/safeshot-shot-zh.webp', en: '/works/safeshot-shot-en.webp' }, w: 600, h: 1263 },
   },
 ];
 

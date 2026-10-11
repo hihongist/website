@@ -13,6 +13,7 @@
 | 小工具 | DropEdge | 暂存，就放手边。 | macOS 14+ | 已上线 | dropedge.chiuist.com | dropedge.hongist.com |
 | 小工具 | ThenDo | 待办，就做待办。 | Mac + iPhone | 已上线 | then-do.chiuist.com | then-do.hongist.com |
 | 小工具 | 日历即日历 Simply Calendar | 日历，就看日历。 | macOS 14+ | 已上线 | s-calendar.chiuist.com | s-calendar.hongist.com |
+| 小工具 | SafeShot Go | 分享前，先打码。 | iPhone + iPad，iOS 16+ | 已上线 | App Store（id6780211041） | 同左 |
 | 游戏 | 猫咪扫雷（英文名 Cat Stars） | 每一行、每一列、每个色块里，都藏着一只猫。 | 微信小游戏；iOS App Store（中国大陆以外，id6775446731） | 已上线 | 微信内 / App Store | 同左 |
 | 游戏 | 猫咪砸砸乐（英文名 Off the Table） | 猫咪用耳朵当弹弓，拆家拆出一张账单。 | 微信 | 开发中 | 微信内 | 微信内 |
 
@@ -121,7 +122,7 @@ s-calendar.hongist.com ┘
 - [x] 猫咪扫雷的新图标（扁平描边版，和猫咪砸砸乐成套；提示词见 `docs/saolei-icon-prompt.md`）
 - [ ] 猫咪扫雷的小程序码图片（没有时卡片只显示「在微信里搜索」）
 - [x] 两款游戏的英文名：Cat Stars（已上架 App Store）、Off the Table
-- [ ] 同一开发者账号下还有 SafeShot Go、怪谈修复铺（Ghostlight Relics），是否放上网站待定
+- [x] SafeShot Go 已加入小工具；怪谈修复铺不放（小游戏以猫咪为主题）
 - [x] 联系邮箱：hihongist@gmail.com
 - [ ] 公众号名称
 - [ ] 主要用户在国内还是海外（决定是否备案、放哪里）
