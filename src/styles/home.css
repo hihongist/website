@@ -619,7 +619,6 @@ a.set-row:hover { background: var(--surface-2); }
 .set-label { font-weight: 600; }
 .set-val { margin-left: auto; color: var(--fg-2); font-size: var(--t-small); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .set-btn { height: 30px; padding: 0 12px; border-radius: 8px; border: 1px solid var(--line-2); background: var(--surface-2); cursor: pointer; font-size: var(--t-micro); font-weight: 600; flex: none; }
-.chev { color: var(--fg-3); font-size: 1.2rem; line-height: 1; }
 .subscribe { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 20px; border-radius: 18px; }
 .sub-label { font-weight: 700; }
 .sub-note { font-size: var(--t-small); color: var(--fg-2); }

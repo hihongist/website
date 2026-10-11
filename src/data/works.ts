@@ -5,7 +5,6 @@ type L<T = string> = Record<Lang, T>;
 
 export const contact = {
   email: 'hihongist@gmail.com',
-  github: 'hihongist',
 };
 
 export interface Tool {
