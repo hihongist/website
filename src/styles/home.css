@@ -1,14 +1,21 @@
 /* 首页各区块：首屏与 Dock、小工具、小游戏、关于 */
 
 /* ================= hero ================= */
-.hero { position: relative; padding-block: clamp(56px, 9vw, 112px) 28px; }
+.hero { position: relative; padding-block: clamp(48px, 7vw, 96px) 24px; }
+/* 首屏：左边大标题，右边介绍和按钮，底边对齐；窄屏时上下排列 */
 .hero-inner {
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  column-gap: clamp(32px, 5vw, 80px);
+  align-items: end;
+}
+.hero-inner .status-pill { grid-column: 1 / -1; justify-self: start; }
+.hero-side { padding-bottom: 8px; }
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: minmax(0, 1fr); }
+  .hero-side { padding-bottom: 0; }
 }
 .status-pill {
   display: inline-flex;
@@ -38,7 +45,7 @@
   font-weight: 800;
   line-height: 1.12;
   letter-spacing: -0.02em;
-  margin-top: 26px;
+  margin-top: 24px;
   text-wrap: balance;
 }
 .hl {
@@ -49,19 +56,18 @@
   white-space: nowrap;
 }
 .hl-wx { background-image: linear-gradient(105deg, var(--hl-wx-1), var(--hl-wx-2)); }
-.hero-sub { font-size: 1.1rem; color: var(--fg-2); max-width: 32em; margin-top: 22px; text-wrap: balance; }
-.hero-cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 32px; }
-.hero-inner > * { animation: rise .9s cubic-bezier(.2, .75, .2, 1) both; }
+.hero-sub { font-size: 1.08rem; color: var(--fg-2); max-width: 30em; margin-top: 22px; text-wrap: pretty; }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+.hero-inner > *, .hero-side > * { animation: rise .9s cubic-bezier(.2, .75, .2, 1) both; }
 .hero-inner > :nth-child(2) { animation-delay: .06s; }
-.hero-inner > :nth-child(3) { animation-delay: .12s; }
-.hero-inner > :nth-child(4) { animation-delay: .18s; }
+.hero-side > :nth-child(1) { animation-delay: .12s; }
+.hero-side > :nth-child(2) { animation-delay: .18s; }
 @keyframes rise { from { transform: translateY(16px); } }
 
 /* dock */
-.dock-stage { position: relative; z-index: 2; margin-top: clamp(40px, 6vw, 64px); }
+.dock-stage { position: relative; z-index: 2; margin-top: clamp(56px, 6vw, 80px); }
 .dock-rail {
   --base: 64px;
-  height: calc(var(--base) * 1.75 + 32px);
   display: flex;
   align-items: flex-end;
 }
@@ -70,6 +76,7 @@
   display: flex;
   align-items: flex-end;
   gap: 8px;
+  height: calc(var(--base) + 22px);
   padding: 9px 11px 13px;
   border-radius: 26px;
   background: var(--panel);
@@ -134,7 +141,7 @@
   /* 图标大小随屏宽缩放；作品再多也只在 Dock 内横向滚动，不撑宽页面 */
   .dock-rail { --base: clamp(28px, calc((100vw - 124px) / 7), 46px); height: auto; padding-block: 4px 10px; overflow-x: auto; scrollbar-width: none; }
   .dock-rail::-webkit-scrollbar { display: none; }
-  .dock { gap: 6px; padding: 7px 9px 12px; border-radius: 20px; }
+  .dock { gap: 6px; height: auto; padding: 7px 9px 12px; border-radius: 20px; }
   .dock-item::before { display: none; }
 }
 
