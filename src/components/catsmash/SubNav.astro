@@ -1,0 +1,23 @@
+---
+// 游戏子页面顶部的一行：图标 + 游戏名（回游戏主页）+ 三个页签
+import { csHome, csPaths, csIcon } from '../../data/catsmash';
+import type { Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  current: 'home' | 'privacy' | 'support';
+}
+const { lang, current } = Astro.props;
+const t = csHome[lang];
+const tabs = (['home', 'privacy', 'support'] as const).map((k) => ({ k, href: csPaths[k][lang], label: t.nav[k] }));
+---
+
+<div class="cs-crumb">
+  <a class="cs-crumb-game" href={csPaths.home[lang]}>
+    <span class="ico"><img src={csIcon} alt="" width="128" height="128" /></span>
+    <span>{t.name}</span>
+  </a>
+  <nav class="cs-tabs" aria-label={t.name}>
+    {tabs.map((tab) => <a href={tab.href} aria-current={tab.k === current ? 'page' : undefined}>{tab.label}</a>)}
+  </nav>
+</div>

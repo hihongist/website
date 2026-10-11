@@ -15,7 +15,7 @@
 | 小工具 | 日历即日历 Simply Calendar | 日历，就看日历。 | macOS 14+ | 已上线 | s-calendar.chiuist.com | s-calendar.hongist.com |
 | 小工具 | SafeShot Go | 分享前，先打码。 | iPhone + iPad，iOS 16+ | 已上线 | App Store（id6780211041） | 同左 |
 | 游戏 | 猫咪扫雷（英文名 Cat Stars） | 每一行、每一列、每个色块里，都藏着一只猫。 | 微信小游戏；iOS App Store（中国大陆以外，id6775446731） | 已上线 | 微信内 / App Store | 同左 |
-| 游戏 | 猫咪砸砸乐（英文名 Off the Table） | 猫咪用耳朵当弹弓，拆家拆出一张账单。 | 微信 | 开发中 | 微信内 | 微信内 |
+| 游戏 | 猫咪砸砸乐（英文名 Cat Smash，App Store 全名 Cat Smash: Knock It Off!） | 猫咪用耳朵当弹弓，拆家拆出一张账单。 | iOS App Store（审核前）；微信小游戏（备案中） | 开发中 | 游戏主页 hongist.com/catsmash/ | 同左 |
 
 以后新增作品，只要往上表加一行。
 
@@ -24,6 +24,8 @@
 ## 2. 网站结构
 
 一个首页就够了。小工具都有自己的官网，下载、说明、隐私政策都放在各自的子域名上，主站只负责展示和导流。
+
+游戏不一样：游戏没有安装包和更新源要托管，只需要“主页 + 隐私政策 + 支持”三页，所以直接放在主站的路径下（猫咪砸砸乐是 `/catsmash/`），不单独开子域名。这样新游戏不用每次配域名，广告联盟要的 `app-ads.txt` 也只需要主域名根目录放一份。想要好记的短网址，可以在 Cloudflare 上把 `catsmash.hongist.com` 301 跳转到 `hongist.com/catsmash/`。
 
 ```
 hongist.com/
@@ -121,7 +123,7 @@ s-calendar.hongist.com ┘
 - [x] DropEdge 文案按新版两种打开方式重写，和 ThenDo、日历即日历对齐成「X，就……」句式
 - [x] 猫咪扫雷的新图标（扁平描边版，和猫咪砸砸乐成套；提示词见 `docs/saolei-icon-prompt.md`）
 - [ ] 猫咪扫雷的小程序码图片（没有时卡片只显示「在微信里搜索」）
-- [x] 两款游戏的英文名：Cat Stars（已上架 App Store）、Off the Table
+- [x] 两款游戏的英文名：Cat Stars（已上架 App Store）、Cat Smash（原定 Off the Table，2026-10-11 建 App Store 条目时改为 Cat Smash: Knock It Off!）
 - [x] SafeShot Go 已加入小工具；怪谈修复铺不放（小游戏以猫咪为主题）
 - [x] 联系邮箱：hihongist@gmail.com
 - [ ] 公众号名称

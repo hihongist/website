@@ -8,10 +8,17 @@ import { ui, htmlLang, homePath, langs, type Lang } from '../i18n/ui';
 
 interface Props {
   lang: Lang;
+  // 子页面（比如游戏主页、隐私政策）传自己的标题、描述，和这一页中英文两个版本的地址；不传就是首页
+  title?: string;
+  description?: string;
+  paths?: Record<Lang, string>;
 }
 const { lang } = Astro.props;
 const t = ui[lang];
-const url = (l: Lang) => new URL(homePath[l], Astro.site).href;
+const title = Astro.props.title ?? t.meta.title;
+const description = Astro.props.description ?? t.meta.description;
+const paths = Astro.props.paths ?? homePath;
+const url = (l: Lang) => new URL(paths[l], Astro.site).href;
 ---
 
 <!doctype html>
@@ -19,8 +26,8 @@ const url = (l: Lang) => new URL(homePath[l], Astro.site).href;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>{t.meta.title}</title>
-    <meta name="description" content={t.meta.description} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
     <link rel="canonical" href={url(lang)} />
     {langs.map((l) => <link rel="alternate" hreflang={htmlLang[l]} href={url(l)} />)}
     <link rel="alternate" hreflang="x-default" href={url('zh')} />
@@ -29,8 +36,8 @@ const url = (l: Lang) => new URL(homePath[l], Astro.site).href;
     <meta name="theme-color" content="#090B11" media="(prefers-color-scheme: dark)" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={url(lang)} />
-    <meta property="og:title" content={t.meta.title} />
-    <meta property="og:description" content={t.meta.description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
     <meta property="og:locale" content={htmlLang[lang].replace('-', '_')} />
     <script is:inline>
       try {

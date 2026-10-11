@@ -1,0 +1,52 @@
+---
+// 猫咪砸砸乐的支持页（联系方式 + 常见问题）。正文在 src/data/catsmash.ts 的 csSupport
+import Base from '../../layouts/Base.astro';
+import MenuBar from '../MenuBar.astro';
+import Footer from '../Footer.astro';
+import SubNav from './SubNav.astro';
+import '../../styles/catsmash.css';
+import { csSupport, csPaths, csEmail } from '../../data/catsmash';
+import type { Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = csSupport[lang];
+const mail = `mailto:${csEmail}?subject=${encodeURIComponent(t.mailSubject)}`;
+---
+
+<Base lang={lang} title={t.title} description={t.description} paths={csPaths.support}>
+  <MenuBar lang={lang} paths={csPaths.support} />
+  <main class="cs-doc">
+    <SubNav lang={lang} current="support" />
+    <h1>{t.heading}</h1>
+    <p class="cs-updated">{t.lead}</p>
+
+    <section>
+      <h2>{t.contactH}</h2>
+      {t.contact.map((p) => <p>{p}</p>)}
+      <div class="cs-mail">
+        <a class="btn btn-primary" href={mail}>{t.mailBtn}</a>
+        <a class="mono" href={`mailto:${csEmail}`}>{csEmail}</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>{t.faqH}</h2>
+      <div class="cs-faq">
+        {t.faq.map((f, i) => (
+          <details open={i === 0}>
+            <summary>{f.q}</summary>
+            {f.a.map((p) => <p>{p}</p>)}
+          </details>
+        ))}
+      </div>
+    </section>
+  </main>
+  <Footer lang={lang} sub />
+</Base>
+
+<script>
+  import '../../scripts/site';
+</script>

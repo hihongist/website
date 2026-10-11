@@ -20,13 +20,16 @@ npm run preview  # 预览 dist/
 ```
 src/
 ├── data/works.ts       全部作品：名称、图标、介绍、链接（中英文都在这里）
+├── data/catsmash.ts    猫咪砸砸乐的游戏主页、隐私政策、支持页的全部文案（中英文）
 ├── i18n/ui.ts          页面上的固定文案（中英文）
 ├── components/         菜单栏、首屏和 Dock、小工具、小游戏、关于、页脚
+├── components/catsmash/ 猫咪砸砸乐的三个页面：Landing（主页）、Privacy（隐私政策）、Support（支持）
 ├── scripts/            Dock 放大、猫咪扫雷试玩、主题切换等交互
-├── styles/             global.css（配色、字体、通用组件）、home.css（首页各区块）
+├── styles/             global.css（配色、字体、通用组件）、home.css（首页各区块）、catsmash.css（游戏页面）
 ├── layouts/Base.astro  <head>：标题、描述、语言互链（hreflang）
-└── pages/              index.astro（中文）、en/index.astro（英文）
-public/works/           作品图标和截图
+└── pages/              index.astro（中文）、en/index.astro（英文）、catsmash/ 和 en/catsmash/（游戏页面）
+public/works/           作品图标和截图（猫咪砸砸乐的游戏截图在 works/catsmash/）
+public/app-ads.txt      广告联盟（AdMob）用来确认“这些 App 是这个网站的开发者的”，不要删
 docs/                   设计规划、图标提示词
 ```
 
@@ -36,6 +39,19 @@ docs/                   设计规划、图标提示词
 - **改页面文案**：改 `src/i18n/ui.ts`，中英文各一份。
 - **换图标**：把 256×256 的 PNG 放进 `public/works/`，和其他图标一样做好圆角和边缘质感。
 - **加猫咪扫雷的小程序码**：把图片放进 `public/works/`，在 `works.ts` 里填上 `miniCode` 的路径，卡片会自动显示「微信扫码即玩」。
+
+## 猫咪砸砸乐的页面
+
+| 页面 | 中文 | 英文 |
+|------|------|------|
+| 游戏主页 | `/catsmash/` | `/en/catsmash/` |
+| 隐私政策 | `/catsmash/privacy/` | `/en/catsmash/privacy/` |
+| 支持与常见问题 | `/catsmash/support/` | `/en/catsmash/support/` |
+
+- 这三页的地址填在了 App Store Connect（营销网址、隐私政策网址、技术支持网址）和 AdMob 的同意弹窗里，**不要改地址**。
+- 全部文案在 `src/data/catsmash.ts`。隐私政策和游戏里“设置 → 隐私政策”的内容要保持一致，改一处要同时改另一处。
+- **游戏上架后**：把 `src/data/catsmash.ts` 里 `csStore.live` 改成 `true`，主页上的“即将上线”就会换成 App Store 下载按钮；再把 `src/i18n/ui.ts` 里游戏的状态文案从“开发中”改成已上线。
+- 以后再做新游戏，照着 `catsmash` 这一套加一组页面就行；`public/app-ads.txt` 全站共用一份，不用每个游戏单独放。
 
 ## 部署
 
