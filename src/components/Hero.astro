@@ -1,0 +1,58 @@
+---
+import { ui, type Lang } from '../i18n/ui';
+import { dockItems } from '../data/works';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = ui[lang];
+const groups = dockItems(lang, t.kinds);
+---
+
+<section class="hero" id="top">
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="wrap hero-inner">
+    <a class="status-pill" href="#app-zaza"><span class="pulse"></span>{t.hero.pill}</a>
+    <h1 class="hero-title">
+      {t.hero.title.map((line, i) => (
+        <>
+          {i > 0 && <br />}
+          <span class="ph">{line.pre}<span class:list={['hl', i === 1 && 'hl-wx']}>{line.hl}</span>{line.post}</span>
+        </>
+      ))}
+    </h1>
+    <p class="hero-sub">{t.hero.sub}</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#tools">{t.hero.ctaTools}</a>
+      <a class="btn btn-ghost" href="#games">{t.hero.ctaGames}</a>
+    </div>
+  </div>
+
+  <div class="dock-stage">
+    <div class="dock-rail">
+      <nav class="dock" id="dock" aria-label={t.hero.dockLabel}>
+        {groups.map((group, gi) => (
+          <>
+            {gi > 0 && <span class="dock-sep" aria-hidden="true"></span>}
+            {group.map((item) => (
+              <a class="dock-item" href={item.href} data-label={item.label} aria-label={item.label}>
+                {item.icon ? (
+                  <span class="ico"><img src={item.icon} alt="" width="128" height="128" /></span>
+                ) : (
+                  <span class="ico ico-ghost"><span>+</span></span>
+                )}
+                {item.running && <i class="run"></i>}
+              </a>
+            ))}
+          </>
+        ))}
+      </nav>
+    </div>
+    <p class="dock-hint"><span class="dock-hint-fine">{t.hero.dockHintFine}</span>{t.hero.dockHint}</p>
+  </div>
+</section>
+
+<script>
+  import '../scripts/dock';
+</script>

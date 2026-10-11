@@ -1,0 +1,45 @@
+---
+import '@fontsource-variable/bricolage-grotesque/opsz.css';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/600.css';
+import '@fontsource/zcool-kuaile/400.css';
+import '../styles/global.css';
+import { ui, htmlLang, homePath, langs, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = ui[lang];
+const url = (l: Lang) => new URL(homePath[l], Astro.site).href;
+---
+
+<!doctype html>
+<html lang={htmlLang[lang]}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{t.meta.title}</title>
+    <meta name="description" content={t.meta.description} />
+    <link rel="canonical" href={url(lang)} />
+    {langs.map((l) => <link rel="alternate" hreflang={htmlLang[l]} href={url(l)} />)}
+    <link rel="alternate" hreflang="x-default" href={url('zh')} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#F3F4F8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#090B11" media="(prefers-color-scheme: dark)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url(lang)} />
+    <meta property="og:title" content={t.meta.title} />
+    <meta property="og:description" content={t.meta.description} />
+    <meta property="og:locale" content={htmlLang[lang].replace('-', '_')} />
+    <script is:inline>
+      try {
+        var saved = localStorage.getItem('theme');
+        if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

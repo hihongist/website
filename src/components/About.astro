@@ -1,0 +1,50 @@
+---
+import { ui, type Lang } from '../i18n/ui';
+import { contact } from '../data/works';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = ui[lang].about;
+const subscribe = `mailto:${contact.email}?subject=${encodeURIComponent(t.subSubject)}`;
+---
+
+<section class="section" id="about">
+  <div class="wrap about-grid">
+    <div class="about-me">
+      <p class="eyebrow"><span class="dot"></span>{t.eyebrow}</p>
+      <div class="me-row">
+        <span class="avatar" aria-hidden="true">H</span>
+        <h2 class="sec-title"><span class="ph">{t.title[0]}</span>{lang === 'en' ? ' ' : ''}<span class="ph">{t.title[1]}</span></h2>
+      </div>
+      {t.p.map((p) => <p class="about-p">{p}</p>)}
+    </div>
+    <div class="about-side">
+      <div class="settings">
+        <div class="set-row">
+          <span class="set-ico" style="--c: #3B82F6">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"></rect><path d="m4 7 8 6 8-6"></path></svg>
+          </span>
+          <span class="set-label">{t.email}</span>
+          <span class="set-val mono" id="contact-email">{contact.email}</span>
+          <button class="set-btn" type="button" data-copy="#contact-email" data-copied={t.copied}>{t.copy}</button>
+        </div>
+        <a class="set-row" href={`https://github.com/${contact.github}`} target="_blank" rel="noopener">
+          <span class="set-ico" style="--c: #24292F">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"></path></svg>
+          </span>
+          <span class="set-label">GitHub</span>
+          <span class="set-val mono">@{contact.github}</span>
+          <span class="chev" aria-hidden="true">›</span>
+        </a>
+      </div>
+
+      <div class="subscribe card">
+        <p class="sub-label">{t.subTitle}</p>
+        <p class="sub-note">{t.subNote}</p>
+        <a class="btn btn-primary" href={subscribe}>{t.subBtn}</a>
+      </div>
+    </div>
+  </div>
+</section>

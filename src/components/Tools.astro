@@ -1,0 +1,90 @@
+---
+import { ui, type Lang } from '../i18n/ui';
+import { tools } from '../data/works';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = ui[lang].tools;
+const d = t.desk;
+const dropedgeIcon = tools.find((x) => x.slug === 'dropedge')?.icon;
+---
+
+<section class="section" id="tools">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow"><span class="dot"></span>{t.eyebrow}</p>
+      <h2 class="sec-title"><span class="ph">{t.title[0]}</span>{lang === 'en' ? ' ' : ''}<span class="ph">{t.title[1]}</span></h2>
+      <p class="sec-sub">{t.sub}</p>
+    </header>
+
+    <div class="tools-grid">
+      {tools.map((tool) => (
+        <a class="tool card spot" id={`tool-${tool.slug}`} href={tool.url} target="_blank" rel="noopener">
+          <div class="desk" aria-hidden="true">
+            <div class="mini-bar">
+              <span class="lead">
+                <b>{tool.desk.kind === 'shot' && tool.desk.app ? tool.desk.app : d.finder}</b>
+                <span>{d.file}</span>
+                <span>{d.edit}</span>
+              </span>
+              {tool.desk.kind === 'shot' && tool.desk.tray === 'calendar' && (
+                <span class="tray on">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="4" y="5" width="16" height="15" rx="3"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg>
+                </span>
+              )}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M2 9a15 15 0 0 1 20 0M5.5 12.5a10 10 0 0 1 13 0M9 16a5 5 0 0 1 6 0"></path><circle cx="12" cy="19" r="1" fill="currentColor"></circle></svg>
+              <span>{d.clock}</span>
+            </div>
+
+            {tool.desk.kind === 'shot' ? (
+              <img class:list={['shot', tool.desk.align === 'right' && 'shot-right']} src={tool.desk.src} alt="" loading="lazy" width={tool.desk.w} height={tool.desk.h} />
+            ) : (
+              <>
+                <div class="edge-win">
+                  <span><i class="file-ic pdf">PDF</i>{d.files[0]}</span>
+                  <span><i class="file-ic doc">DOC</i>{d.files[1]}</span>
+                  <span><i class="file-ic img"></i>{d.files[2]}</span>
+                </div>
+                <div class="shake-file">
+                  <svg class="lines" viewBox="0 0 54 50"><path d="M4 14q-4 11 0 22M10 18q-3 7 0 14M50 14q4 11 0 22M44 18q3 7 0 14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"></path></svg>
+                  <i class="file-ic zip">ZIP</i>
+                  <svg class="cursor" viewBox="0 0 24 24"><path d="M5 3l14 8-6 1.6L10 19z" fill="#FFFFFF" stroke="#111318" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+                </div>
+                <div class="pop-shelf">
+                  <div class="shelf-head"><img src={dropedgeIcon} alt="" />DropEdge</div>
+                  <div class="shelf-drop">{d.popDrop}</div>
+                </div>
+                <span class="mode-tag" style="left: 7%; bottom: 10px">{d.shakeTag}</span>
+                <div class="shelf">
+                  <div class="shelf-head"><img src={dropedgeIcon} alt="" />DropEdge</div>
+                  <div class="shelf-item"><i class="file-ic img"></i><span>{d.shelfItems[0]}</span></div>
+                  <div class="shelf-item"><i class="file-ic pdf">PDF</i><span>{d.shelfItems[1]}</span></div>
+                  <div class="shelf-drop">{d.edgeDrop}</div>
+                </div>
+              </>
+            )}
+          </div>
+
+          <div class="tool-body">
+            <div class="tool-id">
+              <span class="ico ico-sm"><img src={tool.icon} alt="" width="80" height="80" /></span>
+              <div>
+                <h3 class="tool-name">{tool.name[lang]}{tool.altName && <small>{tool.altName[lang]}</small>}</h3>
+                <p class="tool-meta mono">{tool.meta[lang]}</p>
+              </div>
+            </div>
+            <p class="tool-tag">{tool.tagline[lang]}</p>
+            <p class="tool-desc">{tool.desc[lang]}</p>
+            <div class="chips">{tool.chips[lang].map((c) => <span class="chip">{c}</span>)}</div>
+            <span class="addr">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
+              <span>{tool.host}</span><b class="addr-go" aria-hidden="true">↗</b>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,38 @@
+---
+import { ui, type Lang } from '../i18n/ui';
+import { tools, games, contact } from '../data/works';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = ui[lang].footer;
+---
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <div class="foot-brand">
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span>hongist</a>
+      <p>{t.tagline}</p>
+    </div>
+    <nav class="foot-cols" aria-label={t.label}>
+      <div>
+        <p class="foot-h">{t.tools}</p>
+        {tools.map((tool) => <a href={tool.url} target="_blank" rel="noopener">{tool.name[lang]}</a>)}
+      </div>
+      <div>
+        <p class="foot-h">{t.games}</p>
+        <a href="#app-saolei">{games.saolei.name[lang]}</a>
+        <a href="#app-zaza">{games.zaza.name[lang]}</a>
+      </div>
+      <div>
+        <p class="foot-h">{t.contact}</p>
+        <a href={`mailto:${contact.email}`}>{t.email}</a>
+        <a href={`https://github.com/${contact.github}`} target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </nav>
+  </div>
+  <div class="wrap">
+    <p class="foot-legal">© {new Date().getFullYear()} Hong · hongist.com</p>
+  </div>
+</footer>

@@ -1,6 +1,6 @@
-# hongist.com 设计规划 v0.3
+# hongist.com 设计规划 v1.0
 
-> 配套原型：`prototype/index.html`。
+> 原型阶段（v0.1–v0.5）已结束，正式网站代码在 `src/`，见 README。
 > v0.2 按真实作品重排：只保留「小工具」和「小游戏」两个板块，去掉了 v0.1 里的主推、Mac / iPhone 分区、更新日志和产品详情页。
 > v0.3 换上三款小工具的真实图标、截图和文案（取自各自官网）。
 
@@ -97,12 +97,14 @@ s-calendar.hongist.com ┘
 
 | 项目 | 建议 |
 |------|------|
-| 框架 | Astro（纯静态）。只有一个页面，用纯 HTML 也行；用 Astro 的好处是作品数据和页面分开，加作品不用改模板 |
-| 部署 | Cloudflare Pages 或 Vercel，绑定 hongist.com |
+| 框架 | **已定**：Astro 7，纯静态输出。作品数据在 `src/data/works.ts`，加作品不用改模板 |
+| 语言 | **已定**：中文 `/`、英文 `/en/`，菜单栏可切换，页面互相声明 hreflang，sitemap 同时收录两种语言 |
+| 字体 | **已定**：全部打包在站内（不依赖 Google Fonts），中文正文用系统字体；站酷快乐体按字符分片，只下载页面用到的部分 |
+| 部署 | 待定：Cloudflare Pages / Vercel / 腾讯云 EdgeOne Pages 都可以，构建命令 `npm run build`，输出 `dist` |
 | 子域名 | 各工具官网迁到 `*.hongist.com`，旧的 `*.chiuist.com` 做 301 跳转，避免老链接失效 |
 | 国内访问 | 如果主要用户在国内，主站可放腾讯云 EdgeOne / COS，需要 ICP 备案 |
 | 统计 | Umami 或 Plausible |
-| 订阅 | Buttondown 等邮件服务，只在有新作品时发 |
+| 订阅 | 目前是「发邮件订阅」按钮（打开邮件客户端写信给 hihongist@gmail.com）；以后量大了再换 Buttondown 等邮件服务 |
 
 ### 微信小游戏相关
 
@@ -117,8 +119,10 @@ s-calendar.hongist.com ┘
 - [x] 三个小工具的介绍、平台、图标、截图（已从各自官网获取）
 - [x] DropEdge 文案按新版两种打开方式重写，和 ThenDo、日历即日历对齐成「X，就……」句式
 - [x] 猫咪扫雷的新图标（扁平描边版，和猫咪砸砸乐成套；提示词见 `docs/saolei-icon-prompt.md`）
-- [ ] 猫咪扫雷的小程序码图片（原型里是示意码，不能扫）
+- [ ] 猫咪扫雷的小程序码图片（没有时卡片只显示「在微信里搜索」）
+- [ ] 两款游戏的英文名确认（暂用 Cat Minesweeper、Cat Smash）
 - [x] 联系邮箱：hihongist@gmail.com
 - [ ] 公众号名称
 - [ ] 主要用户在国内还是海外（决定是否备案、放哪里）
-- [ ] 是否需要中英双语
+- [x] 中英双语：需要，已实现
+- [x] 页脚去掉备案号和原型版本说明

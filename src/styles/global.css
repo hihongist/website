@@ -1,5 +1,5 @@
 /* Layout concept: 网站本身就是一台 Mac 桌面 —— 顶部是菜单栏导航，首屏有一条可交互的 Dock，
-   每件作品都放进它所属平台的“外框”里展示（Mac 窗口、iPhone、微信小程序码卡片）。
+   每件作品放进它自己的“外框”里展示（Mac 桌面、可试玩的棋盘、游戏场景）。
    深色优先；浅色主题同样完整定义。 */
 :root {
   /* color */
@@ -15,11 +15,9 @@
   --fg-3: #6E758A;
   --accent: #FF9A3C;
   --accent-soft: rgba(255, 154, 60, 0.14);
-  --on-accent: #1B0F03;
   --wx: #19D16F;
   --wx-soft: rgba(7, 193, 96, 0.12);
   --ios: #3B93FF;
-  --star: #FFC53D;
   --btn: #ECEEF4;
   --on-btn: #0A0C12;
   --hl-1: #FFC26B;
@@ -34,31 +32,17 @@
   --spot: rgba(255, 255, 255, 0.075);
   --shadow-1: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 24px 60px -30px rgba(0, 0, 0, 0.85);
   --shadow-pop: 0 40px 90px -36px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.06);
-  --kbd-top: #2C3140;
-  --kbd-bottom: #1B1F29;
-  --kbd-edge: #07080C;
-  --screen-bg: #0E1016;
-  --screen-fg: #F2F3F7;
-  --screen-2: #8E94A6;
-  --screen-card: #1A1D27;
-  --screen-line: rgba(255, 255, 255, 0.08);
-  --device: #17191F;
-  --device-edge: #3A3F4C;
-  --island: #000000;
   --desk-1: #1B2550;
   --desk-2: #5B2650;
   --desk-3: #C0602F;
-  --qr-ink: #111318;
-  --qr-paper: #FFFFFF;
 
   /* type */
-  --font-display: "Bricolage Grotesque", "PingFang SC", "Noto Sans SC", system-ui, sans-serif;
-  --font-body: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-display: "Bricolage Grotesque Variable", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  --font-play: "ZCOOL KuaiLe", "PingFang SC", "Noto Sans SC", sans-serif;
+  --font-play: "ZCOOL KuaiLe", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   --t-hero: clamp(2.1rem, 4.4vw + 0.5rem, 3.9rem);
   --t-h2: clamp(1.9rem, 3.6vw, 2.9rem);
-  --t-h3: 1.2rem;
   --t-body: 1rem;
   --t-small: 0.875rem;
   --t-micro: 0.75rem;
@@ -79,14 +63,12 @@
     --line-2: rgba(22, 30, 62, 0.17);
     --fg: #0C1020;
     --fg-2: #4B5367;
-    --fg-3: #858CA0;
+    --fg-3: #737B90;
     --accent: #E2620A;
     --accent-soft: rgba(226, 98, 10, 0.10);
-    --on-accent: #FFFFFF;
     --wx: #06A954;
     --wx-soft: rgba(6, 169, 84, 0.09);
     --ios: #0071E3;
-    --star: #F2A100;
     --btn: #0C1020;
     --on-btn: #FFFFFF;
     --hl-1: #FF8A1F;
@@ -101,15 +83,6 @@
     --spot: rgba(226, 98, 10, 0.07);
     --shadow-1: 0 1px 0 rgba(255, 255, 255, 0.9) inset, 0 22px 50px -32px rgba(22, 30, 62, 0.35);
     --shadow-pop: 0 40px 80px -36px rgba(22, 30, 62, 0.45), 0 0 0 1px rgba(22, 30, 62, 0.07);
-    --kbd-top: #FFFFFF;
-    --kbd-bottom: #EDEFF4;
-    --kbd-edge: #C3C8D4;
-    --screen-bg: #F5F6F9;
-    --screen-fg: #10131C;
-    --screen-2: #6F7689;
-    --screen-card: #FFFFFF;
-    --screen-line: rgba(0, 0, 0, 0.07);
-    --device-edge: #2A2E38;
     --desk-1: #8DB2FF;
     --desk-2: #F2A8CB;
     --desk-3: #FFC68E;
@@ -126,14 +99,12 @@
   --line-2: rgba(22, 30, 62, 0.17);
   --fg: #0C1020;
   --fg-2: #4B5367;
-  --fg-3: #858CA0;
+  --fg-3: #737B90;
   --accent: #E2620A;
   --accent-soft: rgba(226, 98, 10, 0.10);
-  --on-accent: #FFFFFF;
   --wx: #06A954;
   --wx-soft: rgba(6, 169, 84, 0.09);
   --ios: #0071E3;
-  --star: #F2A100;
   --btn: #0C1020;
   --on-btn: #FFFFFF;
   --hl-1: #FF8A1F;
@@ -148,15 +119,6 @@
   --spot: rgba(226, 98, 10, 0.07);
   --shadow-1: 0 1px 0 rgba(255, 255, 255, 0.9) inset, 0 22px 50px -32px rgba(22, 30, 62, 0.35);
   --shadow-pop: 0 40px 80px -36px rgba(22, 30, 62, 0.45), 0 0 0 1px rgba(22, 30, 62, 0.07);
-  --kbd-top: #FFFFFF;
-  --kbd-bottom: #EDEFF4;
-  --kbd-edge: #C3C8D4;
-  --screen-bg: #F5F6F9;
-  --screen-fg: #10131C;
-  --screen-2: #6F7689;
-  --screen-card: #FFFFFF;
-  --screen-line: rgba(0, 0, 0, 0.07);
-  --device-edge: #2A2E38;
   --desk-1: #8DB2FF;
   --desk-2: #F2A8CB;
   --desk-3: #FFC68E;
@@ -184,20 +146,8 @@ ul, ol { padding: 0; list-style: none; }
 button, input { font: inherit; color: inherit; }
 .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
 .wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: 20px; }
-.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.ph { display: inline-block; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-
-/* ---------- prototype ribbon ---------- */
-.proto-bar {
-  font-size: var(--t-micro);
-  color: var(--fg-2);
-  text-align: center;
-  padding: 7px 16px;
-  background: var(--accent-soft);
-  border-bottom: 1px solid var(--line);
-  letter-spacing: 0.02em;
-}
-.proto-bar b { color: var(--accent); font-weight: 600; }
 
 /* ---------- menu bar (site nav) ---------- */
 .menubar {
@@ -253,13 +203,7 @@ button, input { font: inherit; color: inherit; }
   transition: background-color .15s, color .15s;
 }
 .menus a:hover, .menus a[aria-current="true"] { background: var(--surface-2); color: var(--fg); }
-.status {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--fg-2);
-}
+.status { margin-left: auto; display: flex; align-items: center; gap: 6px; color: var(--fg-2); }
 .sb-btn {
   height: 30px;
   min-width: 30px;
@@ -271,6 +215,8 @@ button, input { font: inherit; color: inherit; }
   background: transparent;
   color: var(--fg-2);
   cursor: pointer;
+  text-decoration: none;
+  font-weight: 600;
 }
 .sb-btn:hover { background: var(--surface-2); color: var(--fg); }
 .sb-btn svg { width: 16px; height: 16px; }
@@ -295,10 +241,10 @@ button, input { font: inherit; color: inherit; }
   .menus a { padding: 8px 12px; }
   .menubar[data-open="true"] .menus { display: flex; }
   .menu-btn { display: inline-grid; }
-  .sb-lang, .clock-date { display: none; }
+  .clock-date { display: none; }
 }
 
-/* ---------- buttons & badges ---------- */
+/* ---------- buttons & chips ---------- */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -316,7 +262,6 @@ button, input { font: inherit; color: inherit; }
   transition: transform .18s ease, background-color .2s, border-color .2s;
 }
 .btn:hover { transform: translateY(-1px); }
-.btn svg { width: 17px; height: 17px; }
 .btn-primary { background: var(--btn); color: var(--on-btn); }
 .btn-ghost {
   background: var(--surface);
@@ -327,93 +272,36 @@ button, input { font: inherit; color: inherit; }
 }
 .btn-ghost:hover { border-color: var(--fg-3); }
 
-/* store button：上线时替换为 Apple 官方下载徽章 */
-.store {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  height: 46px;
-  padding: 0 16px 0 12px;
-  border-radius: 12px;
-  background: var(--btn);
-  color: var(--on-btn);
-  text-decoration: none;
-  line-height: 1.15;
-  transition: transform .18s ease;
-}
-.store:hover { transform: translateY(-1px); }
-.store svg { width: 22px; height: 22px; flex: none; }
-.store small { display: block; font-size: 0.68rem; opacity: 0.72; }
-.store b { display: block; font-size: 0.95rem; font-weight: 600; }
-.store-wx { background: var(--wx); color: #FFFFFF; }
-
 .chip {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  height: 26px;
-  padding: 0 10px;
+  min-height: 26px;
+  padding: 2px 10px;
   border-radius: 999px;
   font-size: var(--t-micro);
   color: var(--fg-2);
   background: var(--surface);
   border: 1px solid var(--line);
-  white-space: nowrap;
 }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 
-.key {
-  display: inline-grid;
-  place-items: center;
-  min-width: 1.95em;
-  height: 1.95em;
-  padding: 0 0.42em;
-  border-radius: 6px;
-  background: linear-gradient(var(--kbd-top), var(--kbd-bottom));
-  border: 1px solid var(--kbd-edge);
-  box-shadow: 0 2px 0 var(--kbd-edge);
-  font: 600 0.8rem/1 var(--font-body);
-  color: var(--fg);
-  vertical-align: 0.1em;
-}
-.keys { display: inline-flex; gap: 4px; }
-
 /* ---------- app icons ---------- */
 .ico {
-  --c1: #888;
-  --c2: #444;
   width: 56px;
   aspect-ratio: 1;
   max-width: 100%;
   border-radius: var(--radius-icon);
-  background: linear-gradient(155deg, var(--c1), var(--c2));
-  color: #FFFFFF;
   display: inline-grid;
   place-items: center;
   position: relative;
   overflow: hidden;
   flex: none;
-  container-type: inline-size;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.38),
-    inset 0 -3px 8px rgba(0, 0, 0, 0.16),
-    0 8px 18px -8px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 8px 18px -8px rgba(0, 0, 0, 0.55);
 }
-.ico::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.22), transparent 46%);
-  pointer-events: none;
-}
-.ico svg { width: 56%; height: 56%; }
-.ico .glyph-text { font: 800 34cqw / 1 var(--font-display); letter-spacing: -0.03em; }
-.ico-xs { width: 28px; border-radius: 26%; }
+.ico img { width: 100%; height: 100%; display: block; }
 .ico-sm { width: 40px; }
 .ico-md { width: 64px; }
-.ico-lg { width: 96px; }
-.ico-xl { width: 132px; }
-
 
 /* ---------- cards ---------- */
 .card {
@@ -448,7 +336,7 @@ button, input { font: inherit; color: inherit; }
   color: var(--fg-3);
 }
 .eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
-.ph { display: inline-block; }
+.eyebrow .dot-wx { background: var(--wx); }
 .sec-title {
   font-family: var(--font-display);
   font-size: var(--t-h2);
@@ -460,7 +348,6 @@ button, input { font: inherit; color: inherit; }
 }
 .sec-sub { color: var(--fg-2); max-width: 34em; margin-top: 14px; text-wrap: pretty; }
 .sec-head { margin-bottom: clamp(36px, 5vw, 56px); }
-.sec-head-row { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px; }
 
 .link-arrow {
   display: inline-flex;
@@ -473,10 +360,6 @@ button, input { font: inherit; color: inherit; }
 }
 .link-arrow::after { content: "→"; transition: transform .2s; }
 .link-arrow:hover::after { transform: translateX(3px); }
-
-.stars { color: var(--star); letter-spacing: 1px; }
-.rating { display: inline-flex; align-items: center; gap: 6px; font-size: var(--t-small); font-weight: 600; }
-.rating em { font-style: normal; color: var(--fg-3); font-weight: 400; }
 
 /* ---------- aurora background ---------- */
 .aurora {
@@ -511,9 +394,7 @@ button, input { font: inherit; color: inherit; }
   -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%);
   mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%);
 }
-@keyframes drift {
-  to { transform: translate3d(7%, 9%, 0) scale(1.15); }
-}
+@keyframes drift { to { transform: translate3d(7%, 9%, 0) scale(1.15); } }
 
 /* ---------- footer ---------- */
 .footer { border-top: 1px solid var(--line); padding-block: 56px 32px; font-size: var(--t-small); color: var(--fg-2); }
@@ -525,9 +406,6 @@ button, input { font: inherit; color: inherit; }
 .foot-cols a { text-decoration: none; }
 .foot-cols a:hover { color: var(--fg); }
 .foot-legal {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 22px;
   margin-top: 44px;
   padding-top: 22px;
   border-top: 1px solid var(--line);

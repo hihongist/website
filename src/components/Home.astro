@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import MenuBar from './MenuBar.astro';
+import Hero from './Hero.astro';
+import Tools from './Tools.astro';
+import Games from './Games.astro';
+import About from './About.astro';
+import Footer from './Footer.astro';
+import '../styles/home.css';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+---
+
+<Base lang={lang}>
+  <MenuBar lang={lang} />
+  <main>
+    <Hero lang={lang} />
+    <Tools lang={lang} />
+    <Games lang={lang} />
+    <About lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</Base>
+
+<script>
+  import '../scripts/site';
+</script>
