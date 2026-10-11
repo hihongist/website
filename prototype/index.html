@@ -1,0 +1,1475 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>hihongist 作品集</title>
+<meta name="description" content="hihongist 的独立开发作品：Mac 菜单栏小工具、iPhone 应用与微信小游戏。">
+<script>try{var t=localStorage.getItem("proto-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=JetBrains+Mono:wght@400;500;600&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;500;700;900&family=ZCOOL+KuaiLe&display=swap">
+<link rel="stylesheet" href="assets/base.css">
+<style>
+/* ================= hero ================= */
+.hero { position: relative; padding-block: clamp(52px, 8vw, 100px) 24px; }
+.hero-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  gap: clamp(36px, 5vw, 72px);
+  align-items: center;
+}
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 32px;
+  padding: 4px 14px 4px 12px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--line-2);
+  font-size: var(--t-small);
+  color: var(--fg-2);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--wx); animation: pulse 2.4s infinite; flex: none; }
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(7, 193, 96, 0.55); }
+  70% { box-shadow: 0 0 0 9px rgba(7, 193, 96, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(7, 193, 96, 0); }
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: var(--t-hero);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-top: 24px;
+  text-wrap: balance;
+}
+.hl {
+  background-image: linear-gradient(105deg, var(--hl-1), var(--hl-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  white-space: nowrap;
+}
+.hl-wx { background-image: linear-gradient(105deg, var(--hl-wx-1), var(--hl-wx-2)); }
+.hero-sub { font-size: 1.1rem; color: var(--fg-2); max-width: 31em; margin-top: 22px; text-wrap: pretty; }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.hero-copy > *, .widget { animation: rise .9s cubic-bezier(.2, .75, .2, 1) both; }
+.hero-copy > :nth-child(2) { animation-delay: .06s; }
+.hero-copy > :nth-child(3) { animation-delay: .12s; }
+.hero-copy > :nth-child(4) { animation-delay: .18s; }
+.widget:nth-child(1) { animation-delay: .2s; }
+.widget:nth-child(2) { animation-delay: .28s; }
+.widget:nth-child(3) { animation-delay: .36s; }
+@keyframes rise { from { transform: translateY(16px); } }
+
+/* desktop widgets */
+.widgets { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.widget {
+  display: flex;
+  flex-direction: column;
+  min-height: 156px;
+  padding: 16px 18px;
+  border-radius: 22px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  backdrop-filter: blur(24px) saturate(160%);
+  box-shadow: var(--shadow-1);
+}
+.widget-wide { grid-column: 1 / -1; min-height: 0; }
+.w-label { font-size: var(--t-micro); font-weight: 600; color: var(--fg-2); }
+.w-big {
+  font: 700 2.6rem/1 var(--font-display);
+  letter-spacing: -0.03em;
+  margin-top: 10px;
+  font-variant-numeric: tabular-nums;
+}
+.w-big small { font-size: 1rem; font-weight: 600; color: var(--fg-2); margin-left: 4px; letter-spacing: 0; }
+.w-foot { margin-top: auto; padding-top: 10px; font-size: var(--t-micro); color: var(--fg-3); }
+.w-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.w-delta {
+  font: 600 var(--t-micro)/1 var(--font-mono);
+  color: var(--wx);
+  background: var(--wx-soft);
+  padding: 6px 8px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+.star-meter {
+  --pct: calc(var(--r) / 5 * 100%);
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 15px;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, var(--star) var(--pct), var(--line-2) var(--pct));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.w-split { display: grid; gap: 4px; margin-top: auto; padding-top: 10px; }
+.w-split li { display: flex; align-items: center; gap: 8px; font-size: var(--t-micro); color: var(--fg-2); }
+.w-split i { width: 8px; height: 8px; border-radius: 3px; }
+.spark { display: block; width: 100%; height: auto; margin-top: 12px; overflow: visible; }
+.spark-line { fill: none; stroke: var(--wx); stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round; }
+.spark-dot { fill: var(--wx); stroke: var(--bg-raised); stroke-width: 2.5; }
+.spark-base { stroke: var(--line-2); stroke-width: 1; stroke-dasharray: 2 4; }
+
+/* dock */
+.dock-stage { position: relative; z-index: 2; margin-top: clamp(44px, 6vw, 76px); }
+.dock-rail {
+  --base: 54px;
+  height: calc(var(--base) * 1.8 + 30px);
+  display: flex;
+  align-items: flex-end;
+}
+.dock {
+  margin-inline: auto;
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  padding: 8px 10px 12px;
+  border-radius: 24px;
+  background: var(--panel);
+  border: 1px solid var(--line-2);
+  -webkit-backdrop-filter: blur(26px) saturate(180%);
+  backdrop-filter: blur(26px) saturate(180%);
+  box-shadow: var(--shadow-pop);
+}
+.dock-item {
+  --s: 1;
+  position: relative;
+  display: block;
+  flex: none;
+  width: calc(var(--base) * var(--s));
+  height: calc(var(--base) * var(--s));
+  transition: width .14s ease-out, height .14s ease-out;
+  text-decoration: none;
+  border-radius: 14px;
+}
+.dock-item .ico { width: 100%; }
+.dock-item::before {
+  content: attr(data-label);
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 10px;
+  border-radius: 7px;
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: nowrap;
+  color: var(--fg);
+  background: var(--bg-raised);
+  border: 1px solid var(--line-2);
+  box-shadow: var(--shadow-pop);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .12s;
+}
+.dock-item:hover::before, .dock-item:focus-visible::before { opacity: 1; }
+.dock-item .run {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  border-radius: 50%;
+  background: var(--fg-2);
+}
+.dock-item.bounce .ico { animation: dockBounce .7s ease-out 1; }
+@keyframes dockBounce {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-38%); }
+  50% { transform: translateY(0); }
+  70% { transform: translateY(-16%); }
+}
+.dock-sep { width: 1px; align-self: stretch; margin: 6px 4px 2px; background: var(--line-2); flex: none; }
+.dock-hint { text-align: center; margin-top: 16px; font-size: var(--t-micro); color: var(--fg-3); }
+@media (hover: none) { .dock-hint-fine { display: none; } }
+
+@media (max-width: 960px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 720px) {
+  .dock-rail { --base: 42px; height: auto; overflow-x: auto; padding-block: 4px 10px; scrollbar-width: none; }
+  .dock-rail::-webkit-scrollbar { display: none; }
+  .dock { gap: 5px; padding: 7px 8px 11px; border-radius: 20px; }
+  .dock-item::before { display: none; }
+}
+
+/* ================= featured ================= */
+.featured { padding-top: clamp(40px, 6vw, 72px); }
+.feature {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: clamp(28px, 4vw, 56px);
+  align-items: center;
+  padding: clamp(22px, 4vw, 52px);
+  border-radius: 30px;
+  overflow: hidden;
+}
+.feature::after {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  right: -10%;
+  top: -20%;
+  width: 60%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--glow-1);
+  filter: blur(90px);
+  pointer-events: none;
+}
+.app-id { display: flex; align-items: center; gap: 14px; }
+.app-id h2, .app-id h3 { font: 700 1.2rem/1.25 var(--font-display); letter-spacing: -0.01em; }
+.app-ver { font-size: var(--t-micro); color: var(--fg-3); margin-top: 3px; }
+.feature-title {
+  font: 800 clamp(1.7rem, 3vw, 2.45rem)/1.2 var(--font-display);
+  letter-spacing: -0.015em;
+  margin-top: 26px;
+  text-wrap: balance;
+}
+.feature-desc { color: var(--fg-2); margin-top: 14px; max-width: 32em; }
+.ticks { display: grid; gap: 10px; margin-top: 22px; font-size: 0.95rem; }
+.ticks li { display: flex; gap: 10px; align-items: baseline; }
+.ticks li::before { content: "✓"; color: var(--accent); font-weight: 700; flex: none; }
+.feature .chips { margin-top: 24px; }
+.feature-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+/* mac mock */
+.mac-mock {
+  position: relative;
+  aspect-ratio: 16 / 11.5;
+  max-width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 1.35;
+  background:
+    radial-gradient(110% 90% at 0% 0%, var(--desk-1), transparent 62%),
+    radial-gradient(90% 90% at 100% 100%, var(--desk-3), transparent 60%),
+    linear-gradient(135deg, var(--desk-1), var(--desk-2));
+  border: 1px solid var(--line-2);
+  box-shadow: var(--shadow-pop);
+}
+.mm-bar {
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  font-size: 11.5px;
+  color: var(--fg);
+  background: var(--panel);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+.mm-l, .mm-r { display: flex; align-items: center; gap: 13px; white-space: nowrap; }
+.mm-l span { color: var(--fg-2); }
+.mm-r svg { width: 14px; height: 14px; display: block; }
+.mm-tray { display: grid; place-items: center; width: 24px; height: 20px; border-radius: 5px; }
+.mm-tray.on { background: var(--surface-2); color: var(--accent); }
+.mm-pop {
+  position: absolute;
+  top: 32px;
+  right: 9%;
+  width: min(340px, 84%);
+  padding: 8px;
+  border-radius: 14px;
+  background: var(--panel);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  backdrop-filter: blur(30px) saturate(180%);
+  border: 1px solid var(--line-2);
+  box-shadow: var(--shadow-pop);
+  color: var(--fg);
+}
+.mm-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
+  padding: 0 9px;
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--fg-3);
+}
+.mm-search svg { width: 13px; height: 13px; flex: none; }
+.mm-search span:first-of-type { flex: 1; }
+.mm-k { font: 500 10.5px/1 var(--font-mono); color: var(--fg-3); white-space: nowrap; }
+.mm-group { padding: 10px 8px 4px; font-size: 10.5px; font-weight: 600; color: var(--fg-3); }
+.mm-list li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  height: 31px;
+  padding: 0 8px;
+  border-radius: 7px;
+}
+.mm-list li.sel { background: var(--accent); color: var(--on-accent); }
+.mm-list li.sel .mm-k, .mm-list li.sel .t-ico { color: inherit; }
+.t-ico {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  background: var(--surface-2);
+  color: var(--fg-2);
+  font: 600 10px/1 var(--font-mono);
+  flex: none;
+}
+.mm-list li.sel .t-ico { background: rgba(255, 255, 255, 0.22); }
+.t-swatch { width: 20px; height: 20px; border-radius: 5px; flex: none; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15); }
+.t-thumb { width: 20px; height: 20px; border-radius: 5px; flex: none; background: linear-gradient(135deg, var(--desk-1), var(--desk-3)); }
+.t-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mm-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+  padding: 8px 8px 2px;
+  border-top: 1px solid var(--line);
+  font-size: 10.5px;
+  color: var(--fg-3);
+}
+.mm-foot .key { font-size: 10px; }
+@media (max-width: 560px) {
+  .mac-mock { aspect-ratio: auto; padding-bottom: 16px; }
+  .mm-l span { display: none; }
+  .mm-pop { position: relative; top: auto; right: auto; width: auto; margin: 12px 12px 0; }
+}
+
+/* ================= mac grid ================= */
+.mac-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.app-card { display: flex; flex-direction: column; gap: 16px; padding: 22px; }
+.app-card-head { display: flex; align-items: center; gap: 14px; }
+.app-card-head > div { flex: 1; min-width: 0; }
+.price {
+  font: 600 var(--t-small)/1 var(--font-body);
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  white-space: nowrap;
+}
+.app-card-desc { color: var(--fg-2); font-size: 0.95rem; text-wrap: pretty; }
+.app-card-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 4px; }
+.pv {
+  position: relative;
+  height: 168px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  font-size: 12px;
+}
+.pv-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 14px;
+  height: 24px;
+  padding: 0 12px;
+  font-size: 11px;
+  color: var(--fg-2);
+  border-bottom: 1px solid var(--line);
+}
+.pv-tray { display: inline-flex; align-items: center; gap: 6px; color: var(--fg); padding: 1px 7px; border-radius: 5px; background: var(--surface-2); }
+.pv-tray i { width: 8px; height: 8px; border-radius: 50%; background: #F0525F; }
+.pv-strong { font-weight: 600; font-size: 13px; }
+.pv-note { color: var(--fg-3); font-size: 11.5px; }
+
+.tomo-body { display: flex; align-items: center; gap: 20px; padding: 18px 22px; }
+.ring {
+  width: 92px;
+  aspect-ratio: 1;
+  flex: none;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font: 600 15px/1 var(--font-mono);
+  background:
+    radial-gradient(closest-side, var(--bg-raised) 80%, transparent 82% 100%),
+    conic-gradient(#F0525F calc(var(--p) * 360deg), var(--line-2) 0);
+}
+.pv-pills { display: flex; gap: 6px; margin-top: 10px; }
+.pv-pills span { padding: 4px 10px; border-radius: 999px; background: var(--bg-raised); border: 1px solid var(--line); font-size: 11px; }
+
+.pv-keys { display: grid; align-content: center; gap: 10px; padding: 16px 20px; }
+.ks-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.ks-row .key { font-size: 11px; }
+.ks-row > span:last-child { color: var(--fg-2); }
+
+.pv-snap { display: flex; flex-direction: column; }
+.snap-canvas { position: relative; flex: 1; margin: 12px 12px 0; border-radius: 8px; background: var(--bg-raised); border: 1px solid var(--line); overflow: hidden; }
+.snap-ui { display: grid; gap: 7px; padding: 12px 14px; }
+.snap-ui i { display: block; height: 7px; border-radius: 4px; background: var(--line-2); width: 70%; }
+.snap-ui i.short { width: 42%; }
+.snap-blocks { display: flex; gap: 8px; margin-top: 4px; }
+.snap-blocks b { width: 46px; height: 30px; border-radius: 6px; background: var(--surface-2); border: 1px solid var(--line); }
+.snap-blocks b:nth-child(2) { transform: translateY(5px); }
+.snap-box { position: absolute; left: 66px; top: 44px; width: 64px; height: 44px; border: 2px solid #FF4D5E; border-radius: 6px; }
+.snap-arrow { position: absolute; left: 132px; top: 22px; width: 90px; height: 56px; overflow: visible; }
+.snap-arrow path { fill: none; stroke: #FF4D5E; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.snap-label { position: absolute; right: 12px; top: 12px; padding: 4px 9px; border-radius: 6px; background: #FF4D5E; color: #FFFFFF; font-size: 11px; font-weight: 600; }
+.snap-num { position: absolute; left: 56px; top: 34px; width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; background: #FF4D5E; color: #FFFFFF; font: 700 11px/1 var(--font-mono); }
+.snap-tools { display: flex; justify-content: center; gap: 4px; padding: 8px; }
+.snap-tools span { display: grid; place-items: center; width: 28px; height: 24px; border-radius: 6px; color: var(--fg-2); font-size: 12px; }
+.snap-tools span.on { background: var(--accent-soft); color: var(--accent); }
+
+.soon { border-style: dashed; border-color: var(--line-2); background: transparent; box-shadow: none; justify-content: center; }
+.soon-title { font: 700 1.35rem/1.3 var(--font-display); text-wrap: balance; }
+.progress { height: 8px; border-radius: 99px; background: var(--surface-2); overflow: hidden; }
+.progress span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--hl-1), var(--hl-2)); }
+.soon .btn { align-self: flex-start; }
+
+/* ================= iphone ================= */
+.dot-ios { background: var(--ios) !important; }
+.dot-wx { background: var(--wx) !important; }
+.phones { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); }
+.phone-item { display: flex; flex-direction: column; gap: 26px; min-width: 0; }
+.phone-stage { position: relative; padding-block: 10px; }
+.phone-stage::before {
+  content: "";
+  position: absolute;
+  inset: 12% 8%;
+  border-radius: 50%;
+  background: var(--app-glow);
+  filter: blur(60px);
+  opacity: 0.55;
+  z-index: -1;
+}
+.phone {
+  position: relative;
+  width: 100%;
+  max-width: 264px;
+  aspect-ratio: 9 / 19.3;
+  margin-inline: auto;
+  padding: 9px;
+  border-radius: 46px;
+  background: var(--device);
+  box-shadow: 0 0 0 1.5px var(--device-edge), inset 0 0 0 1px rgba(255, 255, 255, 0.07), var(--shadow-pop);
+}
+.screen {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 38px;
+  padding: 46px 16px 18px;
+  background: var(--screen-bg);
+  color: var(--screen-fg);
+  font-size: 12px;
+  line-height: 1.4;
+}
+.screen::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  width: 76px;
+  height: 22px;
+  margin-left: -38px;
+  border-radius: 20px;
+  background: var(--island);
+}
+.screen::after {
+  content: "";
+  position: absolute;
+  bottom: 7px;
+  left: 50%;
+  width: 92px;
+  height: 4px;
+  margin-left: -46px;
+  border-radius: 4px;
+  background: var(--screen-fg);
+  opacity: 0.75;
+}
+.sbar { position: absolute; top: 13px; left: 24px; right: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 600; }
+.sbar-r { display: flex; align-items: center; gap: 4px; }
+.sig { width: 14px; height: 9px; background: linear-gradient(90deg, currentColor 0 2.5px, transparent 2.5px 3.8px, currentColor 3.8px 6.3px, transparent 6.3px 7.6px, currentColor 7.6px 10.1px, transparent 10.1px 11.4px, currentColor 11.4px); clip-path: polygon(0 100%, 100% 0, 100% 100%); }
+.bat { width: 20px; height: 10px; border-radius: 3px; border: 1.2px solid currentColor; opacity: .9; position: relative; }
+.bat::after { content: ""; position: absolute; inset: 1.5px 5px 1.5px 1.5px; border-radius: 1px; background: currentColor; }
+.s-cap { font-size: 11.5px; color: var(--screen-2); font-weight: 600; }
+.s-big { font: 700 30px/1.1 var(--font-display); letter-spacing: -0.02em; margin-top: 4px; font-variant-numeric: tabular-nums; }
+.s-big small { font-size: 14px; font-weight: 600; color: var(--screen-2); letter-spacing: 0; }
+.s-note { font-size: 10.5px; color: var(--screen-2); margin-top: 6px; }
+.s-sec { font-size: 11px; font-weight: 700; margin-top: 16px; color: var(--screen-2); }
+.center { text-align: center; }
+
+.scr-penny .s-meter { height: 6px; border-radius: 6px; background: var(--screen-line); margin-top: 12px; overflow: hidden; }
+.scr-penny .s-meter span { display: block; height: 100%; border-radius: inherit; background: #10B981; }
+.s-bars { display: flex; align-items: flex-end; gap: 5px; height: 70px; margin-top: 16px; }
+.s-bars i { flex: 1; height: var(--h); border-radius: 3px; background: color-mix(in srgb, #10B981 35%, transparent); }
+.s-bars i.today { background: #10B981; }
+.s-axis { display: flex; justify-content: space-between; font-size: 9.5px; color: var(--screen-2); margin-top: 4px; font-family: var(--font-mono); }
+.s-list { margin-top: 8px; display: grid; gap: 6px; }
+.s-list li { display: flex; align-items: center; gap: 9px; padding: 8px 9px; border-radius: 12px; background: var(--screen-card); }
+.s-list .cat { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 8px; background: var(--cat); color: #FFFFFF; font-style: normal; font-size: 11px; font-weight: 700; flex: none; }
+.s-list span { flex: 1; min-width: 0; font-weight: 600; }
+.s-list em { display: block; font-style: normal; font-weight: 400; font-size: 10px; color: var(--screen-2); }
+.s-list b { font: 600 11.5px/1 var(--font-mono); }
+.fab { position: absolute; right: 18px; bottom: 26px; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: #10B981; color: #FFFFFF; font-size: 24px; font-weight: 300; box-shadow: 0 8px 20px -6px rgba(16, 185, 129, 0.7); }
+
+.week, .h-dots { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; justify-items: center; }
+.week { margin-top: 16px; font-size: 9.5px; color: var(--screen-2); padding-left: 76px; }
+.habits { display: grid; gap: 7px; margin-top: 6px; }
+.habits li { display: grid; grid-template-columns: 70px minmax(0, 1fr); align-items: center; gap: 6px; padding: 8px 8px; border-radius: 12px; background: var(--screen-card); }
+.h-name { font-size: 11px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.h-dots i { width: 13px; height: 13px; border-radius: 50%; background: var(--screen-line); }
+.h-dots i.on { background: var(--hc); }
+.h-dots i.today { box-shadow: 0 0 0 2px var(--screen-card), 0 0 0 3.5px var(--hc); }
+.s-card { margin-top: 12px; padding: 10px 12px; border-radius: 12px; background: var(--screen-card); }
+.s-card-row { display: flex; justify-content: space-between; font-size: 11px; font-weight: 600; }
+.s-card .s-meter2 { height: 6px; border-radius: 6px; margin-top: 8px; background: var(--screen-line); overflow: hidden; }
+.s-card .s-meter2 span { display: block; height: 100%; width: 82%; background: linear-gradient(90deg, #C084FC, #EC4899); }
+
+.t-ring {
+  width: 168px;
+  aspect-ratio: 1;
+  margin: 18px auto 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background:
+    radial-gradient(closest-side, var(--screen-bg) 84%, transparent 85% 100%),
+    conic-gradient(#3B82F6 calc(var(--p) * 360deg), var(--screen-line) 0);
+}
+.t-ring b { display: block; font: 700 46px/1 var(--font-display); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.t-ring span { font-size: 11px; color: var(--screen-2); }
+.t-btns { display: flex; justify-content: center; align-items: center; gap: 18px; margin-top: 18px; }
+.t-btns span { display: grid; place-items: center; border-radius: 50%; }
+.t-sm { width: 40px; height: 40px; background: var(--screen-card); font-weight: 600; font-size: 13px; }
+.t-plus { width: 66px; height: 66px; background: #3B82F6; color: #FFFFFF; font-size: 34px; font-weight: 300; box-shadow: 0 10px 24px -8px rgba(59, 130, 246, 0.8); }
+.t-widgets { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 18px; }
+.t-w { padding: 10px; border-radius: 14px; background: var(--screen-card); }
+.t-w p { font-size: 10px; color: var(--screen-2); font-weight: 600; }
+.t-w b { display: block; font: 700 18px/1.2 var(--font-display); margin-top: 2px; font-variant-numeric: tabular-nums; }
+.t-w b small { font-size: 11px; color: var(--screen-2); font-weight: 600; }
+
+.phone-meta { display: flex; flex-direction: column; gap: 12px; }
+.phone-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 4px; }
+
+@media (max-width: 900px) {
+  .mac-grid { grid-template-columns: minmax(0, 1fr); }
+  .feature { grid-template-columns: minmax(0, 1fr); }
+  .phones {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(260px, 78%);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 12px;
+    scrollbar-width: thin;
+  }
+  .phone-item { scroll-snap-align: start; }
+}
+
+/* ================= games ================= */
+.games { overflow: hidden; }
+.games-glow {
+  position: absolute;
+  inset: 10% -10% auto;
+  height: 70%;
+  background: radial-gradient(50% 60% at 50% 40%, var(--wx-soft), transparent 70%);
+  pointer-events: none;
+}
+.games-grid { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.game { display: flex; flex-direction: column; overflow: hidden; }
+.cover { position: relative; aspect-ratio: 4 / 3; max-width: 100%; overflow: hidden; color: #FFFFFF; }
+.cover-hud {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  font: 700 12px/1 var(--font-play);
+}
+.cover-hud span { padding: 6px 10px; border-radius: 999px; background: rgba(0, 0, 0, 0.28); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+
+.cover-blocks { background: radial-gradient(90% 70% at 50% 0%, #4A2A8C, #1B1240 70%); }
+.blocks {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  translate: -50% 0;
+  width: 78%;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+.blocks i {
+  aspect-ratio: 1;
+  border-radius: 24%;
+  background: var(--b);
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.18), inset 0 2px 0 rgba(255, 255, 255, 0.35);
+}
+.blocks i.sel { outline: 2px solid #FFFFFF; outline-offset: 1px; animation: wobble 1.6s ease-in-out infinite; }
+@keyframes wobble { 50% { transform: scale(0.9); } }
+.pop-score { position: absolute; z-index: 2; left: 52%; top: 34%; font: 400 22px/1 var(--font-play); color: #FFE24D; text-shadow: 0 2px 0 #B4480B; animation: floatUp 2.4s ease-in-out infinite; }
+@keyframes floatUp { 50% { transform: translateY(-8px); } }
+
+.cover-hop { background: linear-gradient(180deg, #7C6CF2 0%, #F08BB0 62%, #FFC79A 100%); }
+.cover-hop .cloud { position: absolute; height: 18px; border-radius: 20px; background: rgba(255, 255, 255, 0.55); filter: blur(1px); }
+.cover-hop .plat { position: absolute; height: 12px; border-radius: 8px; background: #FFFFFF; box-shadow: 0 5px 0 #E0A2C0; }
+.cover-hop .cat { position: absolute; width: 46px; height: 46px; animation: hop 1.4s cubic-bezier(.3, 0, .3, 1) infinite; }
+@keyframes hop { 50% { transform: translateY(-20px); } }
+
+.cover-idiom { background: radial-gradient(80% 70% at 50% 30%, #C8352B, #6E1111 80%); display: grid; place-content: center; gap: 14px; }
+.idiom-row { display: flex; gap: 8px; justify-content: center; }
+.idiom-row span {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: #FBEBD0;
+  color: #7A1A12;
+  font: 400 32px/1 var(--font-brush);
+  box-shadow: inset 0 -3px 0 #E2C49A;
+}
+.idiom-row span.blank { background: transparent; color: #FDE68A; border: 2px dashed rgba(253, 230, 138, 0.8); box-shadow: none; animation: wobble 1.8s ease-in-out infinite; }
+.idiom-pick span { width: 34px; height: 34px; font-size: 22px; border-radius: 8px; background: rgba(251, 235, 208, 0.16); color: #FBEBD0; box-shadow: none; }
+
+.game-body { display: flex; flex-direction: column; gap: 14px; padding: 18px 20px 20px; flex: 1; }
+.game-head { display: flex; align-items: center; gap: 12px; }
+.game-title { font: 400 1.45rem/1.2 var(--font-play); letter-spacing: 0.02em; }
+.game-tags { font-size: var(--t-micro); color: var(--fg-3); margin-top: 2px; }
+.game-desc { color: var(--fg-2); font-size: 0.95rem; }
+.g-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding-block: 12px; border-block: 1px solid var(--line); }
+.g-stats dt { font-size: 11px; color: var(--fg-3); }
+.g-stats dd { font: 700 1.05rem/1.3 var(--font-display); font-variant-numeric: tabular-nums; }
+.qr-row { display: flex; align-items: center; gap: 14px; margin-top: auto; }
+.suncode { width: 96px; height: 96px; flex: none; padding: 6px; border-radius: 14px; background: var(--qr-paper); box-shadow: 0 0 0 1px var(--line); }
+.qr-copy { font-size: var(--t-small); color: var(--fg-2); line-height: 1.5; }
+.qr-title { color: var(--wx); font-weight: 700; display: flex; align-items: center; gap: 6px; }
+.qr-title svg { width: 16px; height: 16px; }
+.qr-note { display: inline-block; margin-top: 6px; font-size: 10.5px; color: var(--fg-3); }
+@media (max-width: 1000px) { .games-grid { grid-template-columns: minmax(0, 1fr); max-width: 560px; margin-inline: auto; } }
+
+/* ================= log ================= */
+.log-grid { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: clamp(32px, 6vw, 88px); align-items: start; }
+.log-head { position: sticky; top: 96px; display: flex; flex-direction: column; align-items: flex-start; }
+.log-head .link-arrow { margin-top: 24px; }
+.timeline { position: relative; display: grid; gap: 14px; }
+.timeline::before { content: ""; position: absolute; left: 7px; top: 10px; bottom: 10px; width: 1px; background: var(--line-2); }
+.tl-item { position: relative; padding-left: 34px; }
+.tl-item::before { content: ""; position: absolute; left: 3px; top: 22px; width: 9px; height: 9px; border-radius: 50%; background: var(--bg); border: 2px solid var(--fg-3); }
+.tl-item:first-child::before { border-color: var(--accent); background: var(--accent); }
+.tl-card { display: grid; gap: 8px; padding: 16px 18px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); }
+.tl-top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+.tl-name { font-weight: 700; }
+.ver { font: 600 11px/1 var(--font-mono); padding: 4px 7px; border-radius: 6px; background: var(--surface-2); border: 1px solid var(--line); }
+.tl-top time { margin-left: auto; font-size: var(--t-micro); color: var(--fg-3); }
+.tl-card p { color: var(--fg-2); font-size: 0.93rem; }
+@media (max-width: 900px) { .log-grid { grid-template-columns: minmax(0, 1fr); } .log-head { position: static; } }
+
+/* ================= about ================= */
+.about-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: clamp(32px, 6vw, 80px); align-items: start; }
+.me-row { display: flex; align-items: center; gap: 18px; margin-top: 18px; }
+.me-row .sec-title { margin-top: 0; }
+.avatar {
+  width: 68px;
+  height: 68px;
+  flex: none;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font: 800 1.5rem/1 var(--font-display);
+  color: #FFFFFF;
+  background: conic-gradient(from 200deg, #FF9A3C, #F0508C, #3B93FF, #07C160, #FF9A3C);
+  box-shadow: 0 0 0 4px var(--bg), 0 0 0 5px var(--line-2);
+}
+.about-p { color: var(--fg-2); margin-top: 18px; max-width: 34em; }
+.about-me .chips { margin-top: 24px; }
+.about-side { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; min-width: 0; }
+.settings { border-radius: 16px; background: var(--surface); border: 1px solid var(--line); overflow: hidden; }
+.set-row { display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 8px 14px; text-decoration: none; }
+.set-row + .set-row { border-top: 1px solid var(--line); }
+a.set-row:hover { background: var(--surface-2); }
+.set-ico { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 7px; background: var(--c); color: #FFFFFF; flex: none; }
+.set-ico svg { width: 16px; height: 16px; }
+.set-label { font-weight: 600; }
+.set-val { margin-left: auto; color: var(--fg-2); font-size: var(--t-small); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.set-btn { height: 30px; padding: 0 12px; border-radius: 8px; border: 1px solid var(--line-2); background: var(--surface-2); cursor: pointer; font-size: var(--t-micro); font-weight: 600; flex: none; }
+.chev { color: var(--fg-3); font-size: 1.2rem; line-height: 1; }
+.subscribe { padding: 20px; border-radius: 18px; }
+.sub-label { display: block; font-weight: 700; }
+.sub-row { display: flex; gap: 8px; margin-top: 12px; }
+.sub-row input {
+  flex: 1;
+  min-width: 0;
+  height: 46px;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line-2);
+  background: var(--bg-raised);
+}
+.sub-row input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.sub-note { margin-top: 10px; font-size: var(--t-micro); color: var(--fg-3); }
+.sub-note.ok { color: var(--wx); }
+@media (max-width: 900px) { .about-grid { grid-template-columns: minmax(0, 1fr); } }
+
+.flash { animation: flash 1.6s ease-out 1; }
+@keyframes flash { 0% { box-shadow: 0 0 0 0 var(--accent), var(--shadow-1); } 30% { box-shadow: 0 0 0 3px var(--accent), var(--shadow-1); } 100% { box-shadow: 0 0 0 0 transparent, var(--shadow-1); } }
+</style>
+</head>
+<body>
+
+<div class="proto-bar"><b>原型 v0.1</b> · 作品名称、数据和文案都是示例，确认方向后替换成真实内容</div>
+
+<header class="menubar">
+  <div class="menubar-inner">
+    <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span>hihongist</a>
+    <nav class="menus" id="menus" aria-label="主导航">
+      <a href="#featured">精选</a>
+      <a href="#mac">Mac</a>
+      <a href="#iphone">iPhone</a>
+      <a href="#games">小游戏</a>
+      <a href="#log">更新日志</a>
+      <a href="#about">关于</a>
+    </nav>
+    <div class="status">
+      <button class="sb-btn" type="button" data-theme-toggle aria-label="切换浅色 / 深色">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></svg>
+      </button>
+      <span class="sb-text sb-lang">中 / EN</span>
+      <span class="sb-text clock" data-clock>10月11日 周日 14:32</span>
+      <button class="sb-btn menu-btn" type="button" data-menu-btn aria-expanded="false" aria-controls="menus" aria-label="打开菜单">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="status-pill"><span class="pulse"></span>独立开发中 · 第 11 款作品正在打磨</p>
+      <h1 class="hero-title"><span class="ph">做顺手的<span class="hl">小工具</span>，</span><br><span class="ph">和停不下来的<span class="hl hl-wx">小游戏</span>。</span></h1>
+      <p class="hero-sub">这里是 hihongist 的全部作品：Mac 菜单栏工具、iPhone 应用和微信小游戏。从设计、开发到上架都由一个人完成，每一款都还在更新。</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#featured">浏览全部作品
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="#about">新作上架时通知我</a>
+      </div>
+    </div>
+
+    <div class="widgets" aria-label="作品数据（示例）">
+      <div class="widget">
+        <p class="w-label">App Store 平均评分</p>
+        <p class="w-big">4.8</p>
+        <span class="star-meter" style="--r: 4.8" aria-label="5 星满分中 4.8 星">★★★★★</span>
+        <p class="w-foot">7 款应用 · 共 2,140 条评分</p>
+      </div>
+      <div class="widget">
+        <p class="w-label">已上架作品</p>
+        <p class="w-big">10</p>
+        <ul class="w-split">
+          <li><i style="background: var(--accent)"></i>Mac 小工具 4</li>
+          <li><i style="background: var(--ios)"></i>iPhone 应用 3</li>
+          <li><i style="background: var(--wx)"></i>微信小游戏 3</li>
+        </ul>
+      </div>
+      <div class="widget widget-wide">
+        <div class="w-row">
+          <div>
+            <p class="w-label">小游戏累计玩家</p>
+            <p class="w-big">12.6<small>万</small></p>
+          </div>
+          <p class="w-delta">近 30 天 ↑ 18%</p>
+        </div>
+        <svg class="spark" viewBox="0 0 310 74" role="img" aria-label="近 12 周每周新增玩家，从约 4,200 人增长到约 13,500 人">
+          <defs>
+            <linearGradient id="sparkFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" style="stop-color: var(--wx); stop-opacity: 0.32"/>
+              <stop offset="1" style="stop-color: var(--wx); stop-opacity: 0"/>
+            </linearGradient>
+          </defs>
+          <line class="spark-base" x1="3" y1="72" x2="303" y2="72"/>
+          <path d="M3 59.9 L30.3 55.3 L57.5 56.8 L84.8 50.7 L112.1 43.6 L139.4 46.1 L166.6 40 L193.9 32.4 L221.2 35.5 L248.5 26.3 L275.7 19.2 L303 12.5 L303 72 L3 72 Z" fill="url(#sparkFill)"/>
+          <polyline class="spark-line" points="3,59.9 30.3,55.3 57.5,56.8 84.8,50.7 112.1,43.6 139.4,46.1 166.6,40 193.9,32.4 221.2,35.5 248.5,26.3 275.7,19.2 303,12.5"/>
+          <circle class="spark-dot" cx="303" cy="12.5" r="4.5"/>
+        </svg>
+        <p class="w-foot">每周新增玩家 · 近 12 周</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="dock-stage">
+    <div class="dock-rail">
+      <nav class="dock" id="dock" aria-label="全部作品">
+        <a class="dock-item" href="#app-floaty" data-label="Floaty 浮窗 · Mac">
+          <span class="ico ico-floaty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="4.5" width="13" height="16" rx="2.5"/><path d="M9.5 4.5v-1h5v1M9 10h6M9 13.5h6M9 17h3.5"/></svg></span><i class="run"></i>
+        </a>
+        <a class="dock-item" href="#app-tomo" data-label="Tomo 番茄钟 · Mac">
+          <span class="ico ico-tomo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="13.5" r="7"/><path d="M12 10v3.5l2.4 1.6M10 3.5h4M12 3.5v3"/></svg></span><i class="run"></i>
+        </a>
+        <a class="dock-item" href="#app-keyscape" data-label="Keyscape 快捷键 · Mac">
+          <span class="ico ico-keyscape"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"/></svg></span>
+        </a>
+        <a class="dock-item" href="#app-snapmark" data-label="Snapmark 截图标注 · Mac">
+          <span class="ico ico-snapmark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2v14a2 2 0 0 0 2 2h14"/><path d="M18 22V8a2 2 0 0 0-2-2H2"/></svg></span>
+        </a>
+        <span class="dock-sep" aria-hidden="true"></span>
+        <a class="dock-item" href="#app-penny" data-label="Penny 记账 · iPhone">
+          <span class="ico ico-penny"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9.5V21M12 9.5 6 3M12 9.5 18 3M6 15h12M6 11h12"/></svg></span><i class="run"></i>
+        </a>
+        <a class="dock-item" href="#app-dots" data-label="Daily Dots 打卡 · iPhone">
+          <span class="ico ico-dots"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="6" r="2.3"/><circle cx="12" cy="6" r="2.3"/><circle cx="18" cy="6" r="2.3"/><circle cx="6" cy="12" r="2.3"/><circle cx="12" cy="12" r="2.3"/><circle cx="18" cy="12" r="2.3" opacity=".38"/><circle cx="6" cy="18" r="2.3"/><circle cx="12" cy="18" r="2.3" opacity=".38"/><circle cx="18" cy="18" r="2.3" opacity=".38"/></svg></span>
+        </a>
+        <a class="dock-item" href="#app-tally" data-label="Tally 计数器 · iPhone">
+          <span class="ico ico-tally"><span class="glyph-text">+1</span></span>
+        </a>
+        <span class="dock-sep" aria-hidden="true"></span>
+        <a class="dock-item" href="#app-blockpop" data-label="方块消消 · 微信小游戏">
+          <span class="ico ico-blockpop"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3.5" y="3.5" width="7.5" height="7.5" rx="2"/><rect x="13" y="3.5" width="7.5" height="7.5" rx="2" opacity=".55"/><rect x="3.5" y="13" width="7.5" height="7.5" rx="2" opacity=".55"/><rect x="13" y="13" width="7.5" height="7.5" rx="2"/></svg></span><i class="run"></i>
+        </a>
+        <a class="dock-item" href="#app-hopcat" data-label="跳跳猫 · 微信小游戏">
+          <span class="ico ico-hopcat"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M5 10.5V4l4.5 3.3h5L19 4v6.5a7 7 0 0 1-14 0Z"/><circle cx="9.2" cy="11.6" r="1.25" fill="#E8476E"/><circle cx="14.8" cy="11.6" r="1.25" fill="#E8476E"/></svg></span>
+        </a>
+        <a class="dock-item" href="#app-chengyu" data-label="成语大侠 · 微信小游戏">
+          <span class="ico ico-chengyu"><span class="glyph-brush">成</span></span>
+        </a>
+      </nav>
+    </div>
+    <p class="dock-hint"><span class="dock-hint-fine">把鼠标移到 Dock 上试试，</span>点图标跳到对应作品</p>
+  </div>
+</section>
+
+<!-- ============ FEATURED ============ -->
+<section class="section featured" id="featured">
+  <div class="wrap">
+    <div class="sec-head" style="margin-bottom: 22px"><p class="eyebrow"><span class="dot"></span>本月主推 · Mac</p></div>
+    <article class="feature card spot" id="app-floaty">
+      <div class="feature-copy">
+        <div class="app-id">
+          <span class="ico ico-md ico-floaty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="4.5" width="13" height="16" rx="2.5"/><path d="M9.5 4.5v-1h5v1M9 10h6M9 13.5h6M9 17h3.5"/></svg></span>
+          <div><h2>Floaty 浮窗</h2><p class="mono app-ver">v2.4.0 · 10 月 8 日更新</p></div>
+        </div>
+        <p class="feature-title"><span class="ph">复制过的东西，</span><span class="ph">一个都不会丢。</span></p>
+        <p class="feature-desc">Floaty 常驻菜单栏，自动记下你复制过的文字、链接、图片和颜色。按 <span class="keys"><kbd class="key">⌘</kbd><kbd class="key">⇧</kbd><kbd class="key">V</kbd></span> 呼出，输入两个字就能找到上周那段代码。</p>
+        <ul class="ticks">
+          <li>历史记录只存在本机，不联网，不收集任何数据</li>
+          <li>把常用片段固定在顶部，⌘1 到 ⌘9 直接粘贴</li>
+          <li>原生适配 macOS 26 的 Liquid Glass 外观</li>
+        </ul>
+        <div class="chips">
+          <span class="chip">macOS 13 或更高</span>
+          <span class="chip">Apple 芯片 / Intel</span>
+          <span class="chip mono">4.1&nbsp;MB</span>
+          <span class="chip">免费 · Pro 永久 ¥18</span>
+        </div>
+        <div class="feature-cta">
+          <a class="store" href="#featured">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="11" rx="1.6"/><path d="M2 19h20"/></svg>
+            <span><small>前往</small><b>Mac App Store</b></span>
+          </a>
+          <a class="btn btn-ghost" href="app.html">查看产品页</a>
+        </div>
+      </div>
+
+      <div class="feature-visual">
+        <div class="mac-mock" role="img" aria-label="Floaty 的剪贴板历史面板，从菜单栏弹出">
+          <div class="mm-bar">
+            <span class="mm-l"><b>Floaty</b><span>编辑</span><span>显示</span><span>窗口</span></span>
+            <span class="mm-r">
+              <span class="mm-tray on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="4.5" width="13" height="16" rx="2.5"/><path d="M9 10h6M9 14h6"/></svg></span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 9a15 15 0 0 1 20 0M5.5 12.5a10 10 0 0 1 13 0M9 16a5 5 0 0 1 6 0"/><circle cx="12" cy="19" r="1" fill="currentColor"/></svg>
+              <span>周日 14:32</span>
+            </span>
+          </div>
+          <div class="mm-pop">
+            <div class="mm-search">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
+              <span>搜索剪贴板…</span><span class="mm-k">⌘F</span>
+            </div>
+            <p class="mm-group">已固定</p>
+            <ul class="mm-list">
+              <li class="sel"><span class="t-ico">&gt;_</span><span class="t-text mono">git push -u origin main</span><span class="mm-k">⌘1</span></li>
+              <li><span class="t-ico">↗</span><span class="t-text">developer.apple.com/app-store/review</span><span class="mm-k">⌘2</span></li>
+            </ul>
+            <p class="mm-group">今天</p>
+            <ul class="mm-list">
+              <li><span class="t-swatch" style="background: #FF9A3C"></span><span class="t-text mono">#FF9A3C</span><span class="mm-k">2 分钟前</span></li>
+              <li><span class="t-thumb"></span><span class="t-text">截屏 2026-10-11 14.20.36.png</span><span class="mm-k">12 分钟前</span></li>
+              <li><span class="t-ico">文</span><span class="t-text">周三前提交 2.4 版审核，附更新说明</span><span class="mm-k">1 小时前</span></li>
+            </ul>
+            <div class="mm-foot"><span>1,284 条记录 · 仅保存在本机</span><span class="keys"><kbd class="key">⌘</kbd><kbd class="key">⇧</kbd><kbd class="key">V</kbd></span></div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ MAC ============ -->
+<section class="section" id="mac">
+  <div class="wrap">
+    <header class="sec-head sec-head-row">
+      <div>
+        <p class="eyebrow"><span class="dot"></span>Mac 小工具 · 共 4 款</p>
+        <h2 class="sec-title"><span class="ph">住在菜单栏里，</span><span class="ph">随叫随到。</span></h2>
+        <p class="sec-sub">不占 Dock，不弹多余的窗口。需要时按一个快捷键叫出来，用完自己消失。</p>
+      </div>
+      <a class="link-arrow" href="#mac">全部 Mac 工具</a>
+    </header>
+
+    <div class="mac-grid">
+      <article class="app-card card spot" id="app-tomo">
+        <div class="app-card-head">
+          <span class="ico ico-sm ico-tomo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="13.5" r="7"/><path d="M12 10v3.5l2.4 1.6M10 3.5h4M12 3.5v3"/></svg></span>
+          <div class="app-id"><div><h3>Tomo 番茄钟</h3><p class="mono app-ver">v1.8.2 · macOS&nbsp;13+ · 2.3&nbsp;MB</p></div></div>
+          <span class="price">¥12</span>
+        </div>
+        <p class="app-card-desc">菜单栏里的番茄钟。专注时自动打开勿扰模式，休息时提醒你站起来走两步。</p>
+        <div class="pv" aria-hidden="true">
+          <div class="pv-bar"><span class="pv-tray"><i></i><span class="mono">18:42</span></span><span>周日 14:32</span></div>
+          <div class="tomo-body">
+            <div class="ring" style="--p: .62">18:42</div>
+            <div>
+              <p class="pv-strong">专注中 · 第 3 个番茄</p>
+              <p class="pv-note">勿扰模式已开启</p>
+              <div class="pv-pills"><span>暂停</span><span>跳过</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="app-card-foot"><span class="rating"><span class="stars">★</span>4.9 <em>612 条评分</em></span><a class="link-arrow" href="app.html">产品页</a></div>
+      </article>
+
+      <article class="app-card card spot" id="app-keyscape">
+        <div class="app-card-head">
+          <span class="ico ico-sm ico-keyscape"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"/></svg></span>
+          <div class="app-id"><div><h3>Keyscape 快捷键</h3><p class="mono app-ver">v3.0.1 · macOS&nbsp;14+ · 6.8&nbsp;MB</p></div></div>
+          <span class="price">免费</span>
+        </div>
+        <p class="app-card-desc">按住 ⌘ 一秒，弹出当前应用的全部快捷键。内置 300 多款常用软件，也能自己补充。</p>
+        <div class="pv pv-keys" aria-hidden="true">
+          <div class="ks-row"><span class="keys"><kbd class="key">⌘</kbd><kbd class="key">⇧</kbd><kbd class="key">4</kbd></span><span>截取选定区域</span></div>
+          <div class="ks-row"><span class="keys"><kbd class="key">⌥</kbd><kbd class="key">⌘</kbd><kbd class="key">Esc</kbd></span><span>强制退出应用</span></div>
+          <div class="ks-row"><span class="keys"><kbd class="key">⌃</kbd><kbd class="key">⌘</kbd><kbd class="key">Q</kbd></span><span>锁定屏幕</span></div>
+          <p class="pv-note">正在显示：访达 · 共 64 个快捷键</p>
+        </div>
+        <div class="app-card-foot"><span class="rating"><span class="stars">★</span>4.7 <em>388 条评分</em></span><a class="link-arrow" href="app.html">产品页</a></div>
+      </article>
+
+      <article class="app-card card spot" id="app-snapmark">
+        <div class="app-card-head">
+          <span class="ico ico-sm ico-snapmark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2v14a2 2 0 0 0 2 2h14"/><path d="M18 22V8a2 2 0 0 0-2-2H2"/></svg></span>
+          <div class="app-id"><div><h3>Snapmark 截图标注</h3><p class="mono app-ver">v1.2.0 · macOS&nbsp;13+ · 5.5&nbsp;MB</p></div></div>
+          <span class="price">¥25</span>
+        </div>
+        <p class="app-card-desc">截完图直接标注：框选、箭头、文字、马赛克、序号。标完按 ⌘C，贴进微信或飞书就行。</p>
+        <div class="pv pv-snap" aria-hidden="true">
+          <div class="snap-canvas">
+            <div class="snap-ui"><i></i><i class="short"></i><div class="snap-blocks"><b></b><b></b><b></b></div></div>
+            <span class="snap-num">1</span>
+            <span class="snap-box"></span>
+            <svg class="snap-arrow" viewBox="0 0 90 56"><path d="M84 6 C 60 10, 30 22, 6 40"/><path d="M8 28 L 5 41 L 18 42"/></svg>
+            <span class="snap-label">这里对齐一下</span>
+          </div>
+          <div class="snap-tools"><span class="on">▢</span><span>↗</span><span>T</span><span>▦</span><span>①</span></div>
+        </div>
+        <div class="app-card-foot"><span class="rating"><span class="stars">★</span>4.8 <em>205 条评分</em></span><a class="link-arrow" href="app.html">产品页</a></div>
+      </article>
+
+      <article class="app-card card soon">
+        <p class="eyebrow">第 11 款 · 开发中</p>
+        <h3 class="soon-title">自动整理「下载」文件夹的菜单栏工具</h3>
+        <p class="app-card-desc">按你定的规则，把安装包、截图、发票自动归档到对应文件夹。预计 2026 年 12 月上架。</p>
+        <div class="progress" role="progressbar" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100" aria-label="开发进度"><span style="width: 68%"></span></div>
+        <p class="pv-note mono">68% · 规则引擎和菜单栏界面已完成</p>
+        <a class="btn btn-ghost" href="#about">上架时通知我</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IPHONE ============ -->
+<section class="section" id="iphone">
+  <div class="wrap">
+    <header class="sec-head sec-head-row">
+      <div>
+        <p class="eyebrow"><span class="dot dot-ios"></span>iPhone 应用 · 共 3 款</p>
+        <h2 class="sec-title"><span class="ph">装进口袋，</span><span class="ph">也放上桌面小组件。</span></h2>
+        <p class="sec-sub">都支持主屏幕和锁屏小组件、深色模式和 iCloud 同步。不用注册账号，打开就能用。</p>
+      </div>
+      <a class="link-arrow" href="#iphone">全部 iPhone 应用</a>
+    </header>
+
+    <div class="phones">
+      <article class="phone-item" id="app-penny" style="--app-glow: rgba(16, 185, 129, 0.45)">
+        <div class="phone-stage">
+          <div class="phone" role="img" aria-label="Penny 记账的月度支出页面">
+            <div class="screen scr-penny">
+              <div class="sbar"><span>14:32</span><span class="sbar-r"><i class="sig"></i><i class="bat"></i></span></div>
+              <p class="s-cap">10 月支出</p>
+              <p class="s-big">¥2,486<small>.50</small></p>
+              <div class="s-meter"><span style="width: 62%"></span></div>
+              <p class="s-note">预算 ¥4,000 · 还剩 ¥1,513.50</p>
+              <div class="s-bars">
+                <i style="--h: 38%"></i><i style="--h: 62%"></i><i style="--h: 30%"></i><i style="--h: 84%"></i><i style="--h: 46%"></i><i style="--h: 22%"></i><i style="--h: 58%"></i><i style="--h: 100%"></i><i style="--h: 40%"></i><i style="--h: 34%"></i><i class="today" style="--h: 52%"></i>
+              </div>
+              <div class="s-axis"><span>10/1</span><span>10/11</span></div>
+              <p class="s-sec">今天</p>
+              <ul class="s-list">
+                <li><i class="cat" style="--cat: #F59E0B">饮</i><span>咖啡<em>14:05</em></span><b>-26.00</b></li>
+                <li><i class="cat" style="--cat: #10B981">餐</i><span>午餐 · 轻食<em>12:20</em></span><b>-38.00</b></li>
+                <li><i class="cat" style="--cat: #3B82F6">行</i><span>地铁<em>08:47</em></span><b>-4.00</b></li>
+              </ul>
+              <span class="fab">+</span>
+            </div>
+          </div>
+        </div>
+        <div class="phone-meta">
+          <div class="app-id">
+            <span class="ico ico-sm ico-penny"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9.5V21M12 9.5 6 3M12 9.5 18 3M6 15h12M6 11h12"/></svg></span>
+            <div><h3>Penny 记账</h3><p class="mono app-ver">v1.6.0 · iOS&nbsp;17+ · 免费</p></div>
+          </div>
+          <p class="app-card-desc">三秒记一笔。按分类自动汇总，月底给你一张一眼看懂的账单。</p>
+          <div class="phone-foot">
+            <a class="store" href="#app-penny"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="7" y="2.5" width="10" height="19" rx="2.6"/><path d="M10.5 18.5h3"/></svg><span><small>前往</small><b>App Store</b></span></a>
+            <span class="rating"><span class="stars">★</span>4.8 <em>530</em></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="phone-item" id="app-dots" style="--app-glow: rgba(214, 40, 111, 0.4)">
+        <div class="phone-stage">
+          <div class="phone" role="img" aria-label="Daily Dots 打卡的本周习惯页面">
+            <div class="screen scr-dots">
+              <div class="sbar"><span>14:32</span><span class="sbar-r"><i class="sig"></i><i class="bat"></i></span></div>
+              <p class="s-cap">10月11日 周日</p>
+              <p class="s-big">23<small> 天连续打卡</small></p>
+              <div class="week"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
+              <ul class="habits">
+                <li><span class="h-name">早起 7:00</span><span class="h-dots" style="--hc: #F472B6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on today"></i></span></li>
+                <li><span class="h-name">阅读 30&nbsp;分钟</span><span class="h-dots" style="--hc: #A78BFA"><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="today"></i></span></li>
+                <li><span class="h-name">喝水 8 杯</span><span class="h-dots" style="--hc: #38BDF8"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on today"></i></span></li>
+                <li><span class="h-name">运动</span><span class="h-dots" style="--hc: #FB923C"><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i class="today"></i></span></li>
+                <li><span class="h-name">不刷短视频</span><span class="h-dots" style="--hc: #34D399"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i class="on today"></i></span></li>
+              </ul>
+              <div class="s-card">
+                <div class="s-card-row"><span>本周完成率</span><span class="mono">82%</span></div>
+                <div class="s-meter2"><span></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="phone-meta">
+          <div class="app-id">
+            <span class="ico ico-sm ico-dots"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="6" r="2.3"/><circle cx="12" cy="6" r="2.3"/><circle cx="18" cy="6" r="2.3"/><circle cx="6" cy="12" r="2.3"/><circle cx="12" cy="12" r="2.3"/><circle cx="18" cy="12" r="2.3" opacity=".38"/><circle cx="6" cy="18" r="2.3"/><circle cx="12" cy="18" r="2.3" opacity=".38"/><circle cx="18" cy="18" r="2.3" opacity=".38"/></svg></span>
+            <div><h3>Daily Dots 打卡</h3><p class="mono app-ver">v2.2.0 · iOS&nbsp;17+ · ¥6</p></div>
+          </div>
+          <p class="app-card-desc">每个习惯一排小圆点，做完点亮一颗。在锁屏小组件上直接打卡，不用打开 App。</p>
+          <div class="phone-foot">
+            <a class="store" href="#app-dots"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="7" y="2.5" width="10" height="19" rx="2.6"/><path d="M10.5 18.5h3"/></svg><span><small>前往</small><b>App Store</b></span></a>
+            <span class="rating"><span class="stars">★</span>4.9 <em>286</em></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="phone-item" id="app-tally" style="--app-glow: rgba(59, 130, 246, 0.45)">
+        <div class="phone-stage">
+          <div class="phone" role="img" aria-label="Tally 计数器的计数页面">
+            <div class="screen scr-tally">
+              <div class="sbar"><span>14:32</span><span class="sbar-r"><i class="sig"></i><i class="bat"></i></span></div>
+              <p class="s-cap center">俯卧撑 · 今天</p>
+              <div class="t-ring" style="--p: .853"><div><b>128</b><span>目标 150</span></div></div>
+              <div class="t-btns"><span class="t-sm">−1</span><span class="t-plus">+</span><span class="t-sm">↺</span></div>
+              <div class="t-widgets">
+                <div class="t-w"><p>喝水</p><b>6<small> / 8 杯</small></b></div>
+                <div class="t-w"><p>深蹲</p><b>60<small> 次</small></b></div>
+              </div>
+              <p class="s-note center">按 iPhone 侧边的操作按钮也能 +1</p>
+            </div>
+          </div>
+        </div>
+        <div class="phone-meta">
+          <div class="app-id">
+            <span class="ico ico-sm ico-tally"><span class="glyph-text">+1</span></span>
+            <div><h3>Tally 计数器</h3><p class="mono app-ver">v1.3.4 · iOS&nbsp;17+ · 免费</p></div>
+          </div>
+          <p class="app-card-desc">数俯卧撑、数喝了几杯水、数排队前面还有几个人。支持操作按钮和 Apple Watch。</p>
+          <div class="phone-foot">
+            <a class="store" href="#app-tally"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="7" y="2.5" width="10" height="19" rx="2.6"/><path d="M10.5 18.5h3"/></svg><span><small>前往</small><b>App Store</b></span></a>
+            <span class="rating"><span class="stars">★</span>4.7 <em>119</em></span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GAMES ============ -->
+<section class="section games" id="games">
+  <div class="games-glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="sec-head sec-head-row">
+      <div>
+        <p class="eyebrow"><span class="dot dot-wx"></span>微信小游戏 · 共 3 款</p>
+        <h2 class="sec-title"><span class="ph">不用下载，</span><span class="ph">微信扫一扫就能玩。</span></h2>
+        <p class="sec-sub">用微信扫小程序码，或在微信顶部搜索游戏名。进度跟着微信账号走，换手机也不会丢。</p>
+      </div>
+    </header>
+
+    <div class="games-grid">
+      <article class="game card spot" id="app-blockpop">
+        <div class="cover cover-blocks" aria-hidden="true">
+          <div class="cover-hud"><span>第 128 关</span><span>12,480 分</span></div>
+          <span class="pop-score">+120</span>
+          <div class="blocks" data-blocks></div>
+        </div>
+        <div class="game-body">
+          <div class="game-head">
+            <span class="ico ico-sm ico-blockpop"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3.5" y="3.5" width="7.5" height="7.5" rx="2"/><rect x="13" y="3.5" width="7.5" height="7.5" rx="2" opacity=".55"/><rect x="3.5" y="13" width="7.5" height="7.5" rx="2" opacity=".55"/><rect x="13" y="13" width="7.5" height="7.5" rx="2"/></svg></span>
+            <div><h3 class="game-title">方块消消</h3><p class="game-tags">休闲 · 益智 · 单手可玩</p></div>
+          </div>
+          <p class="game-desc">点掉相连的同色方块，连得越多分越高。每天一关每日挑战，和微信好友比排名。</p>
+          <dl class="g-stats"><div><dt>累计玩家</dt><dd>8.6&nbsp;万</dd></div><div><dt>关卡</dt><dd>312</dd></div><div><dt>平均一局</dt><dd>2.5&nbsp;分钟</dd></div></dl>
+          <div class="qr-row">
+            <canvas class="suncode" data-seed="blockpop" data-c1="#FFE24D" data-c2="#FF7A1A" role="img" aria-label="方块消消的小程序码（示例）"></canvas>
+            <div class="qr-copy">
+              <p class="qr-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16M4 12h16"/></svg>微信扫码即玩</p>
+              <p>或在微信里搜索「方块消消」</p>
+              <span class="qr-note">示例码，暂不可扫</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="game card spot" id="app-hopcat">
+        <div class="cover cover-hop" aria-hidden="true">
+          <div class="cover-hud"><span>312&nbsp;米</span><span>最高 1,024&nbsp;米</span></div>
+          <span class="cloud" style="left: 8%; top: 30%; width: 70px"></span>
+          <span class="cloud" style="right: 10%; top: 22%; width: 54px"></span>
+          <span class="plat" style="left: 10%; bottom: 10%; width: 26%"></span>
+          <span class="plat" style="left: 42%; bottom: 28%; width: 22%"></span>
+          <span class="plat" style="left: 70%; bottom: 46%; width: 20%"></span>
+          <span class="plat" style="left: 36%; bottom: 66%; width: 16%"></span>
+          <svg class="cat" style="left: 47%; bottom: calc(28% + 12px)" viewBox="0 0 24 24"><path fill="#FFFFFF" d="M5 10.5V4l4.5 3.3h5L19 4v6.5a7 7 0 0 1-14 0Z"/><circle cx="9.2" cy="11.6" r="1.25" fill="#E8476E"/><circle cx="14.8" cy="11.6" r="1.25" fill="#E8476E"/><path d="M10.8 14.2q1.2.9 2.4 0" stroke="#E8476E" stroke-width="1" fill="none" stroke-linecap="round"/></svg>
+        </div>
+        <div class="game-body">
+          <div class="game-head">
+            <span class="ico ico-sm ico-hopcat"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M5 10.5V4l4.5 3.3h5L19 4v6.5a7 7 0 0 1-14 0Z"/><circle cx="9.2" cy="11.6" r="1.25" fill="#E8476E"/><circle cx="14.8" cy="11.6" r="1.25" fill="#E8476E"/></svg></span>
+            <div><h3 class="game-title">跳跳猫</h3><p class="game-tags">跑酷 · 节奏 · 好友助力</p></div>
+          </div>
+          <p class="game-desc">按住蓄力，松手起跳，帮小猫一层层往上爬。掉下去可以请好友助力复活一次。</p>
+          <dl class="g-stats"><div><dt>累计玩家</dt><dd>3.1&nbsp;万</dd></div><div><dt>角色</dt><dd>12&nbsp;只</dd></div><div><dt>最高纪录</dt><dd>4,860&nbsp;米</dd></div></dl>
+          <div class="qr-row">
+            <canvas class="suncode" data-seed="hopcat" data-c1="#FFC08A" data-c2="#F2557B" role="img" aria-label="跳跳猫的小程序码（示例）"></canvas>
+            <div class="qr-copy">
+              <p class="qr-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16M4 12h16"/></svg>微信扫码即玩</p>
+              <p>或在微信里搜索「跳跳猫」</p>
+              <span class="qr-note">示例码，暂不可扫</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="game card spot" id="app-chengyu">
+        <div class="cover cover-idiom" aria-hidden="true">
+          <div class="cover-hud"><span>第 56 关</span><span>提示 × 3</span></div>
+          <div class="idiom-row"><span>画</span><span>龙</span><span>点</span><span class="blank">?</span></div>
+          <div class="idiom-row idiom-pick"><span>晴</span><span>睛</span><span>精</span><span>静</span></div>
+        </div>
+        <div class="game-body">
+          <div class="game-head">
+            <span class="ico ico-sm ico-chengyu"><span class="glyph-brush">成</span></span>
+            <div><h3 class="game-title">成语大侠</h3><p class="game-tags">文字 · 闯关 · 适合长辈</p></div>
+          </div>
+          <p class="game-desc">看图猜成语、补全成语、成语接龙三种玩法。字号大、不限时，爸妈也玩得顺手。</p>
+          <dl class="g-stats"><div><dt>累计玩家</dt><dd>0.9&nbsp;万</dd></div><div><dt>收录成语</dt><dd>2,400&nbsp;条</dd></div><div><dt>玩法</dt><dd>3&nbsp;种</dd></div></dl>
+          <div class="qr-row">
+            <canvas class="suncode" data-seed="chengyu" data-c1="#E84A3C" data-c2="#8A1717" role="img" aria-label="成语大侠的小程序码（示例）"></canvas>
+            <div class="qr-copy">
+              <p class="qr-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16M4 12h16"/></svg>微信扫码即玩</p>
+              <p>或在微信里搜索「成语大侠」</p>
+              <span class="qr-note">示例码，暂不可扫</span>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOG ============ -->
+<section class="section" id="log">
+  <div class="wrap log-grid">
+    <header class="log-head">
+      <p class="eyebrow"><span class="dot"></span>更新日志</p>
+      <h2 class="sec-title"><span class="ph">每次更新，</span><span class="ph">都写在这里。</span></h2>
+      <p class="sec-sub">修了什么、加了什么、为什么这么改。也可以用 RSS 订阅。</p>
+      <a class="link-arrow" href="#log">查看完整日志</a>
+    </header>
+    <ol class="timeline">
+      <li class="tl-item"><div class="tl-card">
+        <div class="tl-top"><span class="ico ico-xs ico-floaty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="4.5" width="13" height="16" rx="2.5"/><path d="M9 10h6M9 14h6"/></svg></span><span class="tl-name">Floaty</span><span class="ver">2.4.0</span><time class="mono" datetime="2026-10-08">2026.10.08</time></div>
+        <p>适配 macOS 26 的 Liquid Glass 外观；新增「固定片段」分组，可以拖拽排序。</p>
+      </div></li>
+      <li class="tl-item"><div class="tl-card">
+        <div class="tl-top"><span class="ico ico-xs ico-blockpop"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3.5" y="3.5" width="7.5" height="7.5" rx="2"/><rect x="13" y="13" width="7.5" height="7.5" rx="2"/></svg></span><span class="tl-name">方块消消</span><span class="ver">3.1.0</span><time class="mono" datetime="2026-09-27">2026.09.27</time></div>
+        <p>新增 60 个关卡和每日挑战好友排行榜，修复低端安卓机上的掉帧问题。</p>
+      </div></li>
+      <li class="tl-item"><div class="tl-card">
+        <div class="tl-top"><span class="ico ico-xs ico-penny"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9.5V21M12 9.5 6 3M12 9.5 18 3M6 15h12"/></svg></span><span class="tl-name">Penny</span><span class="ver">1.6.0</span><time class="mono" datetime="2026-09-15">2026.09.15</time></div>
+        <p>支持 iOS 26 锁屏小组件直接记账；账单可以导出为 CSV。</p>
+      </div></li>
+      <li class="tl-item"><div class="tl-card">
+        <div class="tl-top"><span class="ico ico-xs ico-tomo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="13.5" r="7"/><path d="M12 10v3.5"/></svg></span><span class="tl-name">Tomo</span><span class="ver">1.8.2</span><time class="mono" datetime="2026-08-30">2026.08.30</time></div>
+        <p>修复外接显示器时计时浮窗跑到屏幕外的问题。</p>
+      </div></li>
+      <li class="tl-item"><div class="tl-card">
+        <div class="tl-top"><span class="ico ico-xs ico-hopcat"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M5 10.5V4l4.5 3.3h5L19 4v6.5a7 7 0 0 1-14 0Z"/></svg></span><span class="tl-name">跳跳猫</span><span class="ver">2.0.0</span><time class="mono" datetime="2026-08-12">2026.08.12</time></div>
+        <p>新角色「橘猫」上线，新增好友助力复活。</p>
+      </div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section" id="about">
+  <div class="wrap about-grid">
+    <div class="about-me">
+      <p class="eyebrow"><span class="dot"></span>关于</p>
+      <div class="me-row"><span class="avatar" aria-hidden="true">hi</span><h2 class="sec-title"><span class="ph">你好，</span><span class="ph">我是 hihongist。</span></h2></div>
+      <p class="about-p">独立开发者。2020 年起全职做自己的产品，偏爱打开就能用、用完就关掉的小工具，也喜欢做能让人在地铁上多坐一站的小游戏。</p>
+      <p class="about-p">很多功能都来自用户的邮件。有想要的小工具、发现了 bug，或者只是想聊聊，都欢迎写信给我。</p>
+      <div class="chips">
+        <span class="chip">Swift</span><span class="chip">SwiftUI</span><span class="chip">AppKit</span><span class="chip">WidgetKit</span><span class="chip">Cocos Creator</span><span class="chip">TypeScript</span><span class="chip">Figma</span>
+      </div>
+    </div>
+    <div class="about-side">
+      <div class="settings">
+        <div class="set-row">
+          <span class="set-ico" style="--c: #3B82F6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg></span>
+          <span class="set-label">邮件</span>
+          <span class="set-val mono" id="contact-email">hello@example.com</span>
+          <button class="set-btn" type="button" data-copy="#contact-email">复制</button>
+        </div>
+        <a class="set-row" href="#about">
+          <span class="set-ico" style="--c: #07C160"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.5 4C5.4 4 2 6.8 2 10.3c0 2 1.1 3.7 2.8 4.9L4.2 17.4l2.6-1.3c.8.2 1.7.4 2.7.4h.4a5.6 5.6 0 0 1-.2-1.5c0-3.4 3.2-6.1 7.2-6.1h.5C16.7 6.1 13.4 4 9.5 4Z"/><path d="M22 14.9c0-2.8-2.7-5-6-5s-6 2.2-6 5 2.7 5 6 5c.7 0 1.4-.1 2-.3l2.1 1.1-.5-1.8c1.5-1 2.4-2.4 2.4-4Z"/></svg></span>
+          <span class="set-label">公众号</span><span class="set-val">hihongist 开发日记</span><span class="chev">›</span>
+        </a>
+        <a class="set-row" href="#about">
+          <span class="set-ico" style="--c: #24292F"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg></span>
+          <span class="set-label">GitHub</span><span class="set-val mono">@hihongist</span><span class="chev">›</span>
+        </a>
+        <a class="set-row" href="#about">
+          <span class="set-ico" style="--c: #FF2442"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5h16v14Z"/><path d="M8 9h8M8 13h5"/></svg></span>
+          <span class="set-label">小红书</span><span class="set-val">开发过程和幕后</span><span class="chev">›</span>
+        </a>
+      </div>
+
+      <form class="subscribe card" id="subscribe" novalidate>
+        <label class="sub-label" for="sub-email">新作上架时，给我发一封邮件</label>
+        <div class="sub-row">
+          <input id="sub-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+          <button class="btn btn-primary" type="submit">订阅</button>
+        </div>
+        <p class="sub-note" id="sub-note" aria-live="polite">每月最多一封，随时可以退订。</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <div class="foot-brand">
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span>hihongist</a>
+      <p>一个人的产品工作室</p>
+    </div>
+    <nav class="foot-cols" aria-label="页脚导航">
+      <div><p class="foot-h">作品</p><a href="#mac">Mac 小工具</a><a href="#iphone">iPhone 应用</a><a href="#games">微信小游戏</a></div>
+      <div><p class="foot-h">支持</p><a href="app.html#support">技术支持</a><a href="app.html#privacy">隐私政策</a><a href="#about">媒体资料包</a></div>
+      <div><p class="foot-h">关注</p><a href="#about">公众号</a><a href="#about">GitHub</a><a href="#log">RSS</a></div>
+    </nav>
+  </div>
+  <div class="wrap foot-legal">
+    <span>© 2026 hihongist</span>
+    <span>粤ICP备 00000000 号（示例）</span>
+    <span>原型 v0.1</span>
+  </div>
+</footer>
+
+<script src="assets/base.js"></script>
+<script>
+(function () {
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ---- Dock：鼠标靠近时图标放大（和 macOS 一样，邻近的图标一起变大） ----
+  const dock = document.getElementById("dock");
+  const items = Array.from(dock.querySelectorAll(".dock-item"));
+  const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (finePointer && !reduce) {
+    const RANGE = 150, MAX = 0.8;
+    dock.addEventListener("mousemove", (e) => {
+      for (const it of items) {
+        const r = it.getBoundingClientRect();
+        const d = Math.abs(e.clientX - (r.left + r.width / 2));
+        const t = Math.max(0, 1 - d / RANGE);
+        const s = 1 + MAX * Math.sin((t * Math.PI) / 2) ** 2;
+        it.style.setProperty("--s", s.toFixed(3));
+      }
+    });
+    dock.addEventListener("mouseleave", () => items.forEach((it) => it.style.setProperty("--s", "1")));
+  }
+
+  // ---- 点 Dock 图标：先弹跳两下，再滚到对应作品 ----
+  items.forEach((it) =>
+    it.addEventListener("click", (e) => {
+      const target = document.querySelector(it.getAttribute("href"));
+      if (!target) return;
+      e.preventDefault();
+      const go = () => {
+        target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+        const card = target.classList.contains("phone-item") ? target.querySelector(".phone") : target;
+        card.classList.remove("flash");
+        void card.offsetWidth;
+        card.classList.add("flash");
+      };
+      if (reduce) return go();
+      it.classList.remove("bounce");
+      void it.offsetWidth;
+      it.classList.add("bounce");
+      setTimeout(go, 620);
+    })
+  );
+
+  // ---- 可复现的伪随机数，让方块和小程序码每次渲染都一样 ----
+  function seeded(str) {
+    let h = 1779033703 ^ str.length;
+    for (let i = 0; i < str.length; i++) {
+      h = Math.imul(h ^ str.charCodeAt(i), 3432918353);
+      h = (h << 13) | (h >>> 19);
+    }
+    return function () {
+      h = Math.imul(h ^ (h >>> 16), 2246822507);
+      h = Math.imul(h ^ (h >>> 13), 3266489909);
+      h ^= h >>> 16;
+      return (h >>> 0) / 4294967296;
+    };
+  }
+
+  // ---- 方块消消的封面棋盘 ----
+  document.querySelectorAll("[data-blocks]").forEach((grid) => {
+    const colors = ["#FF5D73", "#FFC93C", "#3DDC97", "#4CC9F0", "#9B5DE5"];
+    const selected = new Set([16, 17, 23, 24, 31]);
+    const rnd = seeded("blockpop");
+    for (let i = 0; i < 35; i++) {
+      const b = document.createElement("i");
+      b.style.setProperty("--b", selected.has(i) ? "#FFC93C" : colors[Math.floor(rnd() * colors.length)]);
+      if (selected.has(i)) b.className = "sel";
+      grid.append(b);
+    }
+  });
+
+  // ---- 微信小程序码（太阳码）示意：中心头像 + 两圈放射线 + 三个定位点。仅为视觉示意，不可扫描 ----
+  const css = getComputedStyle(document.documentElement);
+  const ink = css.getPropertyValue("--qr-ink").trim() || "#111318";
+  document.querySelectorAll("canvas.suncode").forEach((cv) => {
+    const size = 84;
+    const dpr = Math.min(3, window.devicePixelRatio || 1);
+    cv.width = cv.height = size * dpr;
+    const ctx = cv.getContext("2d");
+    ctx.scale(dpr, dpr);
+    const c = size / 2, R = size / 2 - 1;
+    const rnd = seeded(cv.dataset.seed);
+    const finders = [-135, -45, 135].map((a) => (a * Math.PI) / 180);
+    const nearFinder = (ang) =>
+      finders.some((f) => {
+        let d = Math.abs(ang - f) % (2 * Math.PI);
+        if (d > Math.PI) d = 2 * Math.PI - d;
+        return d < 0.36;
+      });
+    ctx.strokeStyle = ink;
+    ctx.lineCap = "round";
+    const bands = [
+      { r0: R * 0.44, r1: R * 0.66, n: 36, w: 2.2, skip: false },
+      { r0: R * 0.72, r1: R * 0.97, n: 52, w: 2, skip: true },
+    ];
+    for (const b of bands) {
+      ctx.lineWidth = b.w;
+      for (let i = 0; i < b.n; i++) {
+        const ang = (i / b.n) * Math.PI * 2 - Math.PI;
+        if (b.skip && nearFinder(ang)) continue;
+        const len = (0.2 + rnd() * 0.8) * (b.r1 - b.r0);
+        ctx.beginPath();
+        ctx.moveTo(c + Math.cos(ang) * b.r0, c + Math.sin(ang) * b.r0);
+        ctx.lineTo(c + Math.cos(ang) * (b.r0 + len), c + Math.sin(ang) * (b.r0 + len));
+        ctx.stroke();
+      }
+    }
+    for (const f of finders) {
+      const x = c + Math.cos(f) * R * 0.82, y = c + Math.sin(f) * R * 0.82;
+      ctx.lineWidth = 2.2;
+      ctx.beginPath(); ctx.arc(x, y, 6.2, 0, Math.PI * 2); ctx.stroke();
+      ctx.fillStyle = ink;
+      ctx.beginPath(); ctx.arc(x, y, 2.8, 0, Math.PI * 2); ctx.fill();
+    }
+    const g = ctx.createLinearGradient(c - R * 0.36, c - R * 0.36, c + R * 0.36, c + R * 0.36);
+    g.addColorStop(0, cv.dataset.c1);
+    g.addColorStop(1, cv.dataset.c2);
+    ctx.fillStyle = g;
+    ctx.beginPath(); ctx.arc(c, c, R * 0.36, 0, Math.PI * 2); ctx.fill();
+    ctx.lineWidth = 2.5;
+    ctx.strokeStyle = "#FFFFFF";
+    ctx.stroke();
+  });
+
+  // ---- 菜单栏高亮当前所在区块 ----
+  const links = Array.from(document.querySelectorAll(".menus a"));
+  const byId = new Map(links.map((a) => [a.getAttribute("href").slice(1), a]));
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((en) => {
+          if (!en.isIntersecting) return;
+          links.forEach((a) => a.removeAttribute("aria-current"));
+          const a = byId.get(en.target.id);
+          if (a) a.setAttribute("aria-current", "true");
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+    byId.forEach((_, id) => { const el = document.getElementById(id); if (el) io.observe(el); });
+  }
+
+  // ---- 订阅表单（原型：只做校验和反馈，不发送） ----
+  const form = document.getElementById("subscribe");
+  const note = document.getElementById("sub-note");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const input = form.querySelector("input");
+    if (!input.value || !input.checkValidity()) {
+      note.textContent = "邮箱格式不对，检查一下 @ 和域名。";
+      note.classList.remove("ok");
+      input.focus();
+      return;
+    }
+    note.textContent = `已记下 ${input.value}。这是原型，不会真的发邮件。`;
+    note.classList.add("ok");
+    input.value = "";
+  });
+})();
+</script>
+</body>
+</html>
