@@ -1,19 +1,20 @@
-# hongist.com 设计规划 v0.2
+# hongist.com 设计规划 v0.3
 
 > 配套原型：`prototype/index.html`。
 > v0.2 按真实作品重排：只保留「小工具」和「小游戏」两个板块，去掉了 v0.1 里的主推、Mac / iPhone 分区、更新日志和产品详情页。
+> v0.3 换上三款小工具的真实图标、截图和文案（取自各自官网）。
 
 ---
 
 ## 1. 现有作品
 
-| 类型 | 名称 | 状态 | 现在的地址 | 迁移后 |
-|------|------|------|-----------|--------|
-| 小工具 | DropEdge | 已上线 | dropedge.chiuist.com | dropedge.hongist.com |
-| 小工具 | Then Do | 已上线 | then-do.chiuist.com | then-do.hongist.com |
-| 小工具 | S Calendar | 已上线 | s-calendar.chiuist.com | s-calendar.hongist.com |
-| 微信小游戏 | 猫咪扫雷 | 已上线 | 微信内 | 微信内 |
-| 微信小游戏 | 猫咪砸砸乐 | 开发中 | 微信内 | 微信内 |
+| 类型 | 名称 | 一句话 | 平台 | 状态 | 现在的地址 | 迁移后 |
+|------|------|--------|------|------|-----------|--------|
+| 小工具 | DropEdge | 把文件，先放在屏幕边上。 | macOS 14+ | 已上线 v2.7 | dropedge.chiuist.com | dropedge.hongist.com |
+| 小工具 | ThenDo | 待办，就做待办。 | Mac + iPhone | 已上线 | then-do.chiuist.com | then-do.hongist.com |
+| 小工具 | 日历即日历 Simply Calendar | 日历，就看日历。 | macOS 14+ | 已上线 v2.3 | s-calendar.chiuist.com | s-calendar.hongist.com |
+| 微信小游戏 | 猫咪扫雷 | 每一行、每一列、每个色块里，都藏着一只猫。 | 微信 | 已上线 | 微信内 | 微信内 |
+| 微信小游戏 | 猫咪砸砸乐 | 猫咪用耳朵当弹弓，拆家拆出一张账单。 | 微信 | 开发中 | 微信内 | 微信内 |
 
 以后新增作品，只要往上表加一行。
 
@@ -43,7 +44,7 @@ s-calendar.hongist.com ┘
 |------|------|------|
 | 首屏 | 标题、简介、两个按钮、Dock | 顶部胶囊显示「正在开发：猫咪砸砸乐」，点击跳到对应卡片 |
 | **Dock** | 3 个工具图标 \| 2 个游戏图标 \| 虚线「+」 | 鼠标靠近放大，点击弹跳后滚到对应作品；已上线的图标下有小圆点，开发中的没有 |
-| 小工具 | 每张卡片：大图标、名称、一句话介绍、官网地址栏 | 地址栏做成 Safari 地址栏的样子，整张卡片可点 |
+| 小工具 | 每张卡片顶部是一块迷你 Mac 桌面：ThenDo、日历即日历放真实截图，DropEdge 画出屏幕右边的暂存架和正被拖进去的文件；下面是图标、一句话、介绍、价格方式、官网地址栏 | 地址栏做成 Safari 地址栏的样子，整张卡片可点 |
 | 猫咪扫雷 | 左边是能直接玩的 5×5 棋盘，右边是规则、亮点、小程序码 | 试玩只有唯一解；放错会说明原因，通关后引导去微信搜索 |
 | 猫咪砸砸乐 | 游戏场景插画 + 拆家账单 + 「上线时通知我」 | 画面配色取自游戏原型 |
 | 下一款 | 虚线卡片 | 作品多了以后，这里自动被新卡片顶掉 |
@@ -68,10 +69,12 @@ s-calendar.hongist.com ┘
 - slug: dropedge
   type: tool
   name: DropEdge
-  tagline: ""                 # 一句话介绍，待补充
-  platform: ""                # Mac / iPhone / Web，待补充
+  tagline: 把文件，先放在屏幕边上。
+  platform: macOS 14+
+  version: "2.7"
+  pricing: [官网版永久免费, App Store 版一次买断]
   url: https://dropedge.hongist.com
-  icon: ./icons/dropedge.png  # 1024×1024
+  icon: ./icons/dropedge.png
   status: live
 
 - slug: saolei
@@ -112,8 +115,9 @@ s-calendar.hongist.com ┘
 
 ## 6. 需要你提供
 
-- [ ] 三个小工具：一句话介绍、平台（Mac / iPhone / 网页）、1024px 图标（原型里的字母图标是占位）
+- [x] 三个小工具的介绍、平台、图标、截图（已从各自官网获取）
+- [ ] 确认首页上三款小工具的中文介绍和价格说明是否准确（DropEdge 官网目前是英文，首页用的是 OG 图上的中文标语）
 - [ ] 猫咪扫雷的小程序码图片（原型里是示意码，不能扫）
-- [ ] 联系方式：邮箱（原型暂写 hello@hongist.com）、公众号名称
+- [ ] 联系方式：原型用的是官网上的 chiuistio@gmail.com；迁移后是否换成 @hongist.com 的邮箱；公众号名称
 - [ ] 主要用户在国内还是海外（决定是否备案、放哪里）
 - [ ] 是否需要中英双语
