@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>hongist 作品集</title>
-<meta name="description" content="hongist 的独立开发作品：小工具和微信小游戏。">
+<meta name="description" content="Hong 的独立开发作品：DropEdge、ThenDo、日历即日历等 Mac 小工具，和猫咪扫雷等微信小游戏。">
 <script>try{var t=localStorage.getItem("proto-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -157,9 +157,12 @@
 .ico-ghost::after { display: none; }
 .ico-ghost .glyph-text { font-weight: 500; font-size: 46cqw; }
 .ico-full svg { width: 82%; height: 82%; }
-.glyph-mono { font-size: 50cqw !important; }
 
 /* ================= tools ================= */
+.ico-img { background: none; }
+.ico-img::after { display: none; }
+.ico-img img { width: 100%; height: 100%; display: block; }
+
 .tools-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .tool {
   display: flex;
@@ -170,63 +173,158 @@
   transition: transform .25s ease, border-color .25s;
 }
 .tool:hover { transform: translateY(-3px); border-color: var(--line-2); }
-.tool-stage {
+
+/* 每张卡片顶部是一块迷你 Mac 桌面 */
+.desk {
   position: relative;
-  height: 210px;
-  display: grid;
-  place-items: center;
+  height: 300px;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 28px 28px;
-  background-position: center;
+  font-size: 11px;
+  background:
+    radial-gradient(90% 80% at 15% 0%, var(--desk-1), transparent 65%),
+    radial-gradient(80% 80% at 100% 100%, var(--desk-3), transparent 60%),
+    linear-gradient(140deg, var(--desk-1), var(--desk-2));
 }
-.tool-stage::before {
+.mini-bar {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 3;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 9px;
+  padding: 0 10px;
+  font-size: 10.5px;
+  color: var(--fg);
+  background: var(--panel);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+.mini-bar .lead { margin-right: auto; display: flex; gap: 10px; color: var(--fg-2); white-space: nowrap; }
+.mini-bar .lead b { color: var(--fg); }
+.mini-bar .tray { display: grid; place-items: center; width: 22px; height: 16px; border-radius: 4px; }
+.mini-bar .tray.on { background: var(--surface-2); }
+.mini-bar svg { width: 12px; height: 12px; }
+.shot {
+  position: absolute;
+  top: 32px;
+  left: 50%;
+  width: 68%;
+  max-width: 260px;
+  translate: -50% 0;
+  filter: drop-shadow(0 18px 28px rgba(10, 14, 30, 0.38));
+  transition: translate .45s cubic-bezier(.2, .8, .2, 1);
+}
+.shot-right { left: auto; right: 9%; translate: 0 0; }
+.tool:hover .shot { translate: -50% -10px; }
+.tool:hover .shot-right { translate: 0 -10px; }
+
+/* DropEdge：屏幕右边缘的暂存架 */
+.edge-win {
+  position: absolute;
+  left: 7%;
+  top: 44px;
+  width: 50%;
+  height: 58%;
+  border-radius: 10px;
+  background: var(--panel);
+  border: 1px solid var(--line-2);
+  box-shadow: var(--shadow-pop);
+  padding: 26px 12px 12px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-content: start;
+  gap: 12px 8px;
+}
+.edge-win::before {
   content: "";
   position: absolute;
-  width: 72%;
-  aspect-ratio: 1;
+  top: 9px;
+  left: 10px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: var(--glow);
-  filter: blur(46px);
-  opacity: 0.55;
+  background: #FF5F57;
+  box-shadow: 11px 0 0 #FEBC2E, 22px 0 0 #28C840;
 }
-.tool-stage .ico { width: 104px; transition: transform .4s cubic-bezier(.2, .8, .2, 1); }
-.tool:hover .tool-stage .ico { transform: translateY(-4px) rotate(-4deg) scale(1.04); }
-.stage-chip {
+.edge-win span { display: grid; justify-items: center; gap: 4px; color: var(--fg-2); font-size: 9.5px; white-space: nowrap; }
+.file-ic {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 27px;
+  border-radius: 4px;
+  font: 700 7px/1 var(--font-mono);
+  color: #FFFFFF;
+  flex: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+}
+.file-ic.pdf { background: #E5484D; }
+.file-ic.zip { background: #8E6CEF; }
+.file-ic.img { background: linear-gradient(135deg, #7CC4FF, #F7A1B5); }
+.file-ic.doc { background: #3B82F6; }
+.shelf {
   position: absolute;
-  top: 14px;
-  left: 14px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 11.5px;
-  font-weight: 600;
-  color: var(--fg-2);
+  right: 0;
+  top: 34px;
+  bottom: 16px;
+  width: 38%;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 10px 9px;
+  border-radius: 14px 0 0 14px;
   background: var(--panel);
-  border: 1px solid var(--line);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
+  backdrop-filter: blur(20px) saturate(170%);
+  border: 1px solid var(--line-2);
+  border-right: 0;
+  box-shadow: var(--shadow-pop);
 }
-.stage-chip i { width: 6px; height: 6px; border-radius: 50%; background: var(--wx); }
-.tool-body { display: flex; flex-direction: column; gap: 10px; padding: 20px 22px 22px; flex: 1; }
-.tool-name { font: 700 1.4rem/1.2 var(--font-display); letter-spacing: -0.01em; }
-.tool-desc { color: var(--fg-3); font-size: 0.95rem; }
-.todo {
-  display: inline-block;
-  margin-left: 4px;
-  padding: 2px 6px;
-  border-radius: 5px;
-  border: 1px dashed var(--line-2);
-  font: 600 10.5px/1.4 var(--font-mono);
-  color: var(--fg-3);
-  vertical-align: 0.1em;
-  white-space: nowrap;
+.shelf-head { display: flex; align-items: center; gap: 6px; font-weight: 700; }
+.shelf-head img { width: 18px; height: 18px; border-radius: 5px; }
+.shelf-head em { margin-left: auto; font-style: normal; font-size: 9px; font-weight: 600; color: var(--ios); padding: 2px 6px; border-radius: 99px; background: color-mix(in srgb, var(--ios) 14%, transparent); }
+.shelf-item { display: flex; align-items: center; gap: 7px; padding: 6px; border-radius: 8px; background: var(--surface-2); min-width: 0; }
+.shelf-item span:last-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.shelf-drop {
+  flex: 1;
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  border-radius: 10px;
+  border: 1.5px dashed color-mix(in srgb, var(--ios) 60%, transparent);
+  background: color-mix(in srgb, var(--ios) 8%, transparent);
+  color: var(--ios);
+  font-weight: 600;
 }
+.drag-file {
+  position: absolute;
+  z-index: 2;
+  left: 36%;
+  top: 70%;
+  animation: dragIn 3.6s ease-in-out infinite;
+}
+.drag-file .file-ic { width: 30px; height: 37px; font-size: 8px; transform: rotate(-6deg); box-shadow: 0 10px 18px -6px rgba(0, 0, 0, 0.45); }
+.drag-file svg { position: absolute; left: 20px; top: 24px; width: 16px; height: 16px; }
+@keyframes dragIn {
+  0%, 12% { left: 36%; top: 70%; opacity: 1; }
+  62%, 78% { left: 74%; top: 66%; opacity: 1; }
+  90% { left: 74%; top: 66%; opacity: 0; }
+  91% { left: 36%; top: 70%; opacity: 0; }
+  100% { left: 36%; top: 70%; opacity: 1; }
+}
+
+.tool-body { display: flex; flex-direction: column; gap: 12px; padding: 20px 22px 22px; flex: 1; }
+.tool-id { display: flex; align-items: center; gap: 12px; }
+.tool-name { font: 700 1.3rem/1.2 var(--font-display); letter-spacing: -0.01em; }
+.tool-name small { font-size: 0.8rem; font-weight: 600; color: var(--fg-3); margin-left: 6px; letter-spacing: 0; }
+.tool-meta { font-size: var(--t-micro); color: var(--fg-3); margin-top: 3px; }
+.tool-tag { font: 700 1.12rem/1.4 var(--font-display); }
+.tool-desc { color: var(--fg-2); font-size: 0.93rem; text-wrap: pretty; }
+.tool .chips { gap: 6px; }
 .addr {
   display: flex;
   align-items: center;
@@ -245,7 +343,7 @@
 .tool:hover .addr { color: var(--fg); }
 .addr-go { transition: transform .2s; }
 .tool:hover .addr-go { transform: translate(2px, -2px); }
-@media (max-width: 900px) { .tools-grid { grid-template-columns: minmax(0, 1fr); max-width: 520px; margin-inline: auto; } }
+@media (max-width: 1000px) { .tools-grid { grid-template-columns: minmax(0, 1fr); max-width: 520px; margin-inline: auto; } }
 
 /* ================= games ================= */
 .dot-wx { background: var(--wx) !important; }
@@ -467,7 +565,7 @@ a.set-row:hover { background: var(--surface-2); }
 </head>
 <body>
 
-<div class="proto-bar"><b>原型 v0.2</b> · 作品名称和链接是真实的；小工具的介绍和图标、联系方式还是占位，等你提供</div>
+<div class="proto-bar"><b>原型 v0.3</b> · 小工具的图标、截图和文案取自各自官网；猫咪扫雷的小程序码和公众号还是占位</div>
 
 <header class="menubar">
   <div class="menubar-inner">
@@ -496,7 +594,7 @@ a.set-row:hover { background: var(--surface-2); }
   <div class="wrap hero-inner">
     <a class="status-pill" href="#app-zaza"><span class="pulse"></span>正在开发：猫咪砸砸乐</a>
     <h1 class="hero-title"><span class="ph">做顺手的<span class="hl">小工具</span>，</span><br><span class="ph">和停不下来的<span class="hl hl-wx">小游戏</span>。</span></h1>
-    <p class="hero-sub">我是 hongist，一个人设计、开发和上线自己的作品。这里有 3 款已经上线的小工具，和一款接一款做出来的微信小游戏。</p>
+    <p class="hero-sub">我是 Hong，一个人设计、开发和上线自己的作品。这里有 3 款已经上线的 Mac 小工具，和一款接一款做出来的微信小游戏。</p>
     <div class="hero-cta">
       <a class="btn btn-primary" href="#tools">看看小工具</a>
       <a class="btn btn-ghost" href="#games">玩一局小游戏</a>
@@ -507,13 +605,13 @@ a.set-row:hover { background: var(--surface-2); }
     <div class="dock-rail">
       <nav class="dock" id="dock" aria-label="全部作品">
         <a class="dock-item" href="#tool-dropedge" data-label="DropEdge · 小工具">
-          <span class="ico ico-dropedge"><span class="glyph-text glyph-mono">D</span></span><i class="run"></i>
+          <span class="ico ico-img"><img src="assets/works/dropedge-icon.png" alt=""></span><i class="run"></i>
         </a>
-        <a class="dock-item" href="#tool-thendo" data-label="Then Do · 小工具">
-          <span class="ico ico-thendo"><span class="glyph-text glyph-mono">T</span></span><i class="run"></i>
+        <a class="dock-item" href="#tool-thendo" data-label="ThenDo · 小工具">
+          <span class="ico ico-img"><img src="assets/works/thendo-icon.png" alt=""></span><i class="run"></i>
         </a>
-        <a class="dock-item" href="#tool-scalendar" data-label="S Calendar · 小工具">
-          <span class="ico ico-scalendar"><span class="glyph-text glyph-mono">S</span></span><i class="run"></i>
+        <a class="dock-item" href="#tool-scalendar" data-label="日历即日历 · 小工具">
+          <span class="ico ico-img"><img src="assets/works/scalendar-icon.png" alt=""></span><i class="run"></i>
         </a>
         <span class="dock-sep" aria-hidden="true"></span>
         <a class="dock-item" href="#app-saolei" data-label="猫咪扫雷 · 微信小游戏">
@@ -539,53 +637,71 @@ a.set-row:hover { background: var(--surface-2); }
       <div>
         <p class="eyebrow"><span class="dot"></span>小工具 · 3 款已上线</p>
         <h2 class="sec-title"><span class="ph">每个只做一件事，</span><span class="ph">把它做顺手。</span></h2>
-        <p class="sec-sub">每款都有自己的官网，下载、使用说明和更新记录都在那里。</p>
+        <p class="sec-sub">都是 Mac 上的小帮手，住在菜单栏或屏幕边上，需要时出现，用完就收起。ThenDo 还有 iPhone 版。</p>
       </div>
     </header>
 
     <div class="tools-grid">
-      <a class="tool card spot" id="tool-dropedge" href="https://dropedge.chiuist.com/" target="_blank" rel="noopener" style="--glow: #2F6BFF">
-        <div class="tool-stage">
-          <span class="stage-chip"><i></i>已上线</span>
-          <span class="ico ico-dropedge"><span class="glyph-text glyph-mono">D</span></span>
+      <a class="tool card spot" id="tool-dropedge" href="https://dropedge.chiuist.com/" target="_blank" rel="noopener">
+        <div class="desk" aria-hidden="true">
+          <div class="mini-bar"><span class="lead"><b>访达</b><span>文件</span><span>编辑</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M2 9a15 15 0 0 1 20 0M5.5 12.5a10 10 0 0 1 13 0M9 16a5 5 0 0 1 6 0"/><circle cx="12" cy="19" r="1" fill="currentColor"/></svg><span>周日 14:32</span></div>
+          <div class="edge-win">
+            <span><i class="file-ic pdf">PDF</i>设计稿</span>
+            <span><i class="file-ic doc">DOC</i>需求</span>
+            <span><i class="file-ic img"></i>封面</span>
+            <span><i class="file-ic zip">ZIP</i>素材</span>
+          </div>
+          <div class="drag-file"><i class="file-ic pdf">PDF</i><svg viewBox="0 0 24 24"><path d="M5 3l14 8-6 1.6L10 19z" fill="#FFFFFF" stroke="#111318" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+          <div class="shelf">
+            <div class="shelf-head"><img src="assets/works/dropedge-icon.png" alt="">DropEdge<em>Free</em></div>
+            <div class="shelf-item"><i class="file-ic img"></i><span>截屏 14.20.png</span></div>
+            <div class="shelf-item"><i class="file-ic zip">ZIP</i><span>素材.zip</span></div>
+            <div class="shelf-drop">拖到这里</div>
+          </div>
         </div>
         <div class="tool-body">
-          <h3 class="tool-name">DropEdge</h3>
-          <p class="tool-desc">一句话说清楚它帮你解决什么麻烦。<span class="todo">待补充</span></p>
-          <span class="addr">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
-            <span>dropedge.chiuist.com</span><b class="addr-go" aria-hidden="true">↗</b>
-          </span>
+          <div class="tool-id">
+            <span class="ico ico-sm ico-img"><img src="assets/works/dropedge-icon.png" alt=""></span>
+            <div><h3 class="tool-name">DropEdge</h3><p class="tool-meta mono">macOS 14+ · v2.7</p></div>
+          </div>
+          <p class="tool-tag">把文件，先放在屏幕边上。</p>
+          <p class="tool-desc">拖着文件碰一下屏幕边缘，暂存架就出现。先放在这里，需要时再拖进任何 App，一次拖出一个或一批。</p>
+          <div class="chips"><span class="chip">官网版永久免费</span><span class="chip">App Store 版一次买断</span><span class="chip">文件不离开本机</span></div>
+          <span class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span>dropedge.chiuist.com</span><b class="addr-go" aria-hidden="true">↗</b></span>
         </div>
       </a>
 
-      <a class="tool card spot" id="tool-thendo" href="https://then-do.chiuist.com/" target="_blank" rel="noopener" style="--glow: #FF5E62">
-        <div class="tool-stage">
-          <span class="stage-chip"><i></i>已上线</span>
-          <span class="ico ico-thendo"><span class="glyph-text glyph-mono">T</span></span>
+      <a class="tool card spot" id="tool-thendo" href="https://then-do.chiuist.com/" target="_blank" rel="noopener">
+        <div class="desk" aria-hidden="true">
+          <div class="mini-bar"><span class="lead"><b>ThenDo</b><span>文件</span><span>编辑</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M2 9a15 15 0 0 1 20 0M5.5 12.5a10 10 0 0 1 13 0M9 16a5 5 0 0 1 6 0"/><circle cx="12" cy="19" r="1" fill="currentColor"/></svg><span>周日 14:32</span></div>
+          <img class="shot" src="assets/works/thendo-shot.webp" alt="" loading="lazy">
         </div>
         <div class="tool-body">
-          <h3 class="tool-name">Then Do</h3>
-          <p class="tool-desc">一句话说清楚它帮你解决什么麻烦。<span class="todo">待补充</span></p>
-          <span class="addr">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
-            <span>then-do.chiuist.com</span><b class="addr-go" aria-hidden="true">↗</b>
-          </span>
+          <div class="tool-id">
+            <span class="ico ico-sm ico-img"><img src="assets/works/thendo-icon.png" alt=""></span>
+            <div><h3 class="tool-name">ThenDo</h3><p class="tool-meta mono">Mac + iPhone · iCloud 同步</p></div>
+          </div>
+          <p class="tool-tag">待办，就做待办。</p>
+          <p class="tool-desc">随手记下单项任务，或把一件事拆成顺序清单：做完这一步，下一步才解锁。Mac 菜单栏随手记，iPhone 接着做。</p>
+          <div class="chips"><span class="chip">免费下载</span><span class="chip">7 天试用</span><span class="chip">永久买断</span></div>
+          <span class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span>then-do.chiuist.com</span><b class="addr-go" aria-hidden="true">↗</b></span>
         </div>
       </a>
 
-      <a class="tool card spot" id="tool-scalendar" href="https://s-calendar.chiuist.com/" target="_blank" rel="noopener" style="--glow: #7A5CFF">
-        <div class="tool-stage">
-          <span class="stage-chip"><i></i>已上线</span>
-          <span class="ico ico-scalendar"><span class="glyph-text glyph-mono">S</span></span>
+      <a class="tool card spot" id="tool-scalendar" href="https://s-calendar.chiuist.com/" target="_blank" rel="noopener">
+        <div class="desk" aria-hidden="true">
+          <div class="mini-bar"><span class="lead"><b>访达</b><span>文件</span></span><span class="tray on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M2 9a15 15 0 0 1 20 0M5.5 12.5a10 10 0 0 1 13 0M9 16a5 5 0 0 1 6 0"/><circle cx="12" cy="19" r="1" fill="currentColor"/></svg><span>周日 14:32</span></div>
+          <img class="shot shot-right" src="assets/works/scalendar-shot.webp" alt="" loading="lazy">
         </div>
         <div class="tool-body">
-          <h3 class="tool-name">S Calendar</h3>
-          <p class="tool-desc">一句话说清楚它帮你解决什么麻烦。<span class="todo">待补充</span></p>
-          <span class="addr">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
-            <span>s-calendar.chiuist.com</span><b class="addr-go" aria-hidden="true">↗</b>
-          </span>
+          <div class="tool-id">
+            <span class="ico ico-sm ico-img"><img src="assets/works/scalendar-icon.png" alt=""></span>
+            <div><h3 class="tool-name">日历即日历<small>Simply Calendar</small></h3><p class="tool-meta mono">macOS 14+ · v2.3</p></div>
+          </div>
+          <p class="tool-tag">日历，就看日历。</p>
+          <p class="tool-desc">安静待在菜单栏。农历、节气、假期和调休一眼看清，想到的事随手记成日程，设好重复和提醒。</p>
+          <div class="chips"><span class="chip">DMG · Mac App Store</span><span class="chip">PRO：大小周 · 自定义外观</span><span class="chip">日程留在本机</span></div>
+          <span class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span>s-calendar.chiuist.com</span><b class="addr-go" aria-hidden="true">↗</b></span>
         </div>
       </a>
     </div>
@@ -740,8 +856,8 @@ a.set-row:hover { background: var(--surface-2); }
   <div class="wrap about-grid">
     <div class="about-me">
       <p class="eyebrow"><span class="dot"></span>关于</p>
-      <div class="me-row"><span class="avatar" aria-hidden="true">h</span><h2 class="sec-title"><span class="ph">你好，</span><span class="ph">我是 hongist。</span></h2></div>
-      <p class="about-p">独立开发者。做自己每天要用的小工具，也做休息时能玩上一局的小游戏。</p>
+      <div class="me-row"><span class="avatar" aria-hidden="true">H</span><h2 class="sec-title"><span class="ph">你好，</span><span class="ph">我是 Hong。</span></h2></div>
+      <p class="about-p">独立开发者。做自己每天要用的 Mac 小工具，也做休息时能玩上一局的微信小游戏。</p>
       <p class="about-p">有想要的小工具、发现了 bug，或者只是想聊聊，都欢迎写信给我。</p>
     </div>
     <div class="about-side">
@@ -749,7 +865,7 @@ a.set-row:hover { background: var(--surface-2); }
         <div class="set-row">
           <span class="set-ico" style="--c: #3B82F6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg></span>
           <span class="set-label">邮件</span>
-          <span class="set-val mono" id="contact-email">hello@hongist.com</span>
+          <span class="set-val mono" id="contact-email">chiuistio@gmail.com</span>
           <button class="set-btn" type="button" data-copy="#contact-email">复制</button>
         </div>
         <a class="set-row" href="#about">
@@ -782,13 +898,13 @@ a.set-row:hover { background: var(--surface-2); }
       <p>小工具和小游戏</p>
     </div>
     <nav class="foot-cols" aria-label="页脚导航">
-      <div><p class="foot-h">小工具</p><a href="https://dropedge.chiuist.com/" target="_blank" rel="noopener">DropEdge</a><a href="https://then-do.chiuist.com/" target="_blank" rel="noopener">Then Do</a><a href="https://s-calendar.chiuist.com/" target="_blank" rel="noopener">S Calendar</a></div>
+      <div><p class="foot-h">小工具</p><a href="https://dropedge.chiuist.com/" target="_blank" rel="noopener">DropEdge</a><a href="https://then-do.chiuist.com/" target="_blank" rel="noopener">ThenDo</a><a href="https://s-calendar.chiuist.com/" target="_blank" rel="noopener">日历即日历</a></div>
       <div><p class="foot-h">小游戏</p><a href="#app-saolei">猫咪扫雷</a><a href="#app-zaza">猫咪砸砸乐</a></div>
       <div><p class="foot-h">联系</p><a href="#about">邮件</a><a href="https://github.com/hihongist" target="_blank" rel="noopener">GitHub</a></div>
     </nav>
   </div>
   <div class="wrap foot-legal">
-    <span>© 2026 hongist.com</span>
+    <span>© 2026 Hong · hongist.com</span>
     <span>ICP 备案号（如需）</span>
     <span>原型 v0.2</span>
   </div>

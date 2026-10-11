@@ -414,9 +414,6 @@ button, input { font: inherit; color: inherit; }
 .ico-lg { width: 96px; }
 .ico-xl { width: 132px; }
 
-.ico-dropedge  { --c1: #5EE7DF; --c2: #2F6BFF; }
-.ico-thendo    { --c1: #FFC36B; --c2: #FF5E62; }
-.ico-scalendar { --c1: #C3A6FF; --c2: #6A4CFF; }
 .ico-saolei    { --c1: #FFF8EA; --c2: #FFEBC4; }
 .ico-zaza      { --c1: #EAF4F0; --c2: #BFD9CF; }
 
