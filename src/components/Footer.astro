@@ -1,18 +1,20 @@
 ---
-import { ui, type Lang } from '../i18n/ui';
+import { ui, homePath, type Lang } from '../i18n/ui';
 import { tools, games, contact } from '../data/works';
 
 interface Props {
   lang: Lang;
+  sub?: boolean; // 子页面：链接要先回到首页
 }
-const { lang } = Astro.props;
+const { lang, sub } = Astro.props;
 const t = ui[lang].footer;
+const home = sub ? homePath[lang] : '';
 ---
 
 <footer class="footer">
   <div class="wrap foot-inner">
     <div class="foot-brand">
-      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span>hongist</a>
+      <a class="brand" href={home || '#top'}><span class="brand-mark" aria-hidden="true"></span>hongist</a>
       <p>{t.tagline}</p>
     </div>
     <nav class="foot-cols" aria-label={t.label}>
@@ -22,8 +24,8 @@ const t = ui[lang].footer;
       </div>
       <div>
         <p class="foot-h">{t.games}</p>
-        <a href="#app-saolei">{games.saolei.name[lang]}</a>
-        <a href="#app-zaza">{games.zaza.name[lang]}</a>
+        <a href={`${home}#app-saolei`}>{games.saolei.name[lang]}</a>
+        <a href={games.zaza.path[lang]}>{games.zaza.name[lang]}</a>
       </div>
       <div>
         <p class="foot-h">{t.contact}</p>

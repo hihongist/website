@@ -1,0 +1,45 @@
+---
+// 猫咪砸砸乐的隐私政策。正文在 src/data/catsmash.ts 的 csPrivacy
+import Base from '../../layouts/Base.astro';
+import MenuBar from '../MenuBar.astro';
+import Footer from '../Footer.astro';
+import SubNav from './SubNav.astro';
+import '../../styles/catsmash.css';
+import { csPrivacy, csPaths } from '../../data/catsmash';
+import type { Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = csPrivacy[lang];
+---
+
+<Base lang={lang} title={t.title} description={t.description} paths={csPaths.privacy}>
+  <MenuBar lang={lang} paths={csPaths.privacy} />
+  <main class="cs-doc">
+    <SubNav lang={lang} current="privacy" />
+    <h1>{t.heading}</h1>
+    <p class="cs-updated">{t.updated}</p>
+    {t.intro.map((p) => <p>{p}</p>)}
+    {t.sections.map((s) => (
+      <section>
+        <h2>{s.h}</h2>
+        {s.body.map((b) =>
+          'p' in b ? (
+            <p>{b.p}</p>
+          ) : 'ul' in b ? (
+            <ul>{b.ul.map((li) => <li>{li}</li>)}</ul>
+          ) : (
+            <p class="cs-link"><a href={b.link[1]} target={b.link[1].startsWith('http') ? '_blank' : undefined} rel={b.link[1].startsWith('http') ? 'noopener' : undefined}>{b.link[0]}</a></p>
+          ),
+        )}
+      </section>
+    ))}
+  </main>
+  <Footer lang={lang} sub />
+</Base>
+
+<script>
+  import '../../scripts/site';
+</script>

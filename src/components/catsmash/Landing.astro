@@ -1,0 +1,119 @@
+---
+// 猫咪砸砸乐的游戏主页。文案和截图在 src/data/catsmash.ts
+import Base from '../../layouts/Base.astro';
+import MenuBar from '../MenuBar.astro';
+import Footer from '../Footer.astro';
+import '../../styles/catsmash.css';
+import { csHome, csPaths, csStore, csEmail, csIcon } from '../../data/catsmash';
+import type { Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = csHome[lang];
+const mail = `mailto:${csEmail}?subject=${encodeURIComponent(t.notifySubject)}`;
+const sp = lang === 'en' ? ' ' : '';
+// 首屏舞台上的三台手机：瞄准、连锁、账单
+const stage = [t.shots[1], t.shots[2], t.shots[3]];
+---
+
+<Base lang={lang} title={t.title} description={t.description} paths={csPaths.home}>
+  <MenuBar lang={lang} paths={csPaths.home} />
+  <main class="cs">
+    <section class="cs-hero">
+      <div class="wrap cs-hero-inner">
+        <div class="cs-copy">
+          <p class="eyebrow"><span class="dot"></span>{t.eyebrow}</p>
+          <div class="cs-name">
+            <span class="ico cs-ico"><img src={csIcon} alt="" width="128" height="128" /></span>
+            <div>
+              <h1 class="cs-title">{t.name}</h1>
+              <p class="cs-alt">{t.altName}</p>
+            </div>
+          </div>
+          <p class="cs-tagline">{t.tagline}</p>
+          <p class="cs-lead">{t.lead}</p>
+          <div class="cs-cta">
+            {csStore.live ? (
+              <a class="btn btn-primary" href={csStore.url} target="_blank" rel="noopener">{t.storeBtn} ↗</a>
+            ) : (
+              <>
+                <span class="btn cs-soon">{t.soon}</span>
+                <a class="btn btn-ghost" href={mail}>{t.notify}</a>
+              </>
+            )}
+          </div>
+          <div class="chips">{t.chips.map((c) => <span class="chip">{c}</span>)}</div>
+        </div>
+        <div class="cs-stage" aria-hidden="true">
+          {stage.map((s, i) => (
+            <div class:list={['cs-phone', ['cs-phone-l', 'cs-phone-c', 'cs-phone-r'][i]]}>
+              <img src={s.src[lang]} alt="" width="600" height="1304" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section cs-shots">
+      <div class="wrap">
+        <header class="sec-head">
+          <h2 class="sec-title"><span class="ph">{t.shotsTitle[0]}</span>{sp}<span class="ph">{t.shotsTitle[1]}</span></h2>
+        </header>
+      </div>
+      <div class="cs-rail">
+        {t.shots.map((s) => (
+          <figure class="cs-shot">
+            <div class="cs-phone"><img src={s.src[lang]} alt={s.cap} width="600" height="1304" loading="lazy" /></div>
+            <figcaption>{s.cap}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <header class="sec-head">
+          <h2 class="sec-title"><span class="ph">{t.featTitle[0]}</span>{sp}<span class="ph">{t.featTitle[1]}</span></h2>
+        </header>
+        <div class="cs-feats">
+          {t.feats.map((f, i) => (
+            <article class="card cs-feat">
+              <b class="mono">{String(i + 1).padStart(2, '0')}</b>
+              <h3>{f.h}</h3>
+              <p>{f.p}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap cs-bottom">
+        <div class="card cs-facts">
+          <h2>{t.factsTitle}</h2>
+          <dl>
+            {t.facts.map(([k, v]) => (
+              <div>
+                <dt>{k}</dt>
+                <dd>{v}</dd>
+              </div>
+            ))}
+          </dl>
+          {t.wx && <p class="cs-wx">{t.wx}</p>}
+        </div>
+        <nav class="cs-more" aria-label={t.name}>
+          <a class="link-arrow" href={csPaths.privacy[lang]}>{t.links.privacy}</a>
+          <a class="link-arrow" href={csPaths.support[lang]}>{t.links.support}</a>
+          <a class="link-arrow" href={`mailto:${csEmail}`}>{csEmail}</a>
+        </nav>
+      </div>
+    </section>
+  </main>
+  <Footer lang={lang} sub />
+</Base>
+
+<script>
+  import '../../scripts/site';
+</script>

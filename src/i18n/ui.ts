@@ -87,6 +87,7 @@ export const ui = {
       desc: '猫咪蹲在猫爬架上，用耳朵当弹弓，把毛线球射向桌上的玻璃杯、花瓶和快递盒。全部拆完，喵星拆迁办会给你开一张拆家账单。用的毛线球越少，星星越多。',
       cta: '上线时通知我',
       ctaSubject: '猫咪砸砸乐上线时通知我',
+      site: '游戏主页',
       receipt: {
         head: '喵星拆迁办',
         sub: '拆家账单 · 第 1 关「餐桌」',
@@ -140,7 +141,7 @@ export const ui = {
       otherLabel: '中文版',
     },
     hero: {
-      pill: 'Now building: Off the Table',
+      pill: 'Now building: Cat Smash',
       title: [
         { pre: 'Handy little ', hl: 'tools', post: ',' },
         { pre: 'and ', hl: 'games', post: ' you can’t put down.' },
@@ -168,7 +169,7 @@ export const ui = {
     games: {
       eyebrow: 'Games · 1 live · 1 in development',
       title: ['Puzzles and chaos,', 'starring cats.'],
-      sub: 'Cat Stars is on the App Store everywhere except mainland China, where it plays in WeChat as 猫咪扫雷. Off the Table is up next.',
+      sub: 'Cat Stars is on the App Store everywhere except mainland China, where it plays in WeChat as 猫咪扫雷. Cat Smash is up next.',
       live: 'Live on the App Store',
       dev: 'In development',
       scan: 'Scan with WeChat to play',
@@ -200,9 +201,10 @@ export const ui = {
       },
     },
     zaza: {
-      desc: 'A cat perches on its cat tree and uses its ears as a slingshot, firing balls of yarn at the glasses, vases and parcels on the table. Clear them all and the Meow Demolition Office sends you the bill. The fewer yarn balls you use, the more stars you earn.',
+      desc: 'A cat perches on its cat tree and uses its ears as a slingshot, firing balls of yarn at the glasses, vases and boxes on the table. Clear them all and Meow Demolition Co. sends you the bill. The fewer yarn balls you use, the more stars you earn.',
       cta: 'Tell me when it launches',
-      ctaSubject: 'Tell me when Off the Table launches',
+      ctaSubject: 'Tell me when Cat Smash launches',
+      site: 'Game page',
       receipt: {
         head: 'Meow Demolition',
         sub: 'Damage bill · Level 1 “Dining table”',

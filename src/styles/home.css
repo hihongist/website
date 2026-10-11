@@ -564,7 +564,7 @@
 .receipt .r-total { border-top: 1px dashed #E3D3BF; margin-top: 4px; padding-top: 4px; font-weight: 700; }
 .zaza-body { display: flex; flex-direction: column; gap: 14px; padding: 24px; }
 .zaza-body p { color: var(--fg-2); font-size: 0.95rem; }
-.zaza-body .btn { align-self: flex-start; margin-top: auto; }
+.zaza-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-top: auto; }
 
 .next-game {
   display: flex;

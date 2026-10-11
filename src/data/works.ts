@@ -115,9 +115,11 @@ export const games = {
   },
   zaza: {
     slug: 'zaza',
-    name: { zh: '猫咪砸砸乐', en: 'Off the Table' } as L,
+    name: { zh: '猫咪砸砸乐', en: 'Cat Smash' } as L, // App Store 上的全名是 Cat Smash: Knock It Off!
     tags: { zh: '物理弹射 · 解压 · 闯关', en: 'Physics · Stress relief · Levels' } as L,
     icon: '/works/zaza-icon.png',
+    // 游戏主页（隐私政策、支持页也在它下面），文案在 src/data/catsmash.ts
+    path: { zh: '/catsmash/', en: '/en/catsmash/' } as L,
   },
 };
 

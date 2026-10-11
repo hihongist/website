@@ -96,7 +96,10 @@ const searchIcon = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="tr
             </div>
           </div>
           <p>{t.zaza.desc}</p>
-          <a class="btn btn-ghost" href={mail(t.zaza.ctaSubject)}>{t.zaza.cta}</a>
+          <div class="zaza-actions">
+            <a class="btn btn-ghost" href={mail(t.zaza.ctaSubject)}>{t.zaza.cta}</a>
+            <a class="link-arrow" href={zaza.path[lang]}>{t.zaza.site}</a>
+          </div>
         </div>
       </article>
 

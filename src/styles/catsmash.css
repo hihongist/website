@@ -1,0 +1,130 @@
+/* 猫咪砸砸乐的游戏主页、隐私政策、支持页。
+   手机截图和首屏舞台用游戏自己的配色（薄荷绿墙面、奶油色、深棕描边），其余跟随全站的浅色 / 深色主题。 */
+
+/* ================= 首屏 ================= */
+.cs-hero { position: relative; padding-block: clamp(32px, 5vw, 72px) clamp(20px, 3vw, 40px); }
+.cs-hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: center;
+}
+.cs-name { display: flex; align-items: center; gap: 16px; margin-top: 22px; }
+.cs-ico { width: clamp(64px, 8vw, 88px); }
+.cs-title { font: 400 clamp(2.5rem, 6vw, 4.2rem) / 1.08 var(--font-play); letter-spacing: 0.02em; }
+html[lang="en"] .cs-title { font: 800 clamp(2.6rem, 6.2vw, 4.4rem) / 1 var(--font-display); letter-spacing: -0.02em; }
+.cs-alt { color: var(--fg-3); font-size: var(--t-small); margin-top: 6px; }
+.cs-tagline {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 5px 16px;
+  border-radius: 999px;
+  background: #FFF8EC;
+  color: #4A3428;
+  border: 2px solid #6B4A3A;
+  font-weight: 700;
+}
+.cs-lead { color: var(--fg-2); margin-top: 18px; max-width: 34em; text-wrap: pretty; }
+.cs-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+.cs-soon { background: var(--accent-soft); color: var(--accent); cursor: default; }
+.cs-soon:hover { transform: none; }
+.cs-copy .chips { margin-top: 22px; }
+
+/* 舞台：游戏里的薄荷绿墙面 + 猫爪花纹，三台手机叠在上面 */
+.cs-stage {
+  position: relative;
+  aspect-ratio: 1 / 0.92;
+  border-radius: 32px;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  background-color: #D3E6DE;
+  background-image:
+    radial-gradient(circle at 14px 22px, rgba(255, 255, 255, 0.5) 4.4px, transparent 5px),
+    radial-gradient(circle at 8px 14px, rgba(255, 255, 255, 0.5) 1.7px, transparent 2.2px),
+    radial-gradient(circle at 12px 10.5px, rgba(255, 255, 255, 0.5) 1.7px, transparent 2.2px),
+    radial-gradient(circle at 16px 10.5px, rgba(255, 255, 255, 0.5) 1.7px, transparent 2.2px),
+    radial-gradient(circle at 20px 14px, rgba(255, 255, 255, 0.5) 1.7px, transparent 2.2px),
+    linear-gradient(#DDEBE5, #C5DBD3);
+  background-size: 56px 48px, 56px 48px, 56px 48px, 56px 48px, 56px 48px, auto;
+  box-shadow: var(--shadow-1);
+}
+.cs-phone {
+  border-radius: 9.5% / 4.4%;
+  overflow: hidden;
+  border: 5px solid #2B2320;
+  background: #2B2320;
+  box-shadow: 0 30px 60px -28px rgba(46, 36, 32, 0.7);
+}
+.cs-phone img { display: block; width: 100%; height: auto; }
+.cs-stage .cs-phone { position: absolute; width: 36%; }
+.cs-phone-c { z-index: 2; top: 7%; left: 32%; }
+.cs-phone-l { top: 17%; left: 4.5%; transform: rotate(-7deg); }
+.cs-phone-r { top: 17%; right: 4.5%; transform: rotate(7deg); }
+
+/* ================= 截图一排 ================= */
+.cs-shots .sec-head { margin-bottom: clamp(20px, 3vw, 32px); }
+.cs-rail {
+  display: flex;
+  gap: clamp(14px, 2vw, 24px);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  padding: 6px max(20px, calc((100vw - var(--wrap)) / 2 + 20px)) 20px;
+  scrollbar-width: thin;
+}
+.cs-shot { flex: none; width: clamp(190px, 17vw, 221px); scroll-snap-align: center; }
+.cs-shot figcaption { margin-top: 12px; font-size: var(--t-small); color: var(--fg-2); text-align: center; text-wrap: balance; }
+
+/* ================= 特点 ================= */
+.cs-feats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.cs-feat { padding: 22px; display: flex; flex-direction: column; gap: 8px; }
+.cs-feat b { color: var(--accent); font-size: var(--t-micro); letter-spacing: 0.08em; }
+.cs-feat h3 { font: 700 1.1rem / 1.35 var(--font-display); }
+.cs-feat p { color: var(--fg-2); font-size: 0.95rem; text-wrap: pretty; }
+
+/* ================= 须知 + 链接 ================= */
+.cs-bottom { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 48px); align-items: start; }
+.cs-facts { padding: clamp(20px, 3vw, 28px); }
+.cs-facts h2 { font: 700 1.25rem / 1.3 var(--font-display); }
+.cs-facts dl { margin: 14px 0 0; }
+.cs-facts dl div { display: grid; grid-template-columns: 5.5em minmax(0, 1fr); gap: 16px; padding: 10px 0; border-top: 1px solid var(--line); }
+.cs-facts dt { color: var(--fg-3); font-size: var(--t-small); }
+.cs-facts dd { font-size: 0.95rem; }
+.cs-wx { margin-top: 12px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--fg-2); font-size: var(--t-small); }
+.cs-more { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding-top: 8px; }
+
+/* ================= 隐私政策 / 支持页 ================= */
+.cs-doc { width: 100%; max-width: 800px; margin-inline: auto; padding: clamp(24px, 4vw, 48px) 20px 80px; }
+.cs-crumb { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.cs-crumb-game { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; }
+.cs-crumb-game .ico { width: 36px; }
+.cs-tabs { display: flex; gap: 2px; margin-left: auto; }
+.cs-tabs a { padding: 5px 11px; border-radius: 8px; text-decoration: none; color: var(--fg-2); font-size: var(--t-small); white-space: nowrap; }
+.cs-tabs a:hover, .cs-tabs a[aria-current="page"] { background: var(--surface-2); color: var(--fg); }
+.cs-doc h1 { font: 800 clamp(1.8rem, 4.4vw, 2.6rem) / 1.15 var(--font-display); letter-spacing: -0.015em; margin-top: 30px; text-wrap: balance; }
+.cs-doc .cs-updated { color: var(--fg-3); font-size: var(--t-small); margin-top: 8px; }
+.cs-doc h2 { font: 700 1.2rem / 1.35 var(--font-display); margin-top: 36px; }
+.cs-doc p { color: var(--fg-2); margin-top: 12px; text-wrap: pretty; }
+.cs-doc ul { margin-top: 10px; padding-left: 1.3em; list-style: disc; color: var(--fg-2); }
+.cs-doc li { margin-top: 4px; }
+.cs-doc a { color: var(--accent); text-underline-offset: 3px; overflow-wrap: anywhere; }
+.cs-doc .cs-crumb a, .cs-doc .btn { color: inherit; }
+.cs-doc .btn-primary { color: var(--on-btn); text-decoration: none; }
+.cs-link { margin-top: 6px !important; }
+.cs-mail { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-top: 18px; }
+.cs-faq { margin-top: 14px; border-bottom: 1px solid var(--line); }
+.cs-faq details { border-top: 1px solid var(--line); padding: 14px 0; }
+.cs-faq summary { cursor: pointer; font-weight: 600; list-style-position: outside; }
+.cs-faq summary::marker { color: var(--fg-3); }
+.cs-faq details p:first-of-type { margin-top: 10px; }
+
+@media (max-width: 900px) {
+  .cs-hero-inner { grid-template-columns: minmax(0, 1fr); }
+  .cs-stage { max-width: 560px; width: 100%; margin-inline: auto; }
+  .cs-feats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cs-bottom { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .cs-feats { grid-template-columns: minmax(0, 1fr); }
+  .cs-shot { width: 62vw; max-width: 250px; }
+  .cs-tabs { margin-left: 0; }
+}
