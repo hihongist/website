@@ -150,7 +150,7 @@
 
 /* ================= tools ================= */
 
-.tools-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.tools-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
 .tool {
   display: flex;
   flex-direction: column;
@@ -164,7 +164,7 @@
 /* 每张卡片顶部是一块迷你 Mac 桌面 */
 .desk {
   position: relative;
-  height: 300px;
+  height: 280px;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
   font-size: 11px;
@@ -198,40 +198,40 @@
   position: absolute;
   top: 32px;
   left: 50%;
-  width: 68%;
+  width: 74%;
   max-width: 260px;
   height: auto;
   translate: -50% 0;
   filter: drop-shadow(0 18px 28px rgba(10, 14, 30, 0.38));
   transition: translate .45s cubic-bezier(.2, .8, .2, 1);
 }
-.shot-right { left: auto; right: 9%; translate: 0 0; }
+.shot-right { left: auto; right: 7%; translate: 0 0; }
 .desk-phone {
   background:
     radial-gradient(70% 90% at 20% 0%, color-mix(in srgb, var(--ios) 45%, transparent), transparent 70%),
     radial-gradient(70% 80% at 100% 100%, var(--desk-2), transparent 65%),
     linear-gradient(160deg, var(--desk-1), var(--desk-2));
 }
-.shot-phone { top: 24px; width: 58%; max-width: 250px; }
+.shot-phone { top: 22px; width: 64%; max-width: 250px; }
 .tool:hover .shot { translate: -50% -10px; }
 .tool:hover .shot-right { translate: 0 -10px; }
 
 /* DropEdge：屏幕右边缘的暂存架 */
 .edge-win {
   position: absolute;
-  left: 7%;
-  top: 44px;
-  width: 50%;
-  height: 40%;
+  left: 6%;
+  top: 40px;
+  width: 52%;
+  height: 34%;
   border-radius: 10px;
   background: var(--panel);
   border: 1px solid var(--line-2);
   box-shadow: var(--shadow-pop);
-  padding: 26px 12px 12px;
+  padding: 24px 8px 10px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-content: start;
-  gap: 12px 8px;
+  gap: 10px 4px;
 }
 .edge-win::before {
   content: "";
@@ -266,11 +266,11 @@
   right: 0;
   top: 34px;
   bottom: 16px;
-  width: 38%;
+  width: 37%;
   display: flex;
   flex-direction: column;
-  gap: 7px;
-  padding: 10px 9px;
+  gap: 6px;
+  padding: 9px 7px;
   border-radius: 14px 0 0 14px;
   background: var(--panel);
   -webkit-backdrop-filter: blur(20px) saturate(170%);
@@ -279,9 +279,9 @@
   border-right: 0;
   box-shadow: var(--shadow-pop);
 }
-.shelf-head { display: flex; align-items: center; gap: 6px; font-weight: 700; }
+.shelf-head { display: flex; align-items: center; gap: 5px; font-weight: 700; min-width: 0; white-space: nowrap; overflow: hidden; }
 .shelf-head img { width: 18px; height: 18px; border-radius: 5px; }
-.shelf-item { display: flex; align-items: center; gap: 7px; padding: 6px; border-radius: 8px; background: var(--surface-2); min-width: 0; }
+.shelf-item { display: flex; align-items: center; gap: 6px; padding: 5px; border-radius: 8px; background: var(--surface-2); min-width: 0; font-size: 10px; }
 .shelf-item span:last-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .shelf-drop {
   flex: 1;
@@ -296,17 +296,17 @@
   font-weight: 600;
 }
 /* 方式二：拖着文件晃一晃，暂存架就弹在文件旁边 */
-.shake-file { position: absolute; z-index: 2; left: 16%; top: 64%; }
+.shake-file { position: absolute; z-index: 2; left: 12%; top: 58%; }
 .shake-file .file-ic { width: 30px; height: 37px; font-size: 8px; box-shadow: 0 10px 18px -6px rgba(0, 0, 0, 0.45); animation: wiggle 3.6s ease-in-out infinite; }
 .shake-file svg.cursor { position: absolute; left: 20px; top: 24px; width: 16px; height: 16px; }
 .shake-file svg.lines { position: absolute; left: -12px; top: -6px; width: 54px; height: 50px; overflow: visible; animation: lines 3.6s ease-in-out infinite; }
 .pop-shelf {
   position: absolute;
   z-index: 1;
-  left: 31%;
-  top: 56%;
-  width: 26%;
-  padding: 7px;
+  left: 27%;
+  top: 52%;
+  width: 31%;
+  padding: 6px;
   border-radius: 11px;
   background: var(--panel);
   -webkit-backdrop-filter: blur(18px) saturate(170%);
@@ -316,8 +316,9 @@
   transform-origin: left center;
   animation: pop 3.6s cubic-bezier(.3, 1.4, .5, 1) infinite;
 }
+.pop-shelf .shelf-head { font-size: 10px; }
 .pop-shelf .shelf-head img { width: 14px; height: 14px; border-radius: 4px; }
-.pop-shelf .shelf-drop { min-height: 34px; margin-top: 6px; font-size: 10px; }
+.pop-shelf .shelf-drop { min-height: 30px; margin-top: 5px; font-size: 10px; }
 .mode-tag {
   position: absolute;
   z-index: 3;
@@ -339,14 +340,14 @@
 @keyframes lines { 0%, 8%, 30%, 100% { opacity: 0; } 12%, 26% { opacity: 1; } }
 @keyframes pop { 0%, 26% { transform: scale(.6); opacity: 0; } 34%, 86% { transform: scale(1); opacity: 1; } 94%, 100% { transform: scale(.9); opacity: 0; } }
 
-.tool-body { display: flex; flex-direction: column; gap: 12px; padding: 20px 22px 22px; flex: 1; }
+.tool-body { display: flex; flex-direction: column; gap: 11px; padding: 18px 18px 20px; flex: 1; }
 .tool-id { display: flex; align-items: center; gap: 12px; }
-.tool-name { font: 700 1.3rem/1.2 var(--font-display); letter-spacing: -0.01em; }
-.tool-name small { font-size: 0.8rem; font-weight: 600; color: var(--fg-3); margin-left: 6px; letter-spacing: 0; }
+.tool-name { font: 700 1.22rem/1.2 var(--font-display); letter-spacing: -0.01em; }
 .tool-meta { font-size: var(--t-micro); color: var(--fg-3); margin-top: 3px; }
-.tool-tag { font: 700 1.12rem/1.4 var(--font-display); }
-.tool-desc { color: var(--fg-2); font-size: 0.93rem; text-wrap: pretty; }
+.tool-tag { font: 700 1.06rem/1.4 var(--font-display); }
+.tool-desc { color: var(--fg-2); font-size: 0.9rem; text-wrap: pretty; }
 .tool .chips { gap: 6px; }
+.tool .chip { font-size: 11.5px; padding: 2px 9px; }
 .addr {
   display: flex;
   align-items: center;
@@ -365,7 +366,8 @@
 .tool:hover .addr { color: var(--fg); }
 .addr-go { transition: transform .2s; }
 .tool:hover .addr-go { transform: translate(2px, -2px); }
-@media (max-width: 860px) { .tools-grid { grid-template-columns: minmax(0, 1fr); max-width: 520px; margin-inline: auto; } }
+@media (max-width: 1100px) { .tools-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 680px) { .tools-grid { grid-template-columns: minmax(0, 1fr); max-width: 520px; margin-inline: auto; } }
 
 /* ================= games ================= */
 .games { overflow: hidden; }
