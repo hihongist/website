@@ -57,12 +57,15 @@ export const ui = {
     games: {
       eyebrow: '微信小游戏 · 1 款上线 · 1 款开发中',
       title: ['不用下载，', '微信里就能玩。'],
-      sub: '在微信里搜索游戏名就能开始。进度跟着微信账号走，换手机也不会丢。',
+      sub: '在微信里搜索游戏名就能开始，进度跟着微信账号走。猫咪扫雷的海外版 Cat Stars 也已经上架 App Store。',
       live: '已上线 · 微信小游戏',
       dev: '开发中',
       scan: '微信扫码即玩',
       search: (name: string) => `在微信里搜索「${name}」`,
       orSearch: (name: string) => `或在微信里搜索「${name}」`,
+      overseas: '海外用户可在 App Store 下载 Cat Stars',
+      appStoreBtn: '',
+      appStoreNote: '',
     },
     saolei: {
       lede: '每一行、每一列、每个色块里，都藏着一只猫。靠推理把它们全部找出来，不用靠运气。',
@@ -129,7 +132,7 @@ export const ui = {
   en: {
     meta: {
       title: 'hongist · Mac tools and mini games by Hong',
-      description: 'Indie apps by Hong: Mac utilities DropEdge, ThenDo and Simply Calendar, plus WeChat mini games like Cat Minesweeper.',
+      description: 'Indie apps by Hong: Mac utilities DropEdge, ThenDo and Simply Calendar, plus cozy cat games like Cat Stars.',
     },
     nav: {
       label: 'Main',
@@ -142,19 +145,19 @@ export const ui = {
       otherLabel: '中文版',
     },
     hero: {
-      pill: 'Now building: Cat Smash',
+      pill: 'Now building: Off the Table',
       title: [
         { pre: 'Handy little ', hl: 'tools', post: ',' },
         { pre: 'and ', hl: 'games', post: ' you can’t put down.' },
       ],
-      sub: 'I’m Hong. I design, build and ship my own apps: three Mac utilities so far, and a growing line of WeChat mini games.',
+      sub: 'I’m Hong. I design, build and ship my own apps: three Mac utilities so far, and a growing line of cozy cat games.',
       ctaTools: 'See the tools',
       ctaGames: 'Play a game',
       dockLabel: 'All works',
       dockHintFine: 'Hover over the Dock. ',
       dockHint: 'Click an icon to jump to it.',
     },
-    kinds: { tool: 'Mac tool', game: 'WeChat mini game', dev: 'In development', next: 'Next game · coming up' },
+    kinds: { tool: 'Mac tool', game: 'iOS game', dev: 'In development', next: 'Next game · coming up' },
     tools: {
       eyebrow: 'Tools · 3 live',
       title: ['Each does one thing,', 'and does it well.'],
@@ -173,21 +176,24 @@ export const ui = {
       },
     },
     games: {
-      eyebrow: 'WeChat mini games · 1 live · 1 in development',
-      title: ['No download.', 'Play right in WeChat.'],
-      sub: 'Search the game’s name in WeChat and start playing. Progress follows your WeChat account, even on a new phone.',
-      live: 'Live · WeChat mini game',
+      eyebrow: 'Games · 1 live · 1 in development',
+      title: ['Puzzles and chaos,', 'starring cats.'],
+      sub: 'Cat Stars is on the App Store everywhere except mainland China, where it plays in WeChat as 猫咪扫雷. Off the Table is up next.',
+      live: 'Live on the App Store',
       dev: 'In development',
       scan: 'Scan with WeChat to play',
       search: (name: string) => `Search 「${name}」 in WeChat`,
       orSearch: (name: string) => `or search 「${name}」 in WeChat`,
+      overseas: '',
+      appStoreBtn: 'Get Cat Stars on the App Store',
+      appStoreNote: 'Free. Not available in mainland China; there it’s a WeChat mini game called 猫咪扫雷.',
     },
     saolei: {
-      lede: 'A cat hides in every row, every column and every color region. Find them all by logic, not luck.',
+      lede: 'A cozy cat logic puzzle: find the right spot for every cat on a colorful grid. Every level can be solved with logic, no guessing.',
       rules: ['One cat in each row and each column', 'One cat in each color region', 'Cats never touch, not even diagonally'],
-      chips: ['300 levels · 15 chapters', 'Daily challenge', 'WeChat friend rankings', 'Dark mode · color-blind aid', 'No interstitial ads'],
+      chips: ['300 levels', 'Hard and Boss levels', 'Undo and hints', 'Collectible skins and themes', 'No account needed'],
       demo: {
-        board: 'Cat Minesweeper demo board, 5 by 5',
+        board: 'Cat Stars demo board, 5 by 5',
         tryIt: 'Try it · 5×5',
         placed: 'Placed {n} / 5',
         hint: 'Tap a cell: once for ×, twice for a cat, a third time to clear.',
@@ -196,7 +202,7 @@ export const ui = {
         region: 'The {c} region already has a cat.',
         touch: 'Two cats are touching. Diagonals count too.',
         left: '{n} to go.',
-        win: 'All found! The full game has 300 levels. Search 「猫咪扫雷」 in WeChat.',
+        win: 'All found! The full game has 300 levels. Get Cat Stars on the App Store.',
         reset: 'Reset',
         cell: 'Row {r}, column {c}, {color}, {state}',
         colors: { A: 'green', B: 'blue', C: 'pink', D: 'yellow', E: 'purple' },
@@ -206,7 +212,7 @@ export const ui = {
     zaza: {
       desc: 'A cat perches on its cat tree and uses its ears as a slingshot, firing balls of yarn at the glasses, vases and parcels on the table. Clear them all and the Meow Demolition Office sends you the bill. The fewer yarn balls you use, the more stars you earn.',
       cta: 'Tell me when it launches',
-      ctaSubject: 'Tell me when Cat Smash launches',
+      ctaSubject: 'Tell me when Off the Table launches',
       receipt: {
         head: 'Meow Demolition',
         sub: 'Damage bill · Level 1 “Dining table”',
@@ -223,7 +229,7 @@ export const ui = {
       eyebrow: 'About',
       title: ['Hi,', 'I’m Hong.'],
       p: [
-        'Indie developer. I make Mac utilities I use every day, and WeChat mini games to play on a break.',
+        'Indie developer. I make Mac utilities I use every day, and small cat games to play on a break.',
         'Want a tool that doesn’t exist yet, found a bug, or just want to say hello? Write to me.',
       ],
       email: 'Email',

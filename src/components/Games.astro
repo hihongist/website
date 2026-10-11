@@ -43,7 +43,7 @@ const searchIcon = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="tr
             <span class="ico ico-md"><img src={saolei.icon} alt="" width="128" height="128" /></span>
             <div>
               <h3 class="game-title">{saolei.name[lang]}</h3>
-              {saolei.altName[lang] && <p class="game-tags">{saolei.altName[lang]}</p>}
+              <p class="game-tags">{saolei.tags[lang]}</p>
             </div>
           </div>
           <p class="saolei-lede">{t.saolei.lede}</p>
@@ -51,16 +51,26 @@ const searchIcon = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="tr
             {t.saolei.rules.map((r, i) => <li><b>{String(i + 1).padStart(2, '0')}</b>{r}</li>)}
           </ul>
           <div class="chips">{t.saolei.chips.map((c) => <span class="chip">{c}</span>)}</div>
-          {saolei.miniCode ? (
-            <div class="qr-row">
-              <img class="qr-code" src={saolei.miniCode} alt="" width="96" height="96" />
-              <div class="qr-copy">
-                <p class="qr-title">{g.scan}</p>
-                <p>{g.orSearch(saolei.wxName)}</p>
-              </div>
+          {lang === 'en' ? (
+            <div class="store-row">
+              <a class="btn btn-primary" href={saolei.appStore.url} target="_blank" rel="noopener">{g.appStoreBtn} ↗</a>
+              <p class="store-note">{g.appStoreNote}</p>
             </div>
           ) : (
-            <p class="find-hint"><Fragment set:html={searchIcon} /><span>{g.search(saolei.wxName)}</span></p>
+            <>
+              {saolei.miniCode ? (
+                <div class="qr-row">
+                  <img class="qr-code" src={saolei.miniCode} alt="" width="96" height="96" />
+                  <div class="qr-copy">
+                    <p class="qr-title">{g.scan}</p>
+                    <p>{g.orSearch(saolei.wxName)}</p>
+                  </div>
+                </div>
+              ) : (
+                <p class="find-hint"><Fragment set:html={searchIcon} /><span>{g.search(saolei.wxName)}</span></p>
+              )}
+              <a class="link-arrow" href={saolei.appStore.url} target="_blank" rel="noopener">{g.overseas}</a>
+            </>
           )}
         </div>
       </article>
@@ -82,7 +92,7 @@ const searchIcon = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="tr
             <span class="ico ico-sm"><img src={zaza.icon} alt="" width="80" height="80" /></span>
             <div>
               <h3 class="game-title">{zaza.name[lang]}</h3>
-              <p class="game-tags">{zaza.altName[lang] ? `${zaza.altName[lang]} · ${zaza.tags[lang]}` : zaza.tags[lang]}</p>
+              <p class="game-tags">{zaza.tags[lang]}</p>
             </div>
           </div>
           <p>{t.zaza.desc}</p>

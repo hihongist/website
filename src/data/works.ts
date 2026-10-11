@@ -86,16 +86,17 @@ export const tools: Tool[] = [
 export const games = {
   saolei: {
     slug: 'saolei',
-    name: { zh: '猫咪扫雷', en: 'Cat Minesweeper' } as L,
-    altName: { zh: '', en: '猫咪扫雷' } as L,
+    name: { zh: '猫咪扫雷', en: 'Cat Stars' } as L,
+    tags: { zh: '推理 · 益智', en: 'Logic puzzle · iOS 15+' } as L,
     wxName: '猫咪扫雷', // 微信里搜索用的名字
+    // 海外 App Store 版（中国大陆以外上架）
+    appStore: { name: 'Cat Stars', url: 'https://apps.apple.com/app/cat-stars/id6775446731' },
     icon: '/works/saolei-icon.png',
     miniCode: '', // 小程序码图片路径，例如 /works/saolei-code.png；留空时只显示“在微信里搜索”
   },
   zaza: {
     slug: 'zaza',
-    name: { zh: '猫咪砸砸乐', en: 'Cat Smash' } as L,
-    altName: { zh: '', en: '猫咪砸砸乐' } as L,
+    name: { zh: '猫咪砸砸乐', en: 'Off the Table' } as L,
     tags: { zh: '物理弹射 · 解压 · 闯关', en: 'Physics · Stress relief · Levels' } as L,
     icon: '/works/zaza-icon.png',
   },
