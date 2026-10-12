@@ -13,7 +13,7 @@
 | 小工具 | DropEdge | 暂存，就放手边。 | macOS 14+ | 已上线 | dropedge.hongist.com | dropedge.chiuist.com（网页 301，App 用的更新源和数据照常） |
 | 小工具 | ThenDo | 待办，就做待办。 | Mac + iPhone | 已上线 | then-do.hongist.com | then-do.chiuist.com（网页 301，App 用的更新源和数据照常） |
 | 小工具 | 日历即日历 Simply Calendar | 日历，就看日历。 | macOS 14+ | 已上线 | s-calendar.hongist.com | s-calendar.chiuist.com（网页 301，App 用的更新源和数据照常） |
-| 小工具 | SafeShot Go | 分享前，先打码。 | iPhone + iPad，iOS 16+ | 已上线 | App Store（id6780211041） | — |
+| 小工具 | SafeShot Go | 分享前，先打码。 | iPhone + iPad，iOS 16+ | 已上线 | safeshot.hongist.com（App Store id6780211041） | — |
 | 游戏 | 猫咪扫雷（英文名 Cat Stars） | 每一行、每一列、每个色块里，都藏着一只猫。 | 微信小游戏；iOS App Store（中国大陆以外，id6775446731） | 已上线 | 微信内 / App Store | — |
 | 游戏 | 猫咪砸砸乐（英文名 Cat Smash，App Store 全名 Cat Smash: Knock It Off!） | 猫咪用耳朵当弹弓，拆家拆出一张账单。 | iOS App Store（审核前）；微信小游戏（备案中） | 开发中 | 游戏主页 hongist.com/catsmash/ | — |
 
@@ -104,7 +104,7 @@ s-calendar.hongist.com ┘
 | 语言 | **已定**：中文 `/`、英文 `/en/`，菜单栏可切换，页面互相声明 hreflang，sitemap 同时收录两种语言 |
 | 字体 | **已定**：全部打包在站内（不依赖 Google Fonts），中文正文用系统字体；站酷快乐体按字符分片，只下载页面用到的部分 |
 | 部署 | 待定：Cloudflare Pages / Vercel / 腾讯云 EdgeOne Pages 都可以，构建命令 `npm run build`，输出 `dist` |
-| 子域名 | **已定**：各工具官网在 `*.hongist.com`（仓库 hihongist/tool-sites，Worker `tool-sites`）；旧的 `*.chiuist.com` 网页 301 跳转，已发布 App 用到的更新源、下载和数据照常返回 |
+| 子域名 | **已定**：各工具官网在 `*.hongist.com`（仓库 hihongist/tool-sites，Worker `tool-sites`，SafeShot Go 也在这里）；旧的 `*.chiuist.com` 网页 301 跳转，已发布 App 用到的更新源、下载和数据照常返回 |
 | 国内访问 | 如果主要用户在国内，主站可放腾讯云 EdgeOne / COS，需要 ICP 备案 |
 | 统计 | Umami 或 Plausible |
 | 订阅 | 目前是「发邮件订阅」按钮（打开邮件客户端写信给 hihongist@gmail.com）；以后量大了再换 Buttondown 等邮件服务 |

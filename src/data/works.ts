@@ -85,8 +85,8 @@ export const tools: Tool[] = [
     slug: 'safeshot',
     name: { zh: 'SafeShot Go', en: 'SafeShot Go' },
     icon: '/works/safeshot-icon.png',
-    url: 'https://apps.apple.com/app/safeshot-go/id6780211041',
-    host: 'apps.apple.com/app/safeshot-go',
+    url: 'https://safeshot.hongist.com/',
+    host: 'safeshot.hongist.com',
     meta: { zh: 'iPhone + iPad · iOS 16+', en: 'iPhone + iPad · iOS 16+' },
     tagline: { zh: '分享前，先打码。', en: 'Redact first. Then share.' },
     desc: {
