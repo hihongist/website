@@ -55,7 +55,9 @@ docs/                   设计规划、图标提示词
 
 ## 部署
 
-任何静态托管都可以：构建命令 `npm run build`，输出目录 `dist`，Node 版本 22（见 `.nvmrc`）。
+Cloudflare Workers（Worker 名 `website`）连接本仓库，推送后自动部署。部署命令是 `npx wrangler deploy`，
+它按 `wrangler.jsonc` 先运行 `npm run build`，再把 `dist` 作为纯静态文件上传；`public/_headers` 给
+`/_astro/*` 加长期缓存。Node 版本 22（见 `.nvmrc`）。换别的静态托管也可以：构建命令 `npm run build`，输出目录 `dist`。
 
 - 字体（Bricolage Grotesque、JetBrains Mono、站酷快乐体）打包在站内，不依赖 Google Fonts，国内访问不受影响。
 - 站点地址写在 `astro.config.mjs` 的 `site`，用于生成 sitemap 和语言互链。
