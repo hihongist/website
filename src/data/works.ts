@@ -30,8 +30,8 @@ export const tools: Tool[] = [
     slug: 'dropedge',
     name: { zh: 'DropEdge', en: 'DropEdge' },
     icon: '/works/dropedge-icon.png',
-    url: 'https://dropedge.chiuist.com/',
-    host: 'dropedge.chiuist.com',
+    url: 'https://dropedge.hongist.com/',
+    host: 'dropedge.hongist.com',
     meta: { zh: 'macOS 14+', en: 'macOS 14+' },
     tagline: { zh: '暂存，就放手边。', en: 'Park it. Right at hand.' },
     desc: {
@@ -48,8 +48,8 @@ export const tools: Tool[] = [
     slug: 'thendo',
     name: { zh: 'ThenDo', en: 'ThenDo' },
     icon: '/works/thendo-icon.png',
-    url: 'https://then-do.chiuist.com/',
-    host: 'then-do.chiuist.com',
+    url: 'https://then-do.hongist.com/',
+    host: 'then-do.hongist.com',
     meta: { zh: 'Mac + iPhone', en: 'Mac + iPhone' },
     tagline: { zh: '待办，就做待办。', en: 'To-do. Then done.' },
     desc: {
@@ -67,8 +67,8 @@ export const tools: Tool[] = [
     name: { zh: '日历即日历', en: 'Simply Calendar' },
     altName: { zh: 'Simply Calendar', en: '日历即日历' },
     icon: '/works/scalendar-icon.png',
-    url: 'https://s-calendar.chiuist.com/',
-    host: 's-calendar.chiuist.com',
+    url: 'https://s-calendar.hongist.com/',
+    host: 's-calendar.hongist.com',
     meta: { zh: 'macOS 14+', en: 'macOS 14+' },
     tagline: { zh: '日历，就看日历。', en: 'Calendar. Simply.' },
     desc: {
