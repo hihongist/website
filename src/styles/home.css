@@ -37,12 +37,14 @@
 .hero-title {
   font-family: var(--font-display);
   font-size: clamp(2.1rem, 4.2vw, 3.8rem);
-  font-weight: 800;
-  line-height: 1.12;
+  font-weight: 700;
+  line-height: 1.1;
   letter-spacing: -0.02em;
   margin-top: 24px;
   text-wrap: balance;
 }
+/* Geist 粗体要收紧字距才精神；中文标题用系统字体，保持原字距 */
+:lang(en) .hero-title { letter-spacing: -0.04em; }
 .hl {
   background-image: linear-gradient(105deg, var(--hl-1), var(--hl-2));
   -webkit-background-clip: text;
@@ -384,7 +386,7 @@
 
 .tool-body { display: flex; flex-direction: column; gap: 11px; padding: 18px 18px 20px; flex: 1; }
 .tool-id { display: flex; align-items: center; gap: 12px; }
-.tool-name { font: 700 1.22rem/1.2 var(--font-display); letter-spacing: -0.01em; }
+.tool-name { font: 700 1.22rem/1.2 var(--font-display); letter-spacing: -0.02em; }
 .tool-meta { font-size: var(--t-micro); color: var(--fg-3); margin-top: 3px; }
 .tool-tag { font: 700 1.06rem/1.4 var(--font-display); }
 .tool-desc { color: var(--fg-2); font-size: 0.9rem; text-wrap: pretty; }
