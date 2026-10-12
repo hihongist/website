@@ -89,25 +89,22 @@ const stage = [t.shots[1], t.shots[2], t.shots[3]];
       </div>
     </section>
 
-    <section class="section">
-      <div class="wrap cs-bottom">
-        <div class="card cs-facts">
-          <h2>{t.factsTitle}</h2>
-          <dl>
-            {t.facts.map(([k, v]) => (
-              <div>
-                <dt>{k}</dt>
-                <dd>{v}</dd>
-              </div>
-            ))}
-          </dl>
-          {t.wx && <p class="cs-wx">{t.wx}</p>}
+    <section class="cs-more-sec">
+      <div class="wrap">
+        <div class="card cs-more">
+          <div class="cs-more-id">
+            <span class="ico"><img src={csIcon} alt="" width="128" height="128" /></span>
+            <div>
+              <b>{t.name}</b>
+              <span>{t.tagline}</span>
+            </div>
+          </div>
+          <nav class="cs-more-links" aria-label={t.name}>
+            <a class="link-arrow" href={csPaths.privacy[lang]}>{t.links.privacy}</a>
+            <a class="link-arrow" href={csPaths.support[lang]}>{t.links.support}</a>
+            <a class="link-arrow" href={`mailto:${csEmail}`}>{csEmail}</a>
+          </nav>
         </div>
-        <nav class="cs-more" aria-label={t.name}>
-          <a class="link-arrow" href={csPaths.privacy[lang]}>{t.links.privacy}</a>
-          <a class="link-arrow" href={csPaths.support[lang]}>{t.links.support}</a>
-          <a class="link-arrow" href={`mailto:${csEmail}`}>{csEmail}</a>
-        </nav>
       </div>
     </section>
   </main>
