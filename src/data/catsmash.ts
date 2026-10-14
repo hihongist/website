@@ -9,6 +9,9 @@ export const csPaths = {
   home: { zh: '/catsmash/', en: '/en/catsmash/' } as L,
   privacy: { zh: '/catsmash/privacy/', en: '/en/catsmash/privacy/' } as L,
   support: { zh: '/catsmash/support/', en: '/en/catsmash/support/' } as L,
+  // 挑战链接的落地页：游戏里“晒账单”分享出去的链接。装了游戏的 iPhone 点链接直接打开游戏（通用链接，
+  // 靠 public/.well-known/apple-app-site-association），没装的打开这一页。地址写死在 App 里，不能改
+  challenge: { zh: '/catsmash/c/', en: '/en/catsmash/c/' } as L,
 };
 
 // 上架后把 live 改成 true，主页上的“即将上线”就会换成 App Store 下载按钮
@@ -116,7 +119,7 @@ export const csPrivacy: L<LegalDoc> = {
     title: '隐私政策 — 猫咪砸砸乐',
     description: '猫咪砸砸乐（Cat Smash: Knock It Off!）的隐私政策：游戏不收集个人信息，进度只存在设备里；广告由 Google AdMob 提供。',
     heading: '猫咪砸砸乐隐私政策',
-    updated: '最近更新：2026-10-11',
+    updated: '最近更新：2026-10-14',
     intro: [
       '本隐私政策适用于 iOS 游戏 Cat Smash: Knock It Off!（中文名：猫咪砸砸乐，以下简称“本游戏”）。我们重视你的隐私，尽量不处理个人信息。',
       '微信小游戏版的隐私保护指引，请在游戏内“设置 → 隐私保护指引”查看。',
@@ -126,7 +129,7 @@ export const csPrivacy: L<LegalDoc> = {
         h: '1. 我们收集的信息',
         body: [
           { p: '本游戏是一款单机物理益智游戏，没有自己的服务器，不需要注册或登录。开发者不收集姓名、邮箱、电话、通讯录、照片、精确位置等个人身份信息。' },
-          { p: '游戏进度（关卡、星星、小鱼干、道具、猫咪和毛线球、签到、成就、每日挑战记录）和设置（音效、音乐、振动）只保存在你的设备本地，用于下次继续游戏，不会上传到任何服务器。' },
+          { p: '游戏进度（关卡、星星、小鱼干、道具、猫咪和毛线球、签到、成就、每日挑战记录）和设置（音效、音乐、振动）只保存在你的设备本地，用于下次继续游戏，不会上传到任何服务器（登录 Game Center 时上传的成绩和成就见第 6 节）。' },
         ],
       },
       {
@@ -152,26 +155,34 @@ export const csPrivacy: L<LegalDoc> = {
         body: [{ p: '本游戏不申请相机、麦克风、相册、通讯录、精确定位等敏感权限。游戏会使用系统的触感反馈（振动），可以在游戏的“设置”里关闭。' }],
       },
       {
-        h: '5. 分享与评分',
+        h: '5. 分享、挑战链接与评分',
         body: [
-          { p: '你点击“晒账单”时会打开系统的分享面板，把分享的文字和拆家账单图片交给你选择的 App 发送。分享给谁由你决定，本游戏不会知道。' },
+          { p: '你点击“晒账单”时会打开系统的分享面板，把分享的文字、拆家账单图片和一个挑战链接交给你选择的 App 发送。挑战链接里只有关卡号、用了几发毛线球和账单金额，好友点开就能挑战同一关；链接里没有任何能识别你的信息。分享给谁由你决定，本游戏不会知道。' },
           { p: '你点击“给个好评”会打开 App Store 的评价页面；通关时偶尔出现的评分弹窗由系统提供。评分和评论由 Apple 处理。' },
         ],
       },
       {
-        h: '6. 数据存储与删除',
+        h: '6. Game Center 排行榜和成就',
+        body: [
+          { p: '如果你在 iPhone 上登录了 Apple 的 Game Center，本游戏会把你的通关关卡数、累计拆家账单、最高连锁和成就进度上传到 Game Center，用来显示排行榜、成就和好友挑战。排行榜上会显示你的 Game Center 昵称和成绩，谁能看到由你在 Game Center 里的设置决定。' },
+          { p: '这些数据由 Apple 处理，适用 Apple 的隐私政策。不登录 Game Center 也能正常玩，可以随时在 iPhone 的“设置 → Game Center”里退出。' },
+          { link: ['Apple 隐私政策', 'https://www.apple.com/legal/privacy/'] },
+        ],
+      },
+      {
+        h: '7. 数据存储与删除',
         body: [{ p: '本地游戏数据随 App 保存在你的设备上，删除 App 即可全部清除；换设备后不会同步。广告相关的数据由 Google 按其政策保存，你可以按第 3 节的方法限制个性化广告。' }],
       },
       {
-        h: '7. 儿童隐私',
-        body: [{ p: '本游戏内容健康，没有充值和联网社交功能。它面向一般休闲游戏用户，不是专门为儿童设计的，我们不会故意收集儿童的个人信息。如果你认为我们意外处理了儿童的个人信息，请通过下面的邮箱联系我们。' }],
+        h: '8. 儿童隐私',
+        body: [{ p: '本游戏内容健康，没有充值和聊天功能（排行榜和好友挑战由 Apple 的 Game Center 提供）。它面向一般休闲游戏用户，不是专门为儿童设计的，我们不会故意收集儿童的个人信息。如果你认为我们意外处理了儿童的个人信息，请通过下面的邮箱联系我们。' }],
       },
       {
-        h: '8. 政策更新',
+        h: '9. 政策更新',
         body: [{ p: '本政策如有更新，我们会在此页面和游戏内的“设置 → 隐私政策”发布新版本，并更新“最近更新”日期。' }],
       },
       {
-        h: '9. 联系我们',
+        h: '10. 联系我们',
         body: [{ p: '如果你对本隐私政策或数据处理有任何问题，请发邮件给我们：' }, { link: [csEmail, `mailto:${csEmail}`] }],
       },
     ],
@@ -180,7 +191,7 @@ export const csPrivacy: L<LegalDoc> = {
     title: 'Privacy Policy — Cat Smash: Knock It Off!',
     description: 'Privacy policy for Cat Smash: Knock It Off! The game collects no personal information and keeps progress on your device; ads are served by Google AdMob.',
     heading: 'Cat Smash Privacy Policy',
-    updated: 'Last updated: October 11, 2026',
+    updated: 'Last updated: October 14, 2026',
     intro: [
       'This Privacy Policy applies to the iOS game Cat Smash: Knock It Off! (“the game”). We respect your privacy and aim to process as little personal information as possible.',
     ],
@@ -189,7 +200,7 @@ export const csPrivacy: L<LegalDoc> = {
         h: '1. Information We Collect',
         body: [
           { p: 'Cat Smash is a single-player physics puzzle game. It has no server of its own and needs no account or sign-in. The developer does not collect personal identity information such as your name, email address, phone number, contacts, photos or precise location.' },
-          { p: 'Game progress (levels, stars, fish, boosters, cats and yarn, daily check-ins, achievements, daily challenge records) and settings (sound, music, haptics) are stored only on your device so you can continue next time. Nothing is uploaded to any server.' },
+          { p: 'Game progress (levels, stars, fish, boosters, cats and yarn, daily check-ins, achievements, daily challenge records) and settings (sound, music, haptics) are stored only on your device so you can continue next time. Nothing is uploaded to any server, except the scores and achievements sent to Game Center if you are signed in (see section 6).' },
         ],
       },
       {
@@ -215,31 +226,91 @@ export const csPrivacy: L<LegalDoc> = {
         body: [{ p: 'The game does not request access to your camera, microphone, photo library, contacts or precise location. It uses system haptic feedback, which you can turn off in the game’s Settings.' }],
       },
       {
-        h: '5. Sharing and Ratings',
+        h: '5. Sharing, Challenge Links and Ratings',
         body: [
-          { p: 'When you tap “Share”, the system share sheet opens and passes the share text and your Damage Bill image to the app you choose. Who you share with is up to you; the game never knows.' },
+          { p: 'When you tap “Share”, the system share sheet opens and passes the share text, your Damage Bill image and a challenge link to the app you choose. The link contains only the level number, how many yarn balls you used and the bill amount, so friends can try the same level; it contains nothing that identifies you. Who you share with is up to you; the game never knows.' },
           { p: 'Tapping “Rate Us” opens the review page on the App Store; the rating prompt that occasionally appears after clearing a level is provided by iOS. Ratings and reviews are handled by Apple.' },
         ],
       },
       {
-        h: '6. Data Storage and Deletion',
+        h: '6. Game Center Leaderboards and Achievements',
+        body: [
+          { p: 'If you are signed in to Apple Game Center on your iPhone, the game sends your levels cleared, total damage bill, best combo and achievement progress to Game Center to show leaderboards, achievements and friend challenges. Leaderboards show your Game Center nickname and scores; who can see them depends on your Game Center settings.' },
+          { p: 'This data is handled by Apple under Apple’s privacy policy. You can play without Game Center and sign out at any time in iPhone Settings > Game Center.' },
+          { link: ['Apple Privacy Policy', 'https://www.apple.com/legal/privacy/'] },
+        ],
+      },
+      {
+        h: '7. Data Storage and Deletion',
         body: [{ p: 'Local game data is stored on your device with the app. Deleting the app erases all of it, and it does not sync to a new device. Advertising data is retained by Google under its own policies; you can limit personalized ads as described in section 3.' }],
       },
       {
-        h: '7. Children’s Privacy',
-        body: [{ p: 'The game has family-friendly content, no purchases and no online social features. It is intended for a general casual-game audience and is not directed at children, and we do not knowingly collect personal information from children. If you believe we have unintentionally processed a child’s personal information, please contact us at the email below.' }],
+        h: '8. Children’s Privacy',
+        body: [{ p: 'The game has family-friendly content, no purchases and no chat (leaderboards and friend challenges are provided by Apple Game Center). It is intended for a general casual-game audience and is not directed at children, and we do not knowingly collect personal information from children. If you believe we have unintentionally processed a child’s personal information, please contact us at the email below.' }],
       },
       {
-        h: '8. Changes to This Policy',
+        h: '9. Changes to This Policy',
         body: [{ p: 'If this policy changes, the new version will be posted on this page and in the game under Settings > Privacy, with an updated date.' }],
       },
       {
-        h: '9. Contact Us',
+        h: '10. Contact Us',
         body: [{ p: 'If you have any questions about this Privacy Policy or about data processing, please email us:' }, { link: [csEmail, `mailto:${csEmail}`] }],
       },
     ],
   },
 };
+
+// ---------------------------------------------------------------------------
+// 挑战页（/catsmash/c/?from=bill&lv=12&s=2&b=1288，或者 from=help&lv=14&left=2）。参数在浏览器里读，{n} 这类占位符由页面脚本替换
+// ---------------------------------------------------------------------------
+export const csChallenge = {
+  zh: {
+    title: '好友发来挑战 — 猫咪砸砸乐',
+    description: '好友在猫咪砸砸乐里拆了一桌子东西，发来一张拆家账单。你家猫能做到吗？',
+    heading: '好友发来挑战',
+    helpHeading: '好友求助',
+    generic: '好友邀请你来拆家',
+    genericLine: '主人出门了，猫上桌了。拉弓，松手，把杯子、花瓶和快递盒全推下桌。',
+    level: '第 {n} 关 · {ch}',
+    shots: '{s} 发拆完',
+    bill: '拆家账单 ¥{b}',
+    ask: '你家猫能做到吗？',
+    left: '还差 {left} 件',
+    stuck: '拆不完了',
+    helpLine: '好友的猫卡在这一关了',
+    helpAsk: '你来试试？',
+    chapters: ['客厅', '厨房', '书房', '全屋', '卧室', '阳台'],
+    store: '在 App Store 下载，接受挑战',
+    soon: '即将上线 App Store',
+    notify: '上线时通知我',
+    notifySubject: '猫咪砸砸乐上线时通知我',
+    installed: '已经装了猫咪砸砸乐？在 iPhone 上直接点好友发来的链接，会自动打开游戏进入这一关。',
+    more: '了解这个游戏',
+  },
+  en: {
+    title: 'A friend challenged you — Cat Smash',
+    description: 'A friend smashed a whole table of stuff in Cat Smash and sent you the damage bill. Can your cat do better?',
+    heading: 'A friend challenged you',
+    helpHeading: 'A friend needs help',
+    generic: 'A friend invited you to smash',
+    genericLine: 'The human’s out and the cat is on the table. Pull back, let go, and knock the glasses, vases and boxes off.',
+    level: 'Level {n} · {ch}',
+    shots: 'Done in {s} {shotWord}',
+    bill: 'Damage Bill ${b}',
+    ask: 'Can your cat do it?',
+    left: '{left} left',
+    stuck: 'Stuck!',
+    helpLine: 'Your friend’s cat is stuck on this level',
+    helpAsk: 'Give it a try?',
+    chapters: ['Lounge', 'Kitchen', 'Study', 'House', 'Bedroom', 'Balcony'],
+    store: 'Get it on the App Store',
+    soon: 'Coming soon to the App Store',
+    notify: 'Tell me when it launches',
+    notifySubject: 'Tell me when Cat Smash launches',
+    installed: 'Already have Cat Smash? On your iPhone, tap your friend’s link and it opens the level right in the game.',
+    more: 'About the game',
+  },
+} as const;
 
 // ---------------------------------------------------------------------------
 // 支持页

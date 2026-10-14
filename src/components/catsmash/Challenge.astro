@@ -1,0 +1,88 @@
+---
+// 挑战链接的落地页。游戏里“晒账单”分享的链接：/catsmash/c/?from=bill&lv=12&s=2&b=1288（好友 2 发拆完第 12 关，账单 1288），
+// 或者 from=help&lv=14&left=2（好友卡在第 14 关，还差 2 件）。
+// 装了游戏的 iPhone 点链接会直接打开游戏，不会来到这一页；来到这一页的是没装游戏的人：告诉他好友的成绩，引导去 App Store。
+// 参数在浏览器里读（静态网站没法在服务器上读参数）；参数不对时显示通用的邀请。
+import Base from '../../layouts/Base.astro';
+import MenuBar from '../MenuBar.astro';
+import Footer from '../Footer.astro';
+import '../../styles/catsmash.css';
+import { csChallenge, csHome, csPaths, csStore, csEmail, csIcon } from '../../data/catsmash';
+import type { Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = csChallenge[lang];
+const mail = `mailto:${csEmail}?subject=${encodeURIComponent(t.notifySubject)}`;
+const msgs = { ...t, chapters: [...t.chapters] };
+---
+
+<Base lang={lang} title={t.title} description={t.description} paths={csPaths.challenge} image={`/works/catsmash/og-${lang}.jpg`} noindex>
+  {csStore.live && <meta slot="head" name="apple-itunes-app" content="app-id=6821556219" />}
+  <MenuBar lang={lang} paths={csPaths.challenge} />
+  <main class="cs-ch">
+    <div class="cs-ch-stage">
+      <article class="cs-ch-card" data-challenge data-msgs={JSON.stringify(msgs)}>
+        <span class="ico cs-ch-ico"><img src={csIcon} alt="" width="128" height="128" /></span>
+        <h1 data-ch-heading>{t.generic}</h1>
+        <div class="cs-ch-box">
+          <p class="cs-ch-level" data-ch-level hidden></p>
+          <p class="cs-ch-big" data-ch-big hidden></p>
+          <p class="cs-ch-line" data-ch-line>{t.genericLine}</p>
+          <p class="cs-ch-ask" data-ch-ask hidden></p>
+        </div>
+        <div class="cs-ch-cta">
+          {csStore.live ? (
+            <a class="btn btn-primary" href={csStore.url} target="_blank" rel="noopener">{t.store} ↗</a>
+          ) : (
+            <>
+              <span class="btn cs-soon">{t.soon}</span>
+              <a class="btn btn-ghost" href={mail}>{t.notify}</a>
+            </>
+          )}
+        </div>
+        <p class="cs-ch-note">{t.installed}</p>
+        <a class="link-arrow" href={csPaths.home[lang]}>{t.more}</a>
+      </article>
+    </div>
+  </main>
+  <Footer lang={lang} sub />
+</Base>
+
+<script>
+  import '../../scripts/site';
+  // 按链接参数填上好友的成绩（规则和游戏里的 parseDuel 一致：关卡 1–200、发数 1–40、账单 0–999999、还差 1–49 件）
+  // 切换语言时带上链接参数，换成另一种语言还是同一个挑战
+  document.querySelectorAll<HTMLAnchorElement>('a[hreflang]').forEach((a) => { if (location.search) a.href = a.pathname + location.search; });
+  const card = document.querySelector<HTMLElement>('[data-challenge]');
+  if (card) {
+    const m = JSON.parse(card.dataset.msgs || '{}');
+    const q = new URLSearchParams(location.search);
+    const n = parseInt(q.get('lv') || '', 10);
+    const fill = (s: string, v: Record<string, string | number>) => s.replace(/\{(\w+)\}/g, (_, k) => String(v[k] ?? ''));
+    const chapter = (lv: number) => m.chapters[[20, 40, 60, 100, 150, 200].findIndex((top) => lv <= top)] || m.chapters[5];
+    const el = (k: string) => card.querySelector<HTMLElement>(`[data-ch-${k}]`)!;
+    const show = (k: string, text: string) => { const e = el(k); e.textContent = text; e.hidden = false; };
+    const from = q.get('from');
+    if (n >= 1 && n <= 200 && (from === 'bill' || from === 'help')) {
+      show('level', fill(m.level, { n, ch: chapter(n) }));
+      if (from === 'help') {
+        const left = parseInt(q.get('left') || '', 10);
+        show('heading', m.helpHeading);
+        show('big', left >= 1 && left < 50 ? fill(m.left, { left }) : m.stuck);
+        show('line', m.helpLine);
+        show('ask', m.helpAsk);
+      } else {
+        const s = parseInt(q.get('s') || '', 10), b = parseInt(q.get('b') || '', 10);
+        if (s >= 1 && s <= 40) {
+          show('heading', m.heading);
+          show('big', fill(m.shots, { s, shotWord: s === 1 ? 'shot' : 'shots' }));
+          show('line', b >= 0 && b < 1e6 ? fill(m.bill, { b }) : '');
+          show('ask', m.ask);
+        }
+      }
+    }
+  }
+</script>

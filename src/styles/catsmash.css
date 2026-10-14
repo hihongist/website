@@ -125,3 +125,51 @@ html[lang="en"] .cs-title { font: 800 clamp(2.6rem, 6.2vw, 4.4rem) / 1 var(--fon
   .cs-shot { width: 62vw; max-width: 250px; }
   .cs-tabs { margin-left: 0; }
 }
+
+/* ================= 挑战页（好友分享的挑战链接） ================= */
+.cs-ch-stage {
+  min-height: calc(100vh - 48px);
+  display: grid;
+  place-items: center;
+  padding: clamp(28px, 6vw, 72px) 16px;
+  background-color: #D3E6DE;
+  background-image:
+    radial-gradient(circle at 14px 22px, rgba(255, 255, 255, 0.5) 4.4px, transparent 5px),
+    radial-gradient(circle at 8px 14px, rgba(255, 255, 255, 0.5) 1.7px, transparent 2.2px),
+    radial-gradient(circle at 12px 10.5px, rgba(255, 255, 255, 0.5) 1.7px, transparent 2.2px),
+    radial-gradient(circle at 16px 10.5px, rgba(255, 255, 255, 0.5) 1.7px, transparent 2.2px),
+    radial-gradient(circle at 20px 14px, rgba(255, 255, 255, 0.5) 1.7px, transparent 2.2px),
+    linear-gradient(#DDEBE5, #C5DBD3);
+  background-size: 56px 48px, 56px 48px, 56px 48px, 56px 48px, 56px 48px, auto;
+}
+/* 卡片用游戏里弹窗的样子：奶油底、深棕粗描边，深色主题下也不变 */
+.cs-ch-card {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 28px 24px 24px;
+  text-align: center;
+  color: #4A3428;
+  background: linear-gradient(#FFFCF5, #FFF3E2);
+  border: 3px solid #6B4A3A;
+  border-radius: 24px;
+  box-shadow: 0 6px 0 rgba(107, 74, 58, 0.35), 0 30px 60px -30px rgba(46, 36, 32, 0.6);
+}
+.cs-ch-ico { width: 72px; }
+.cs-ch-card h1 { font: 800 1.55rem / 1.25 var(--font-display); letter-spacing: -0.01em; }
+html[lang="zh-CN"] .cs-ch-card h1 { font: 400 1.75rem / 1.25 var(--font-play); letter-spacing: 0.02em; }
+.cs-ch-box { width: 100%; padding: 18px 16px; background: #FFFFFF; border: 1.5px solid #E8D8C4; border-radius: 16px; display: flex; flex-direction: column; gap: 6px; }
+.cs-ch-level { color: #9A8170; font-weight: 700; font-size: 0.95rem; }
+.cs-ch-big { color: #D9772B; font: 400 2.1rem / 1.15 var(--font-play); letter-spacing: 0.02em; }
+html[lang="en"] .cs-ch-big { font: 800 1.9rem / 1.15 var(--font-display); letter-spacing: -0.01em; }
+.cs-ch-line { color: #4A3428; }
+.cs-ch-ask { font-weight: 700; }
+.cs-ch-cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 4px; }
+.cs-ch-card .btn-primary { background: #4A3428; color: #FFF8EC; }
+.cs-ch-card .btn-ghost { background: #FFFFFF; color: #4A3428; border-color: #D9C6B0; }
+.cs-ch-card .cs-soon { background: rgba(226, 98, 10, 0.12); color: #C2560A; }
+.cs-ch-note { color: #9A8170; font-size: var(--t-small); text-wrap: pretty; }
+.cs-ch-card .link-arrow { color: #4A3428; }

@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["74HW5S9GAC.com.heyhong.catsmash"],
+        "components": [
+          { "/": "/catsmash/c/*", "comment": "猫咪砸砸乐的挑战链接：装了游戏的 iPhone 直接打开游戏" },
+          { "/": "/en/catsmash/c/*", "comment": "Cat Smash challenge links (English)" }
+        ]
+      }
+    ]
+  }
+}
