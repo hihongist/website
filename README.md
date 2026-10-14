@@ -47,10 +47,12 @@ docs/                   设计规划、图标提示词
 | 游戏主页 | `/catsmash/` | `/en/catsmash/` |
 | 隐私政策 | `/catsmash/privacy/` | `/en/catsmash/privacy/` |
 | 支持与常见问题 | `/catsmash/support/` | `/en/catsmash/support/` |
+| 挑战链接落地页 | `/catsmash/c/` | `/en/catsmash/c/` |
 
 - 这三页的地址填在了 App Store Connect（营销网址、隐私政策网址、技术支持网址）和 AdMob 的同意弹窗里，**不要改地址**。
 - 全部文案在 `src/data/catsmash.ts`。隐私政策和游戏里“设置 → 隐私政策”的内容要保持一致，改一处要同时改另一处。
 - **游戏上架后**：把 `src/data/catsmash.ts` 里 `csStore.live` 改成 `true`，主页上的“即将上线”就会换成 App Store 下载按钮；再把 `src/i18n/ui.ts` 里游戏的状态文案从“开发中”改成已上线。
+- **挑战链接**（1.1 起）：游戏里“晒账单”分享的是 `https://hongist.com/catsmash/c/?from=bill&lv=12&s=2&b=1288` 这样的链接。装了游戏的 iPhone 点它会直接打开游戏进入这一关，靠的是 `public/.well-known/apple-app-site-association`（苹果的通用链接验证文件，里面写着 App 的团队 ID 和包名，**不要删、不要改路径**）；没装游戏的打开 `/catsmash/c/` 这一页，看到好友的成绩和下载按钮。`public/_headers` 里给这个文件指定了 JSON 类型。
 - 以后再做新游戏，照着 `catsmash` 这一套加一组页面就行；`public/app-ads.txt` 全站共用一份，不用每个游戏单独放。
 
 ## 部署

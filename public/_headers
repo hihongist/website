@@ -1,2 +1,6 @@
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
+
+# 苹果的通用链接验证文件：没有扩展名，要明确告诉浏览器和苹果它是 JSON
+/.well-known/apple-app-site-association
+  Content-Type: application/json

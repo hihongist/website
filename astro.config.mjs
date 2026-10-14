@@ -12,6 +12,7 @@ export default defineConfig({
   integrations: [
     sitemap({
       i18n: { defaultLocale: 'zh', locales: { zh: 'zh-CN', en: 'en' } },
+      filter: (page) => !page.includes('/catsmash/c/'),   // 挑战页靠链接参数显示内容，不收录
     }),
   ],
 });
