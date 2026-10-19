@@ -21,8 +21,8 @@ export interface Tool {
   // 卡片顶部的迷你 Mac 桌面：DropEdge 用 CSS 画；其余放真实截图
   desk:
     | { kind: 'dropedge' }
-    | { kind: 'shot'; src: string; w: number; h: number; align: 'center' | 'right'; app?: string; tray?: 'calendar' }
-    | { kind: 'phone'; src: L; w: number; h: number };
+    | { kind: 'shot'; src: string; w: number; h: number; align: 'center' | 'right'; app?: string; tray?: 'calendar'; alt: L }
+    | { kind: 'phone'; src: L; w: number; h: number; alt: L };
 }
 
 export const tools: Tool[] = [
@@ -60,7 +60,7 @@ export const tools: Tool[] = [
       zh: ['免费下载 · 7 天试用', '永久买断', 'iCloud 同步'],
       en: ['Free download · 7-day trial', 'One-time purchase', 'iCloud sync'],
     },
-    desk: { kind: 'shot', src: '/works/thendo-shot.webp', w: 720, h: 960, align: 'center', app: 'ThenDo' },
+    desk: { kind: 'shot', src: '/works/thendo-shot.webp', w: 720, h: 960, align: 'center', app: 'ThenDo', alt: { zh: 'ThenDo 顺序任务界面：做完一步，下一步才解锁', en: 'ThenDo sequential tasks: the next step unlocks when you finish one' } },
   },
   {
     slug: 'scalendar',
@@ -69,17 +69,17 @@ export const tools: Tool[] = [
     icon: '/works/scalendar-icon.png',
     url: 'https://s-calendar.hongist.com/',
     host: 's-calendar.hongist.com',
-    meta: { zh: 'macOS 14+', en: 'macOS 14+' },
+    meta: { zh: 'iPhone + Mac', en: 'iPhone + Mac' },
     tagline: { zh: '日历，就看日历。', en: 'Calendar. Simply.' },
     desc: {
-      zh: '安静待在菜单栏。农历、节气、假期和调休一眼看清，想到的事随手记成日程，设好重复和提醒。',
-      en: 'Sits quietly in your menu bar. Lunar dates, solar terms, public holidays and make-up workdays at a glance, plus events with repeats and reminders.',
+      zh: 'iPhone 上有月历小组件，Mac 安静待在菜单栏。农历、节气、假期和调休一眼看清，想到的事随手记成日程，设好重复和提醒。',
+      en: 'A month widget on iPhone, a quiet calendar in your Mac menu bar. Lunar dates, solar terms, public holidays and make-up workdays at a glance, plus events with repeats and reminders.',
     },
     chips: {
-      zh: ['DMG · App Store', 'PRO 解锁大小周', '日程留在本机'],
-      en: ['DMG · App Store', 'PRO: alternating workweeks', 'Events stay on your Mac'],
+      zh: ['App Store · Mac 版可下载 DMG', 'PRO 解锁大小周', 'iCloud 同步可选'],
+      en: ['App Store · DMG for Mac', 'PRO: alternating workweeks', 'Optional iCloud sync'],
     },
-    desk: { kind: 'shot', src: '/works/scalendar-shot.webp', w: 676, h: 1096, align: 'right', tray: 'calendar' },
+    desk: { kind: 'shot', src: '/works/scalendar-shot.webp', w: 676, h: 1096, align: 'right', tray: 'calendar', alt: { zh: '日历即日历月视图：显示农历、节气、假期和调休标记', en: 'Simply Calendar month view with lunar dates, solar terms, holidays and make-up workdays' } },
   },
   {
     slug: 'safeshot',
@@ -97,7 +97,7 @@ export const tools: Tool[] = [
       zh: ['免费下载', 'Pro 一次买断', '图片不离开设备'],
       en: ['Free download', 'Pro: one-time purchase', 'Images stay on your device'],
     },
-    desk: { kind: 'phone', src: { zh: '/works/safeshot-shot-zh.webp', en: '/works/safeshot-shot-en.webp' }, w: 600, h: 1263 },
+    desk: { kind: 'phone', src: { zh: '/works/safeshot-shot-zh.webp', en: '/works/safeshot-shot-en.webp' }, w: 600, h: 1263, alt: { zh: 'SafeShot Go 自动给截图里的邮箱、电话和验证码打码', en: 'SafeShot Go automatically redacting emails, phone numbers and codes in a screenshot' } },
   },
 ];
 

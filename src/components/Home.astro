@@ -8,14 +8,29 @@ import About from './About.astro';
 import Footer from './Footer.astro';
 import '../styles/home.css';
 import type { Lang } from '../i18n/ui';
+import { tools, contact } from '../data/works';
 
 interface Props {
   lang: Lang;
 }
 const { lang } = Astro.props;
+// 告诉搜索引擎：这是 Hong 的个人网站，作品各有官网
+const site = 'https://hongist.com/';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'WebSite', '@id': `${site}#website`, url: site, name: 'hongist', inLanguage: ['zh-CN', 'en'], publisher: { '@id': `${site}#hong` } },
+    {
+      '@type': 'Person', '@id': `${site}#hong`, name: 'Hong', url: site, email: `mailto:${contact.email}`,
+      sameAs: ['https://apps.apple.com/developer/id6775318475'],
+      owns: tools.map((t) => ({ '@type': 'SoftwareApplication', name: t.name.en, url: t.url })),
+    },
+  ],
+};
 ---
 
 <Base lang={lang}>
+  <script is:inline type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)} />
   <MenuBar lang={lang} />
   <main>
     <Hero lang={lang} />

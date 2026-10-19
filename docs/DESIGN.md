@@ -12,7 +12,7 @@
 |------|------|--------|------|------|-----------|--------|
 | 小工具 | DropEdge | 暂存，就放手边。 | macOS 14+ | 已上线 | dropedge.hongist.com | dropedge.chiuist.com（网页 301，App 用的更新源和数据照常） |
 | 小工具 | ThenDo | 待办，就做待办。 | Mac + iPhone | 已上线 | then-do.hongist.com | then-do.chiuist.com（网页 301，App 用的更新源和数据照常） |
-| 小工具 | 日历即日历 Simply Calendar | 日历，就看日历。 | macOS 14+ | 已上线 | s-calendar.hongist.com | s-calendar.chiuist.com（网页 301，App 用的更新源和数据照常） |
+| 小工具 | 日历即日历 Simply Calendar | 日历，就看日历。 | iPhone（iOS 17+）+ Mac（macOS 14+） | 已上线 | s-calendar.hongist.com | s-calendar.chiuist.com（网页 301，App 用的更新源和数据照常） |
 | 小工具 | SafeShot Go | 分享前，先打码。 | iPhone + iPad，iOS 16+ | 已上线 | safeshot.hongist.com（App Store id6780211041） | — |
 | 游戏 | 猫咪扫雷（英文名 Cat Stars） | 每一行、每一列、每个色块里，都藏着一只猫。 | 微信小游戏；iOS App Store（中国大陆以外，id6775446731） | 已上线 | 微信内 / App Store | — |
 | 游戏 | 猫咪砸砸乐（英文名 Cat Smash，App Store 全名 Cat Smash: Knock It Off!） | 猫咪用耳朵当弹弓，拆家拆出一张账单。 | iOS App Store（审核前）；微信小游戏（备案中） | 开发中 | 游戏主页 hongist.com/catsmash/ | — |

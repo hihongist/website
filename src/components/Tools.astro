@@ -41,9 +41,9 @@ const dropedgeIcon = tools.find((x) => x.slug === 'dropedge')?.icon;
             )}
 
             {tool.desk.kind === 'phone' ? (
-              <img class="shot shot-phone" src={tool.desk.src[lang]} alt="" loading="lazy" width={tool.desk.w} height={tool.desk.h} />
+              <img class="shot shot-phone" src={tool.desk.src[lang]} alt={tool.desk.alt[lang]} loading="lazy" width={tool.desk.w} height={tool.desk.h} />
             ) : tool.desk.kind === 'shot' ? (
-              <img class:list={['shot', tool.desk.align === 'right' && 'shot-right']} src={tool.desk.src} alt="" loading="lazy" width={tool.desk.w} height={tool.desk.h} />
+              <img class:list={['shot', tool.desk.align === 'right' && 'shot-right']} src={tool.desk.src} alt={tool.desk.alt[lang]} loading="lazy" width={tool.desk.w} height={tool.desk.h} />
             ) : (
               <>
                 <div class="edge-win">

@@ -10,8 +10,8 @@ export const homePath: Record<Lang, string> = { zh: '/', en: '/en/' };
 export const ui = {
   zh: {
     meta: {
-      title: 'hongist · Hong 的小工具和小游戏',
-      description: '独立开发者 Hong 的作品：DropEdge、ThenDo、日历即日历、SafeShot Go 等 Mac 和 iPhone 小工具，和猫咪扫雷等猫咪小游戏。',
+      title: 'hongist｜Mac 和 iPhone 小工具：文件暂存、顺序待办、农历日历、截图打码',
+      description: '独立开发者 Hong 做的 Mac 和 iPhone 小工具：DropEdge 文件暂存架、ThenDo 顺序待办、日历即日历（农历、节气、调休）、SafeShot Go 截图打码，还有猫咪扫雷、猫咪砸砸乐两款猫咪小游戏。',
     },
     nav: {
       label: '主导航',
@@ -127,8 +127,8 @@ export const ui = {
 
   en: {
     meta: {
-      title: 'hongist · Mac & iPhone tools and cat games by Hong',
-      description: 'Indie apps by Hong: DropEdge, ThenDo, Simply Calendar and SafeShot Go for Mac and iPhone, plus cozy cat games like Cat Stars.',
+      title: 'hongist — Indie Mac & iPhone Apps and Cat Games by Hong',
+      description: 'Small, focused apps by indie developer Hong: DropEdge file shelf for Mac, ThenDo step-by-step to-do, Simply Calendar with Chinese lunar dates, SafeShot Go screenshot redaction, and Cat Stars logic puzzles.',
     },
     nav: {
       label: 'Main',
