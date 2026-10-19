@@ -15,7 +15,7 @@ const { lang } = Astro.props;
 const t = csPrivacy[lang];
 ---
 
-<Base lang={lang} title={t.title} description={t.description} paths={csPaths.privacy}>
+<Base lang={lang} title={t.title} description={t.description} paths={csPaths.privacy} image={`/works/catsmash/og-${lang}.jpg`}>
   <MenuBar lang={lang} paths={csPaths.privacy} />
   <main class="cs-doc">
     <SubNav lang={lang} current="privacy" />

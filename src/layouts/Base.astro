@@ -12,7 +12,7 @@ interface Props {
   title?: string;
   description?: string;
   paths?: Record<Lang, string>;
-  image?: string;     // 分享到聊天软件时显示的预览图（站内路径）
+  image?: string;     // 分享到聊天软件时显示的预览图（站内路径，1200×630）；不传就用首页的
   noindex?: boolean;  // 不让搜索引擎收录（比如带参数的挑战页）
 }
 const { lang } = Astro.props;
@@ -21,7 +21,9 @@ const title = Astro.props.title ?? t.meta.title;
 const description = Astro.props.description ?? t.meta.description;
 const paths = Astro.props.paths ?? homePath;
 const url = (l: Lang) => new URL(paths[l], Astro.site).href;
-const image = Astro.props.image ? new URL(Astro.props.image, Astro.site).href : undefined;
+const image = new URL(Astro.props.image ?? `/og/home-${lang}.jpg`, Astro.site).href;
+const ogLocale: Record<Lang, string> = { zh: 'zh_CN', en: 'en_US' };
+const otherLang = langs.find((l) => l !== lang)!;
 ---
 
 <!doctype html>
@@ -35,15 +37,24 @@ const image = Astro.props.image ? new URL(Astro.props.image, Astro.site).href : 
     {langs.map((l) => <link rel="alternate" hreflang={htmlLang[l]} href={url(l)} />)}
     <link rel="alternate" hreflang="x-default" href={url('zh')} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-96.png" sizes="96x96" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#F3F4F8" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#090B11" media="(prefers-color-scheme: dark)" />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="hongist" />
     <meta property="og:url" content={url(lang)} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:locale" content={htmlLang[lang].replace('-', '_')} />
-    {image && <meta property="og:image" content={image} />}
-    {image && <meta name="twitter:card" content="summary_large_image" />}
+    <meta property="og:locale" content={ogLocale[lang]} />
+    <meta property="og:locale:alternate" content={ogLocale[otherLang]} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
     {Astro.props.noindex && <meta name="robots" content="noindex" />}
     <slot name="head" />
     <script is:inline>
